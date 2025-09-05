@@ -1,0 +1,1611 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Purple & White Flashcards</title>
+      <style>
+:root{
+  --purple:#6a0dad;
+  --lav:#a06cd5;
+  --soft:#f6f1ff;
+  --ink:#2b2142;
+  --card:#ffffff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--ink);
+  background: radial-gradient(1200px 800px at 20% -10%, var(--soft), #ffffff 40%), 
+              radial-gradient(900px 600px at 120% 10%, #efe6ff, #ffffff 40%);
+}
+header{
+  background: linear-gradient(135deg, var(--purple), var(--lav));
+  color:white;
+  padding:28px 22px;
+  text-align:center;
+  border-bottom-left-radius:32px;
+  border-bottom-right-radius:32px;
+  box-shadow: 0 10px 30px rgba(106,13,173,.35);
+  position:sticky; top:0; z-index:10;
+}
+h1{margin:0; font-size:clamp(22px,3.2vw,34px); letter-spacing:.3px}
+.sub{opacity:.9; margin-top:6px; font-size:clamp(12px,2vw,15px)}
+.controls{
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:14px;
+}
+input[type="search"], select, button{
+  padding:10px 12px; border-radius:14px; border:1px solid rgba(0,0,0,.08);
+  background:white; min-width:170px; font-size:14px;
+  box-shadow:0 2px 10px rgba(106,13,173,.12);
+}
+button{
+  background:linear-gradient(135deg,var(--purple),var(--lav)); color:white; cursor:pointer;
+  border:none; min-width:120px; font-weight:600;
+}
+.wrap{max-width:1200px; margin:28px auto; padding:0 18px 60px}
+.grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:18px;
+}
+.card{
+  perspective:1000px; height:180px;
+}
+.inner{
+  position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .6s;
+}
+.card.flipped .inner{transform:rotateY(180deg)}
+.face{
+  position:absolute; inset:0; backface-visibility:hidden; background:var(--card);
+  border-radius:18px; box-shadow:0 12px 24px rgba(42,0,79,.08), inset 0 0 0 1px rgba(106,13,173,.12);
+  padding:16px; display:flex; flex-direction:column; justify-content:center;
+}
+.front{background:
+        linear-gradient(180deg,rgba(160,108,213,.06),rgba(160,108,213,0)),
+        white}
+.back{transform:rotateY(180deg)}
+.title{
+  font-weight:800; font-size:18px; color:var(--purple); margin-bottom:8px
+}
+.cat{font-size:12px; color:#6941c6; font-weight:700; letter-spacing:.3px; text-transform:uppercase}
+.def{font-size:14px; line-height:1.35}
+.legend{display:flex; gap:8px; justify-content:center; align-items:center; margin:14px auto 0; flex-wrap:wrap}
+.pill{font-size:12px; padding:6px 10px; border-radius:999px; background:rgba(160,108,213,.1); color:#4b3078; border:1px solid rgba(106,13,173,.15)}
+footer{margin-top:26px; text-align:center; color:#604a86}
+a.download{
+  display:inline-block; margin-top:8px; padding:10px 14px; border-radius:12px; color:white; text-decoration:none;
+  background:linear-gradient(135deg,var(--purple),var(--lav)); box-shadow:0 10px 24px rgba(106,13,173,.35);
+}
+</style>
+    </head>
+    <body>
+      <header>
+        <h1>Literary Techniques & Concepts — Flashcards</h1>
+        <div class="sub">Tap a card to flip. Search or filter by section. Showing <span id="count">97</span> cards.</div>
+        <div class="controls">
+          <input id="search" type="search" placeholder="Search term or definition…">
+          <select id="category"><option value="All">All</option>
+<option value="Character Development / Change">Character Development / Change</option>
+<option value="Context & Concepts">Context & Concepts</option>
+<option value="Techniques – Language">Techniques – Language</option>
+<option value="Techniques – Structure">Techniques – Structure</option></select>
+          <button id="shuffle" type="button">Shuffle</button>
+          <button id="reset" type="button">Reset</button>
+        </div>
+        <div class="legend">
+          <span class="pill">Theme: Purple × White</span>
+          <span class="pill">Flip: Click</span>
+          <span class="pill">Filter: Search / Menu</span>
+        </div>
+      </header>
+      <div class="wrap">
+        <div class="grid">
+          
+        <div class="card" data-term="allegory" data-def="a story, character, place, or event is used to convey a hidden meaning, typically moral or political, about real‑world events or issues (e.g. duncan’s death is an allegory for the risks of killing your king)." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Allegory</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Allegory</div>
+              <div class="def">A story, character, place, or event is used to convey a hidden meaning, typically moral or political, about real‑world events or issues (e.g. Duncan’s death is an allegory for the risks of killing your king).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="allusion" data-def="an indirect reference to another event, person or work which the writer assumes the reader is familiar." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Allusion</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Allusion</div>
+              <div class="def">An indirect reference to another event, person or work which the writer assumes the reader is familiar.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="archetype" data-def="the first real example or prototype of something; an ideal model or the perfect image of something." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Archetype</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Archetype</div>
+              <div class="def">The first real example or prototype of something; an ideal model or the perfect image of something.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="bathos" data-def="an anti‑climax which is abrupt; usually humour that comes from an odd and sudden change in tone." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Bathos</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Bathos</div>
+              <div class="def">An anti‑climax which is abrupt; usually humour that comes from an odd and sudden change in tone.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="biblical" data-def="language that relates to the bible and thus has religious connotations." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Biblical</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Biblical</div>
+              <div class="def">Language that relates to the Bible and thus has religious connotations.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="blazon" data-def="a poem in which the speaker describes a woman’s physique by focusing on and listing various individual parts of a woman’s body." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Blazon</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Blazon</div>
+              <div class="def">A poem in which the speaker describes a woman’s physique by focusing on and listing various individual parts of a woman’s body.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="caricature" data-def="an imitation where particular notable characteristics are exaggerated to a comic or grotesque effect." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Caricature</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Caricature</div>
+              <div class="def">An imitation where particular notable characteristics are exaggerated to a comic or grotesque effect.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="colloquialism" data-def="an informal word or phrase used in normal or familiar conversation." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Colloquialism</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Colloquialism</div>
+              <div class="def">An informal word or phrase used in normal or familiar conversation.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="comic relief" data-def="relief from tension caused by the introduction of a comedic element." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Comic relief</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Comic relief</div>
+              <div class="def">Relief from tension caused by the introduction of a comedic element.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="connotation" data-def="an impression, idea, or feeling associated with a word or phrase beyond its literal meaning." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Connotation</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Connotation</div>
+              <div class="def">An impression, idea, or feeling associated with a word or phrase beyond its literal meaning.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="dichotomy" data-def="a division or contrast between two opposed things." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Dichotomy</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Dichotomy</div>
+              <div class="def">A division or contrast between two opposed things.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="double entendre" data-def="words or phrases that have a double meaning and is deliberately ambiguous, especially when one of the meanings is risqué. (for example: in elizabethan england, the use of the word “die” referred to both death and orgasm)." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Double entendre</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Double entendre</div>
+              <div class="def">Words or phrases that have a double meaning and is deliberately ambiguous, especially when one of the meanings is risqué. (For example: In Elizabethan England, the use of the word “die” referred to both death and orgasm).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="dysphemism" data-def="the substitution of a more offensive term for one considered less so." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Dysphemism</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Dysphemism</div>
+              <div class="def">The substitution of a more offensive term for one considered less so.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="epithet" data-def="a word or phrase applied to a person to describe an actual or credited quality. (for example: “star crossed lovers” = romeo and juliet)." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Epithet</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Epithet</div>
+              <div class="def">A word or phrase applied to a person to describe an actual or credited quality. (For example: “star crossed lovers” = Romeo and Juliet).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="epitome" data-def="a perfect example of a specific quality." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Epitome</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Epitome</div>
+              <div class="def">A perfect example of a specific quality.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="epizeuxis" data-def="the repetition of words in succession within the same sentence." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Epizeuxis</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Epizeuxis</div>
+              <div class="def">The repetition of words in succession within the same sentence.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="euphemism" data-def="the substitution of a harmless term for one that is considered as offensively risqué or explicit." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Euphemism</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Euphemism</div>
+              <div class="def">The substitution of a harmless term for one that is considered as offensively risqué or explicit.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="foreshadowing" data-def="a device in which an author suggests certain plot developments that might come later in the play." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Foreshadowing</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Foreshadowing</div>
+              <div class="def">A device in which an author suggests certain plot developments that might come later in the play.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="grotesque" data-def="ugly and distorted, physically or figuratively, in a way that is comic or repulsive." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Grotesque</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Grotesque</div>
+              <div class="def">Ugly and distorted, physically or figuratively, in a way that is comic or repulsive.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="hyperbole" data-def="an extravagant exaggeration of fact, used either for serious or comic effect." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Hyperbole</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Hyperbole</div>
+              <div class="def">An extravagant exaggeration of fact, used either for serious or comic effect.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="ideology" data-def="a system of beliefs and ideals, typically forming a framework for a political policy or a religion." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Ideology</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Ideology</div>
+              <div class="def">A system of beliefs and ideals, typically forming a framework for a political policy or a religion.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="imagery" data-def="use of language which is visually descriptive or symbolic." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Imagery</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Imagery</div>
+              <div class="def">Use of language which is visually descriptive or symbolic.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="irony" data-def="the use of words where the meaning is contrary to what is expected to actually occur." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Irony</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Irony</div>
+              <div class="def">The use of words where the meaning is contrary to what is expected to actually occur.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="juxtaposition" data-def="a literary technique that places two opposing words, phrases or events side by side, often for the main purpose of comparing or contrasting them. (for example – “here is much to do with hate, but more to do with love.”)." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Juxtaposition</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Juxtaposition</div>
+              <div class="def">A literary technique that places two opposing words, phrases or events side by side, often for the main purpose of comparing or contrasting them. (For example – “Here is much to do with hate, but more to do with love.”).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="manifestation" data-def="a physical expression or realisation of an abstract idea through a character, object, place, or event." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Manifestation</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Manifestation</div>
+              <div class="def">A physical expression or realisation of an abstract idea through a character, object, place, or event.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="motif" data-def="an element that reoccurs, such as a word, phrase, idea, image, action, character or symbol that appears throughout the play for emphasis." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Motif</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Motif</div>
+              <div class="def">An element that reoccurs, such as a word, phrase, idea, image, action, character or symbol that appears throughout the play for emphasis.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="oxymoron" data-def="a form of paradox that combines a pair of contrasting terms into a single, sometimes unique expression. (for example – when juliet says “o happy dagger”)." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Oxymoron</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Oxymoron</div>
+              <div class="def">A form of paradox that combines a pair of contrasting terms into a single, sometimes unique expression. (For example – When Juliet says “O happy dagger”).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="parable" data-def="a story used to teach a moral or spiritual lesson, typically told in the bible by jesus." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Parable</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Parable</div>
+              <div class="def">A story used to teach a moral or spiritual lesson, typically told in the Bible by Jesus.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="pathetic fallacy" data-def="when human emotions or characteristics are given to objects, nature or the weather." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Pathetic Fallacy</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Pathetic Fallacy</div>
+              <div class="def">When human emotions or characteristics are given to objects, nature or the weather.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="personification" data-def="giving something non‑human a human trait, capability, or personality." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Personification</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Personification</div>
+              <div class="def">Giving something non‑human a human trait, capability, or personality.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="pun" data-def="a play on words which suggests multiple meanings." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Pun</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Pun</div>
+              <div class="def">A play on words which suggests multiple meanings.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="satire" data-def="the use of humour, irony or exaggeration to ridicule and criticize an individual’s stupidity." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Satire</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Satire</div>
+              <div class="def">The use of humour, irony or exaggeration to ridicule and criticize an individual’s stupidity.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="semantic field" data-def="when a writer employs multiple words which are similar and thus group together under one sub‑heading." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Semantic Field</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Semantic Field</div>
+              <div class="def">When a writer employs multiple words which are similar and thus group together under one sub‑heading.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="sibilance" data-def="the repetition of ‘s’ sounds close together." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Sibilance</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Sibilance</div>
+              <div class="def">The repetition of ‘s’ sounds close together.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="simile" data-def="comparing something to something else in a nonliteral way, in order to convey a particular idea or quality of the original thing." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Simile</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Simile</div>
+              <div class="def">Comparing something to something else in a nonliteral way, in order to convey a particular idea or quality of the original thing.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="symbolism" data-def="using one object or character to expose a broader idea running throughout the play." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Symbolism</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Symbolism</div>
+              <div class="def">Using one object or character to expose a broader idea running throughout the play.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="trope" data-def="a particular type of character, event, or setting that is used frequently in stories (e.g. ‘the damsel in distress’ is a trope)." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Trope</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Trope</div>
+              <div class="def">A particular type of character, event, or setting that is used frequently in stories (e.g. ‘The Damsel In Distress’ is a trope).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="zoomorphism" data-def="imagery representing animal forms." data-cat="Techniques – Language">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Zoomorphism</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Language</div>
+              <div class="title">Zoomorphism</div>
+              <div class="def">Imagery representing animal forms.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="anaphora" data-def="repeating a sequence of words at the beginning of adjacent clauses." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Anaphora</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Anaphora</div>
+              <div class="def">Repeating a sequence of words at the beginning of adjacent clauses.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="antithesis" data-def="parallel structure that uses opposites to create emphasis. (for example: “it was the best of times, it was the worst of times”)." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Antithesis</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Antithesis</div>
+              <div class="def">Parallel structure that uses opposites to create emphasis. (For example: “It was the best of times, it was the worst of times”).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="aside" data-def="a part of an actor’s lines that are not meant to be heard by other characters on stage and intended only for the audience; a short digression." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Aside</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Aside</div>
+              <div class="def">A part of an actor’s lines that are not meant to be heard by other characters on stage and intended only for the audience; a short digression.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="blank verse" data-def="unrhymed poetry written in iambic pentameter." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Blank verse</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Blank verse</div>
+              <div class="def">Unrhymed poetry written in iambic pentameter.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="couplet" data-def="a rhymed pair of lines." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Couplet</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Couplet</div>
+              <div class="def">A rhymed pair of lines.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="cyclical" data-def="when the same sequence of events repeats throughout a story." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Cyclical</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Cyclical</div>
+              <div class="def">When the same sequence of events repeats throughout a story.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="dramatic irony" data-def="when a character shows that they are oblivious of the reality of which the audience is aware." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Dramatic Irony</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Dramatic Irony</div>
+              <div class="def">When a character shows that they are oblivious of the reality of which the audience is aware.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="dramatic monologue" data-def="a passage of speech in which one person is speaking to an audience or “thinking out loud”." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Dramatic monologue</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Dramatic monologue</div>
+              <div class="def">A passage of speech in which one person is speaking to an audience or “thinking out loud”.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="epistrophe" data-def="when the same word (or group of words) is employed at the end of successive sentences with the aim of emphasising it." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Epistrophe</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Epistrophe</div>
+              <div class="def">When the same word (or group of words) is employed at the end of successive sentences with the aim of emphasising it.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="exposition" data-def="information provided through stage directions, narration, dialogue, or description, used to introduce the audience to crucial background information." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Exposition</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Exposition</div>
+              <div class="def">Information provided through stage directions, narration, dialogue, or description, used to introduce the audience to crucial background information.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="heroic couplet" data-def="the last two lines of a shakespearean sonnet – a couplet of rhyming iambic pentameter." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Heroic couplet</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Heroic couplet</div>
+              <div class="def">The last two lines of a Shakespearean Sonnet – a couplet of rhyming iambic pentameter.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="iambic pentameter" data-def="a sentence (10 syllables in total) which is composed of two syllables: the first unstressed; the second stressed." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Iambic pentameter</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Iambic pentameter</div>
+              <div class="def">A sentence (10 syllables in total) which is composed of two syllables: the first unstressed; the second stressed.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="in media res" data-def="starting in the middle of the action." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">In Media Res</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">In Media Res</div>
+              <div class="def">Starting in the middle of the action.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="microcosm" data-def="using a place, group of people, or event in the small‑scale to represent something much larger (e.g. the battle at the start of macbeth is a microcosm for the whole play)." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Microcosm</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Microcosm</div>
+              <div class="def">Using a place, group of people, or event in the small‑scale to represent something much larger (e.g. the battle at the start of Macbeth is a microcosm for the whole play).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="paradox" data-def="a statement that seems to contradict itself but is still true." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Paradox</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Paradox</div>
+              <div class="def">A statement that seems to contradict itself but is still true.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="parallelism" data-def="using components that are similar in grammar, structure, or meaning within a sentence or multiple sentences, or throughout the text as a whole (e.g. “he came, he saw, he conquered”)." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Parallelism</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Parallelism</div>
+              <div class="def">Using components that are similar in grammar, structure, or meaning within a sentence or multiple sentences, or throughout the text as a whole (e.g. “He came, he saw, he conquered”).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="refrain" data-def="a word, phrase, or sentence that is repeated throughout a text." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Refrain</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Refrain</div>
+              <div class="def">A word, phrase, or sentence that is repeated throughout a text.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="soliloquy" data-def="a dramatic device whereby a character stands alone on stage and addresses the audience, giving voice to their deepest thoughts and feelings." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Soliloquy</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Soliloquy</div>
+              <div class="def">A dramatic device whereby a character stands alone on stage and addresses the audience, giving voice to their deepest thoughts and feelings.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="sonnet form" data-def="a highly stylized form of poetry, with 14 lines written in iambic pentameter. (for example – romeo and juliet’s first real encounter in the balcony scene)." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Sonnet form</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Sonnet form</div>
+              <div class="def">A highly stylized form of poetry, with 14 lines written in iambic pentameter. (For example – Romeo and Juliet’s first real encounter in the balcony scene).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="stichomythia" data-def="a dialogue between two characters who speak one after the other." data-cat="Techniques – Structure">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Stichomythia</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Techniques – Structure</div>
+              <div class="title">Stichomythia</div>
+              <div class="def">A dialogue between two characters who speak one after the other.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="anagnorisis" data-def="a moment in a play when a character makes a critical discovery, such as the tragic hero’s sudden awareness of a real situation usually as a result of their downfall." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Anagnorisis</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Anagnorisis</div>
+              <div class="def">A moment in a play when a character makes a critical discovery, such as the tragic hero’s sudden awareness of a real situation usually as a result of their downfall.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="antagonist" data-def="a character who actively opposes or is hostile to another character, particularly the protagonist." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Antagonist</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Antagonist</div>
+              <div class="def">A character who actively opposes or is hostile to another character, particularly the protagonist.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="catharsis" data-def="the process of letting go of or providing liberation from, strong or suppressed emotions." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Catharsis</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Catharsis</div>
+              <div class="def">The process of letting go of or providing liberation from, strong or suppressed emotions.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="conscience" data-def="a moral sense of right and wrong that guides a character’s behaviour." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Conscience</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Conscience</div>
+              <div class="def">A moral sense of right and wrong that guides a character’s behaviour.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="foil" data-def="a character with qualities that are in contrast with another character. (for example, rosaline and juliet, or macbeth and banquo)." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Foil</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Foil</div>
+              <div class="def">A character with qualities that are in contrast with another character. (For example, Rosaline and Juliet, or Macbeth and Banquo).</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="hamartia" data-def="a character’s tragic flaw." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Hamartia</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Hamartia</div>
+              <div class="def">A character’s tragic flaw.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="hubris" data-def="an exaggerated self‑pride or self‑confidence which often leads to a fatal retaliation." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Hubris</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Hubris</div>
+              <div class="def">An exaggerated self‑pride or self‑confidence which often leads to a fatal retaliation.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="peripeteia" data-def="a sudden turn of events or an unexpected reversal." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Peripeteia</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Peripeteia</div>
+              <div class="def">A sudden turn of events or an unexpected reversal.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="protagonist" data-def="the leading character in the play." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Protagonist</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Protagonist</div>
+              <div class="def">The leading character in the play.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="tragic hero" data-def="a character who is usually depicted as perfect and honourable yet has one ‘fatal flaw’ or hamartia." data-cat="Character Development / Change">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Tragic hero</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Character Development / Change</div>
+              <div class="title">Tragic hero</div>
+              <div class="def">A character who is usually depicted as perfect and honourable yet has one ‘fatal flaw’ or hamartia.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="arthurian legend" data-def="the stories of king arthur and his knights of the round table, popular for how they celebrate chivalry and patriotism." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Arthurian Legend</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Arthurian Legend</div>
+              <div class="def">The stories of King Arthur and his Knights of the Round Table, popular for how they celebrate chivalry and patriotism.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="autonomy" data-def="the right and ability to be able to govern yourself, including your actions and decisions." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Autonomy</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Autonomy</div>
+              <div class="def">The right and ability to be able to govern yourself, including your actions and decisions.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="code of chivalry" data-def="the moral, religious, and social code of medieval knights, including bravery, honour, and courtesy." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Code of Chivalry</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Code of Chivalry</div>
+              <div class="def">The moral, religious, and social code of Medieval knights, including bravery, honour, and courtesy.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="convention" data-def="the traditional way of doing things." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Convention</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Convention</div>
+              <div class="def">The traditional way of doing things.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="dehumanise" data-def="denying someone their humanity, including their emotions and independent thought." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Dehumanise</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Dehumanise</div>
+              <div class="def">Denying someone their humanity, including their emotions and independent thought.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="divine order/great chain of being" data-def="the belief in medieval christianity that all life and matter on earth was organised into a hierarchy by god." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Divine Order/Great Chain of Being</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Divine Order/Great Chain of Being</div>
+              <div class="def">The belief in Medieval Christianity that all life and matter on Earth was organised into a hierarchy by God.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="divine right of kings" data-def="the belief in christianity that the monarch of a country is chosen by god himself to be his representative on earth, meaning they don’t have to answer to anyone except god." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Divine Right of Kings</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Divine Right of Kings</div>
+              <div class="def">The belief in Christianity that the monarch of a country is chosen by God Himself to be His representative on Earth, meaning they don’t have to answer to anyone except God.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="facade" data-def="a front or mask that is put up to disguise something or someone’s true character." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Facade</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Facade</div>
+              <div class="def">A front or mask that is put up to disguise something or someone’s true character.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="fate" data-def="the development of events outside an individual’s control; it is sometimes said to be determined by a supernatural power." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Fate</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Fate</div>
+              <div class="def">The development of events outside an individual’s control; it is sometimes said to be determined by a supernatural power.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="globe theatre" data-def="a theatre in london associated with william shakespeare where all of shakespeare’s plays were performed. it was built in 1599 by shakespeare’s playing company and has been rebuilt and reconstructed since." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Globe Theatre</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Globe Theatre</div>
+              <div class="def">A theatre in London associated with William Shakespeare where all of Shakespeare’s plays were performed. It was built in 1599 by Shakespeare’s playing company and has been rebuilt and reconstructed since.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="heathen" data-def="someone who isn’t a christian, particularly someone who is pagan or lacks moral principles." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Heathen</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Heathen</div>
+              <div class="def">Someone who isn’t a Christian, particularly someone who is pagan or lacks moral principles.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="infallible" data-def="never failing, incapable of making mistakes." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Infallible</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Infallible</div>
+              <div class="def">Never failing, incapable of making mistakes.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="melodrama" data-def="a dramatic piece that includes exaggerated characters and exciting events." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Melodrama</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Melodrama</div>
+              <div class="def">A dramatic piece that includes exaggerated characters and exciting events.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="misogyny" data-def="hatred, contempt, or prejudice towards women for no reason other than their gender." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Misogyny</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Misogyny</div>
+              <div class="def">Hatred, contempt, or prejudice towards women for no reason other than their gender.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="morality" data-def="principles, either personal or social, concerning the difference between right and wrong, going beyond legality and often religion." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Morality</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Morality</div>
+              <div class="def">Principles, either personal or social, concerning the difference between right and wrong, going beyond legality and often religion.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="mythology" data-def="a collection of stories, especially belonging to a particular religion or culture such as the ancient greeks, that teach moral lessons or explain aspects of our world." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Mythology</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Mythology</div>
+              <div class="def">A collection of stories, especially belonging to a particular religion or culture such as the Ancient Greeks, that teach moral lessons or explain aspects of our world.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="nihilism" data-def="believing life is pointless and meaningless." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Nihilism</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Nihilism</div>
+              <div class="def">Believing life is pointless and meaningless.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="paganism" data-def="a non‑christian or pre‑christian religion, particularly nature worship." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Paganism</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Paganism</div>
+              <div class="def">A non‑Christian or pre‑Christian religion, particularly nature worship.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="patriarchy" data-def="a system of society whereby men have ultimate authority which they use to oppress women who are largely excluded from the male dominated society." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Patriarchy</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Patriarchy</div>
+              <div class="def">A system of society whereby men have ultimate authority which they use to oppress women who are largely excluded from the male dominated society.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="prejudice" data-def="having a negative view or opinion of someone that is not based on experience or logic." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Prejudice</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Prejudice</div>
+              <div class="def">Having a negative view or opinion of someone that is not based on experience or logic.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="remorse" data-def="the feeling of intense regret and guilt for doing a bad deed." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Remorse</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Remorse</div>
+              <div class="def">The feeling of intense regret and guilt for doing a bad deed.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="repent" data-def="to feel or/and express great regret for sinning or committing a crime, particularly in a religious context." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Repent</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Repent</div>
+              <div class="def">To feel or/and express great regret for sinning or committing a crime, particularly in a religious context.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="stereotype" data-def="a view or preconception of a person or thing that is fixed and oversimplified, held by most of a population." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Stereotype</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Stereotype</div>
+              <div class="def">A view or preconception of a person or thing that is fixed and oversimplified, held by most of a population.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="the gunpowder plot" data-def="an assassination attempt on the king of england, king james i, in 1605, where a group of catholics tried to blow up the houses of parliament with gunpowder." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">The Gunpowder Plot</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">The Gunpowder Plot</div>
+              <div class="def">An assassination attempt on the King of England, King James I, in 1605, where a group of Catholics tried to blow up the Houses of Parliament with gunpowder.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="the renaissance" data-def="a period of time from the 14th to 17th century where artists, writers, and philosophers revisited the works of the ancient greeks and romans." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">The Renaissance</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">The Renaissance</div>
+              <div class="def">A period of time from the 14th to 17th century where artists, writers, and philosophers revisited the works of the Ancient Greeks and Romans.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="toxic masculinity" data-def="the concept that traditional male gender roles restrict emotion in men while encouraging negative, often violent traits." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Toxic Masculinity</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Toxic Masculinity</div>
+              <div class="def">The concept that traditional male gender roles restrict emotion in men while encouraging negative, often violent traits.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="tragedy" data-def="a branch of drama that usually depicts the downfall and the reversal of fortune of a good person; suffering usually awaits many of the characters, especially the tragic hero." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Tragedy</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Tragedy</div>
+              <div class="def">A branch of drama that usually depicts the downfall and the reversal of fortune of a good person; suffering usually awaits many of the characters, especially the tragic hero.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="vice" data-def="a behaviour or trait that is immoral." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Vice</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Vice</div>
+              <div class="def">A behaviour or trait that is immoral.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card" data-term="virtue" data-def="a behaviour or trait that is moral." data-cat="Context & Concepts">
+          <div class="inner">
+            <div class="face front">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Virtue</div>
+              <div class="def">Click to flip ⤳</div>
+            </div>
+            <div class="face back">
+              <div class="cat">Context & Concepts</div>
+              <div class="title">Virtue</div>
+              <div class="def">A behaviour or trait that is moral.</div>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+        <footer>
+          Built for you ✨ — Save this page to keep offline.
+        </footer>
+      </div>
+      <script>
+const search = document.querySelector('#search');
+const category = document.querySelector('#category');
+const grid = document.querySelector('.grid');
+const count = document.querySelector('#count');
+const shuffleBtn = document.querySelector('#shuffle');
+const resetBtn = document.querySelector('#reset');
+
+function update(){
+  const q = (search.value || '').toLowerCase();
+  const cat = category.value;
+  let shown = 0;
+  document.querySelectorAll('.card').forEach(card => {
+    const term = card.dataset.term;
+    const def = card.dataset.def;
+    const c = card.dataset.cat;
+    const hits = term.includes(q) || def.includes(q);
+    const catOk = (cat === 'All' || c === cat);
+    const show = hits && catOk;
+    card.style.display = show ? '' : 'none';
+    if(show) shown++;
+  });
+  count.textContent = shown;
+}
+
+function shuffleCards(){
+  const cards = Array.from(document.querySelectorAll('.card'));
+  for(let i = cards.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    grid.appendChild(cards[j]);
+  }
+}
+
+search.addEventListener('input', update);
+category.addEventListener('change', update);
+shuffleBtn.addEventListener('click', shuffleCards);
+resetBtn.addEventListener('click', () => { search.value=''; category.value='All'; update(); });
+
+document.querySelectorAll('.card').forEach(c => c.addEventListener('click', () => {
+  c.classList.toggle('flipped');
+}));
+
+update();
+</script>
+    </body>
+    </html>
+    
