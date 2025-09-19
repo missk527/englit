@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A Christmas Carol — Isolation (Flashcards)</title>
+<style>
+  :root{
+    --bg:#0b1020;
+    --card:#111832;
+    --ink:#e8ecff;
+    --muted:#97a3c7;
+    --accent:#8aa3ff;
+    --good:#38d39f;
+    --bad:#ff6b6b;
+    --ring: rgba(138,163,255,.45);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background: radial-gradient(1200px 700px at 10% -10%, #1a2449 0%, var(--bg) 60%);
+    color:var(--ink);
+    display:flex; flex-direction:column; align-items:center; gap:1rem; padding:1rem;
+  }
+  header{max-width:900px; width:100%;}
+  h1{font-weight:800; letter-spacing:.3px; margin:.25rem 0}
+  p.subtitle{color:var(--muted); margin:.25rem 0 0}
+  .controls{
+    display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;
+  }
+  button, select{
+    background: linear-gradient(180deg, #22305c, #1a2449);
+    color:var(--ink); border:1px solid #2f3d6d; border-radius:12px; padding:.55rem .9rem;
+    cursor:pointer; font-weight:600; letter-spacing:.2px;
+    box-shadow: 0 0 0 0 var(--ring);
+    transition: box-shadow .2s ease, transform .05s ease;
+  }
+  button:hover, select:hover{ box-shadow:0 0 0 4px var(--ring) }
+  button:active{ transform: translateY(1px) }
+  .deck{
+    width: min(900px, 95vw);
+    display:grid; place-items:center; margin-top:.5rem;
+  }
+  .card{
+    width:100%;
+    background: linear-gradient(180deg, var(--card), #0c1330);
+    border:1px solid #23305c; border-radius:16px; padding:1.1rem 1.2rem;
+    min-height:200px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    position:relative; perspective: 1000px;
+  }
+  .inner{
+    position:relative; width:100%; min-height:180px;
+    transform-style: preserve-3d;
+    transition: transform .5s;
+  }
+  .card.flipped .inner{ transform: rotateY(180deg); }
+  .face{
+    position:absolute; inset:0; backface-visibility:hidden; display:flex; flex-direction:column; gap:.9rem; justify-content:center;
+  }
+  .face.back{ transform: rotateY(180deg); }
+  .q{ font-size: clamp(1.05rem, 2.2vw, 1.35rem); font-weight:700; line-height:1.35; }
+  .a{ font-size: clamp(1rem, 1.9vw, 1.15rem); color:#d5dcff; line-height:1.4; }
+  .meta{ display:flex; justify-content:space-between; align-items:center; gap:.5rem; color:var(--muted); font-size:.9rem; }
+  .progress{ height:8px; background:#1a2244; border-radius:999px; overflow:hidden; }
+  .bar{ height:100%; background: linear-gradient(90deg, var(--accent), #c8ccff); width:0%; }
+  .pill{ background:#1b2550; border:1px solid #2a3a70; border-radius:999px; padding:.2rem .6rem; font-weight:600; font-size:.8rem }
+  .footer{
+    max-width:900px; width:100%; color:var(--muted); font-size:.85rem; line-height:1.4;
+  }
+  .kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; 
+         background:#101838; border:1px solid #2a3a70; border-radius:6px; padding:.15rem .35rem; }
+  .tags{ display:flex; flex-wrap:wrap; gap:.35rem; }
+  .tag{ border:1px solid #2a3a70; background:#1b2550; border-radius:8px; padding:.15rem .5rem; font-size:.75rem; color:#cfd6ff }
+  .row{ display:flex; gap:.5rem; align-items:center; }
+  .hidden{display:none}
+  .btn-good{ border-color:#2b5f52; background:linear-gradient(180deg, #17493a, #12392e) }
+  .btn-bad{ border-color:#6a2a2a; background:linear-gradient(180deg, #4a1a1a, #3a1212) }
+  .count{ font-variant-numeric: tabular-nums; }
+  @media print{
+    body{ background:#fff; color:#000 }
+    .card{ page-break-inside: avoid; background:#fff; border:1px solid #999; box-shadow:none }
+    button, .controls, .progress, .bar{ display:none !important }
+    .footer{ color:#333 }
+    .tag{ border-color:#999; background:#f6f6f6; color:#222 }
+    .pill{ border-color:#999; background:#eee; color:#222 }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Isolation in <em>A Christmas Carol</em> — Flashcards</h1>
+  <p class="subtitle">Key points & quotes to revise the theme of <strong>isolation</strong> based on the provided notes.</p>
+  <div class="controls">
+    <button id="prev">⟵ Prev</button>
+    <button id="flip">Flip</button>
+    <button id="next">Next ⟶</button>
+    <button id="shuffle">Shuffle</button>
+    <select id="mode">
+      <option value="all" selected>Study: All</option>
+      <option value="due">Smart: Not mastered</option>
+      <option value="justQ">Questions only</option>
+    </select>
+    <button id="markGood" class="btn-good">Mark ✓</button>
+    <button id="markBad" class="btn-bad">Mark ✗</button>
+    <span class="pill"><span id="idx" class="count">1</span>/<span id="total" class="count">–</span></span>
+  </div>
+</header>
+
+<div class="deck">
+  <div class="card" id="card">
+    <div class="inner">
+      <div class="face front">
+        <div class="q" id="q"></div>
+        <div class="tags" id="tags"></div>
+      </div>
+      <div class="face back">
+        <div class="a" id="a"></div>
+        <div class="tags" id="btags"></div>
+      </div>
+    </div>
+  </div>
+  <div class="meta" style="margin-top:.6rem; width:100%">
+    <div class="progress" style="flex:1"><div class="bar" id="bar"></div></div>
+    <div class="row">
+      <span class="pill">Mastered: <span id="good" class="count">0</span></span>
+      <span class="pill">Struggling: <span id="bad" class="count">0</span></span>
+    </div>
+  </div>
+</div>
+
+<section class="footer">
+  <p><strong>Source:</strong> Study notes you provided (“Isolation — Themes — <em>A Christmas Carol</em>”). Some quotes are from Dickens’ text as excerpted in the notes (e.g., “secret, self contained and solitary as an oyster”). Original study sheet credited to PMT Education (CC BY‑NC‑ND 4.0).</p>
+  <p><strong>Tips:</strong> Press <span class="kbd">Space</span> to flip, <span class="kbd">←/→</span> to navigate, <span class="kbd">S</span> to shuffle, <span class="kbd">G</span>/<span class="kbd">B</span> to mark correct/incorrect. Use the dropdown for a “Smart” mode that focuses on cards you’ve marked as not mastered.</p>
+</section>
+
+<script>
+// Flashcard data set
+const CARDS = [
+  {
+    q: "How is Scrooge initially characterised to signal isolation? Quote and effect.",
+    a: "The narrator calls him “secret, self contained and solitary as an oyster.” The image signals chosen loneliness and emotional closure; the oyster suggests something hard to open (but with potential within).",
+    tags:["Opening","Characterisation","Quote"]
+  },
+  {
+    q: "What sound device in the description hints at something sinister about Scrooge?",
+    a: "Sibilance (‘secret’, ‘self’, ‘solitary’) echoes a snake; it carries a Biblical allusion to the serpent in Eden, implying isolation can be spiritually dangerous.",
+    tags:["Language","Sibilance","Biblical allusion"]
+  },
+  {
+    q: "What structural technique (‘secret and self contained and solitary’) intensifies Scrooge’s isolation?",
+    a: "Polysyndetic listing (‘and…and…’) layers adjectives to deepen the sense of separateness.",
+    tags:["Structure","Polysyndeton"]
+  },
+  {
+    q: "How do Victorian social norms highlight Scrooge’s self‑exile?",
+    a: "Victorians prized cordial street greetings; Scrooge is so withdrawn that “Nobody ever stopped him in the street to say…‘My dear Scrooge, how are you?’”, showing reciprocal avoidance.",
+    tags:["Context","Society"]
+  },
+  {
+    q: "Which character persistently invites Scrooge back into community, and why is it important?",
+    a: "Fred, his nephew. His repeated invitations (“Come! Dine with us to‑morrow.”) model forgiveness and open the door to Scrooge’s later reintegration.",
+    tags:["Character","Redemption"]
+  },
+  {
+    q: "What moment signals Scrooge’s social transformation by the end?",
+    a: "He attends Fred’s party: “It’s I. Your uncle Scrooge. I have come to dine.” The request to be let in symbolically reverses lifelong exclusion.",
+    tags:["Ending","Change"]
+  },
+  {
+    q: "What does Scrooge’s childhood reveal about the roots of his isolation?",
+    a: "He was “a solitary child, neglected by his friends,” which elicits visible emotion (he “sobbed” and “wept”), exposing vulnerability beneath the hard exterior.",
+    tags:["Stave 2","Backstory","Emotion"]
+  },
+  {
+    q: "How does Belle’s breakup connect isolation to greed? Include the key image.",
+    a: "Belle says an ‘idol’ has displaced her—a “golden one.” Scrooge prioritises money over relationships, choosing a path that leads to further isolation.",
+    tags:["Relationships","Greed"]
+  },
+  {
+    q: "What line shows Scrooge’s capitalist mindset of non‑interference, and how does it link to isolation?",
+    a: "“It’s enough for a man to understand his own business, and not to interfere with other people’s.” Such individualism discourages community, isolating the self.",
+    tags:["Capitalism","Ideology"]
+  },
+  {
+    q: "Dickens’ wider message: what alternative to isolation does he advocate?",
+    a: "Compassion, charity, and inclusion—valuing everyone in society—opposing narrow ‘business‑first’ thinking.",
+    tags:["Theme","Authorial intent"]
+  },
+  {
+    q: "Explain the ‘oyster’ metaphor beyond solitude.",
+    a: "Hard shell yet possible pearl: Scrooge is difficult to reach, but capable of inner value and change if ‘opened’.",
+    tags:["Metaphor","Redemption"]
+  },
+  {
+    q: "Which narrative hint early on foreshadows that Scrooge can change?",
+    a: "His emotional reaction to childhood scenes undermines the claim that “External heat and cold had little influence on him,” signalling feeling beneath the surface.",
+    tags:["Foreshadowing","Stave 2"]
+  },
+  {
+    q: "How do neighbours’ reactions function in the theme of isolation?",
+    a: "Their avoidance mirrors his self‑exclusion: society reflects his choices back to him, reinforcing his outsider status.",
+    tags:["Society","Mirror"]
+  },
+  {
+    q: "In one sentence, state the arc of isolation across the novella.",
+    a: "Self‑inflicted exile → confronted by past/values → re‑entry into community.",
+    tags:["Plot arc","Summary"]
+  },
+  {
+    q: "Give a thesis you could use in an essay on isolation in the novella.",
+    a: "Dickens presents isolation as self‑chosen and spiritually corrosive, but ultimately reversible through empathy and communal responsibility.",
+    tags:["Exam skill","Thesis"]
+  }
+,
+  {"q": "How does Dickens use Fred to contrast with Scrooge’s isolation?", "a": "Fred is warm, sociable, and persistent in inviting Scrooge, showing the joy of inclusion. His character embodies community and optimism.", "tags": ["Contrast", "Fred", "Community"]},
+  {"q": "What emotion does Scrooge show when he revisits his childhood loneliness?", "a": "He “sobbed” and “wept,” proving that beneath his cold exterior, isolation has deeply hurt him.", "tags": ["Emotion", "Childhood"]},
+  {"q": "How does Dickens link capitalism to isolation?", "a": "By showing Scrooge’s obsession with “business,” Dickens critiques a system that prioritises profit over people, isolating individuals from community.", "tags": ["Capitalism", "Critique"]},
+  {"q": "Why is the oyster metaphor important to the theme?", "a": "It suggests Scrooge is hard and closed off, but with a valuable pearl of humanity hidden inside—ready to be revealed if he opens up.", "tags": ["Metaphor", "Symbolism"]},
+  {"q": "How does isolation connect to Dickens’ socialist message?", "a": "Dickens warns that self-interest and greed divide society, but inclusion and equality heal it.", "tags": ["Ideology", "Message"]},
+  {"q": "Which Stave most clearly shows Scrooge’s regret about isolation?", "a": "Stave 2, with the Ghost of Christmas Past, when he relives being neglected and losing Belle.", "tags": ["Stave 2", "Regret"]},
+  {"q": "How does Dickens present isolation as a choice?", "a": "Scrooge is not pushed away—he ostracises himself, refusing greetings and rejecting companionship.", "tags": ["Choice", "Agency"]},
+  {"q": "How might you use isolation as a paragraph in an essay about redemption?", "a": "Isolation is the starting flaw; redemption is the resolution. His reintegration shows the transformation Dickens wants to inspire in readers.", "tags": ["Essay skill", "Redemption"]},
+  {"q": "What does the oyster metaphor reveal about Scrooge’s isolation?", "a": "It shows he is closed and hard, but with the potential of a pearl inside – hidden goodness that can be revealed if he opens up.", "tags": ["Metaphor", "Characterisation"]},
+  {"q": "How does sibilance in Scrooge’s description suggest something sinister?", "a": "‘Secret, self-contained, solitary’ hisses like a snake. This Biblical allusion to the serpent in Eden suggests isolation is spiritually dangerous.", "tags": ["Language", "Biblical allusion"]},
+  {"q": "Why is Scrooge’s isolation considered self-inflicted?", "a": "Nobody pushed him away – he rejected others, so people stopped greeting him. His coldness created his own loneliness.", "tags": ["Theme", "Self-inflicted"]},
+  {"q": "How does Fred function as a foil to Scrooge’s isolation?", "a": "Fred is warm, sociable and forgiving, persistently inviting Scrooge to Christmas. He symbolises family and community.", "tags": ["Character contrast", "Family"]},
+  {"q": "Which quote marks Scrooge’s reintegration at the end?", "a": "“It’s I. Your uncle Scrooge. I have come to dinner. Will you let me in, Fred?” – showing his willingness to break free of isolation.", "tags": ["Ending", "Redemption"]},
+  {"q": "How does Scrooge’s childhood show the roots of his isolation?", "a": "Described as “a solitary child, neglected by his friends.” Adult Scrooge weeps, proving his loneliness scarred him deeply.", "tags": ["Stave 2", "Childhood"]},
+  {"q": "What choice leads to Scrooge’s deeper isolation in youth?", "a": "Belle leaves him: “An idol has displaced me, a golden one.” He chose money over love, isolating himself further.", "tags": ["Greed", "Relationships"]},
+  {"q": "What capitalist attitude does Scrooge express to the charity collectors?", "a": "“It’s enough for a man to understand his own business, and not to interfere with other people’s.” Dickens critiques this selfish isolation.", "tags": ["Capitalism", "Critique"]},
+  {"q": "How does Dickens link Scrooge’s life to business and greed?", "a": "Scrooge is called an “excellent man of business.” Treating life as business isolates him and prevents true fulfilment.", "tags": ["Capitalism", "Characterisation"]},
+  {"q": "What moment foreshadows Scrooge’s change from isolation?", "a": "He weeps at his childhood self, showing vulnerability beneath the cold exterior. Dickens hints that redemption is possible.", "tags": ["Foreshadowing", "Emotion"]},
+  {"q": "What is Scrooge’s overall redemption arc in terms of isolation?", "a": "He goes from ‘solitary as an oyster’ to reintegration with family and society, proving isolation can be reversed through compassion.", "tags": ["Arc", "Redemption"]},
+  {"q": "What is Dickens’ overall message about isolation?", "a": "Isolation is self-chosen and destructive, but kindness, charity, and inclusion can overcome it. Dickens criticises capitalism and promotes community.", "tags": ["Theme", "Authorial intent"]}];
+
+// State
+let index = 0;
+let flipped = false;
+let mastered = new Set(JSON.parse(localStorage.getItem("iso_mastered")||"[]"));
+let struggling = new Set(JSON.parse(localStorage.getItem("iso_struggling")||"[]"));
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+const q = $("#q"), a = $("#a"), tags = $("#tags"), btags=$("#btags");
+const idx = $("#idx"), total = $("#total"), bar=$("#bar");
+const good = $("#good"), bad=$("#bad");
+const cardEl = $("#card"); const inner = cardEl.querySelector(".inner");
+
+let view = "all"; // all | due | justQ
+let order = CARDS.map((_,i)=>i);
+
+function shuffle(array){
+  for(let i=array.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function currentDeck(){
+  if(view==="all") return order;
+  if(view==="justQ") return order;
+  // due: focus on those in struggling set
+  const due = order.filter(i=>struggling.has(i));
+  return due.length? due : order;
+}
+
+function clampIndex(){
+  const deck = currentDeck();
+  if(deck.length===0){ index=0; return; }
+  if(index >= deck.length) index = deck.length-1;
+  if(index < 0) index = 0;
+}
+
+function render(){
+  const deck = currentDeck();
+  total.textContent = deck.length;
+  good.textContent = mastered.size;
+  bad.textContent = struggling.size;
+  if(deck.length===0){
+    q.textContent = "No cards to show.";
+    a.textContent = "";
+    $("#tags").innerHTML = $("#btags").innerHTML = "";
+    idx.textContent = "0";
+    bar.style.width = "0%";
+    return;
+  }
+  const id = deck[index];
+  const card = CARDS[id];
+  q.textContent = card.q;
+  a.textContent = card.a;
+  tags.innerHTML = card.tags.map(t=>`<span class="tag">${t}</span>`).join("");
+  btags.innerHTML = tags.innerHTML;
+  idx.textContent = String(index+1);
+  bar.style.width = `${((index+1)/deck.length)*100}%`;
+  cardEl.classList.toggle("flipped", flipped);
+}
+
+function next(){ flipped=false; index++; clampIndex(); render(); }
+function prev(){ flipped=false; index--; clampIndex(); render(); }
+function flip(){ flipped = !flipped; cardEl.classList.toggle("flipped", flipped); }
+
+function mark(setAdd, setRemove){
+  const deck = currentDeck();
+  if(!deck.length) return;
+  const id = deck[index];
+  setRemove.delete(id);
+  setAdd.add(id);
+  localStorage.setItem("iso_mastered", JSON.stringify([...mastered]));
+  localStorage.setItem("iso_struggling", JSON.stringify([...struggling]));
+  next();
+}
+
+$("#next").addEventListener("click", next);
+$("#prev").addEventListener("click", prev);
+$("#flip").addEventListener("click", flip);
+$("#shuffle").addEventListener("click", ()=>{ shuffle(order); index=0; flipped=false; render(); });
+$("#markGood").addEventListener("click", ()=>mark(mastered, struggling));
+$("#markBad").addEventListener("click", ()=>mark(struggling, mastered));
+$("#mode").addEventListener("change", (e)=>{ view = e.target.value; index=0; flipped=false; render(); });
+
+document.addEventListener("keydown", (e)=>{
+  if(e.key==="ArrowRight") next();
+  else if(e.key==="ArrowLeft") prev();
+  else if(e.key===" ") { e.preventDefault(); flip(); }
+  else if(e.key.toLowerCase()==="s") { shuffle(order); index=0; render(); }
+  else if(e.key.toLowerCase()==="g") mark(mastered, struggling);
+  else if(e.key.toLowerCase()==="b") mark(struggling, mastered);
+});
+
+// init
+shuffle(order);
+render();
+</script>
+
+
+
+
+<section class="footer" style="margin-top:2rem; border-top:1px solid #2a3a70; padding-top:1rem;">
+  <h2 style="font-size:1.25rem; margin-bottom:.5rem;">Practice Question</h2>
+  <p>Essay-style question for revision:</p>
+  <blockquote style="border-left:3px solid var(--accent); padding-left:.75rem; color:var(--ink); margin:.5rem 0; font-style:italic;">
+    How does Dickens present the theme of isolation in <em>A Christmas Carol</em>, and why is it important to his overall message?
+  </blockquote>
+</section>
+
+
+<section id="practice" class="footer" style="margin-top:2rem; border-top:1px solid #2a3a70; padding-top:1rem;">
+  <h2 style="font-size:1.25rem; margin-bottom:.5rem;">Practice Question</h2>
+  <p>Essay-style prompt:</p>
+  <blockquote style="border-left:3px solid var(--accent); padding-left:.75rem; color:var(--ink); margin:.5rem 0; font-style:italic;">
+    How does Dickens present the theme of isolation in <em>A Christmas Carol</em>, and why is it important to his overall message?
+  </blockquote>
+  <details>
+    <summary style="cursor:pointer; font-weight:700;">Open answer box</summary>
+    <div style="margin-top:.5rem;">
+      <textarea style="width:100%; min-height:140px; border-radius:12px; border:1px solid #2a3a70; background:#0c1330; color:var(--ink); padding:.75rem; font-family:inherit; font-size:1rem;"></textarea>
+      <p style="color:#97a3c7; font-size:.9rem; margin-top:.4rem;">Tip: Plan with a clear thesis, use a short quote (e.g., “solitary as an oyster”), analyse language, and link back to Dickens’ message about community.</p>
+    </div>
+  </details>
+</section>
+
+</body>
+</html>
