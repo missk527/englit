@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Materialism & Wealth — Flashcards + Practice Question</title>
+<style>
+  body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: #0b0f16;
+    color: #e6eefc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #7aa2ff;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 40px;
+  }
+  .card {
+    background: transparent;
+    perspective: 1200px;
+    height: 200px;
+  }
+  .inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  .card.flipped .inner { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex; justify-content: center; align-items: center;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+  .front { background: #162036; }
+  .back { background: #111827; transform: rotateY(180deg); }
+  .practice-section {
+    max-width: 900px;
+    background: #121826;
+    border: 1px solid #1f2a42;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .practice-section h2 {
+    margin-top: 0;
+    color: #7aa2ff;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+<div style="margin-bottom:20px;max-width:900px;width:100%;">
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/aoGqtvSzJpc" 
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen></iframe>
+</div>
+
+<h1>Materialism & Wealth — Flashcards</h1>
+<div class="grid" id="grid"></div>
+
+<div class="practice-section">
+  <h2>Practice Essay Question</h2>
+  <p><em>How does Dickens present attitudes towards materialism and wealth in <strong>A Christmas Carol</strong>? 
+  In your answer, write about:</em></p>
+  <ul>
+    <li>how Dickens presents Scrooge’s relationship with wealth</li>
+    <li>how other characters such as Marley, Fred, and Fezziwig are used to convey different views</li>
+    <li>how Dickens uses language to show the consequences of materialism</li>
+  </ul>
+</div>
+
+<script>
+const data = [
+  { q: "What is materialism in the novella?", a: "Preference for material comfort over spiritual values; Dickens presents it as wrong." },
+  { q: "How does Scrooge describe the paradox of wealth in Stave Two?", a: "He calls it 'even-handed dealing of the world'—poverty is harsh, yet society condemns pursuit of wealth." },
+  { q: "Does Dickens portray wealth as entirely immoral?", a: "No. Wealth can be positive or negative depending on how it is used." },
+  { q: "What insult marks Scrooge’s materialism as wrong?", a: "Marley calls him a 'man of the worldly mind'." },
+  { q: "What do the suffering spirits regret?", a: "They wanted to do good but lost the power—spiritual values matter more than materialism." },
+  { q: "What does Fred say about Scrooge’s wealth?", a: "It’s of 'no use to him' since he doesn’t 'do any good with it'." },
+  { q: "How is Marley’s misuse of wealth symbolised?", a: "Chains made of cash-boxes, keys, padlocks, ledgers, deeds, purses—wealth as a trap." },
+  { q: "Why does Belle leave Scrooge?", a: "He grew 'eager' and 'greedy' for 'gain', replacing noble aspirations." },
+  { q: "How does Fezziwig use money morally?", a: "He spends to create happiness—showing it’s the happiness money enables that matters." },
+  { q: "How does Scrooge use wealth after redemption?", a: "He donates to charity, sends a turkey to the Cratchits; his heart 'laughed'." },
+  { q: "What central theme does Dickens advance?", a: "Wealth should honour spiritual values and altruism, not corrode character." },
+  { q: "Essay angle: How to frame materialism?", a: "Contrast 'materialism is wrong' (Marley, spirits, Belle) with 'wealth used well' (Fezziwig, redeemed Scrooge)." },
+  { q: "Quotation for Scrooge’s mindset?", a: "“A man of the worldly mind.”" },
+  { q: "Quotation for wealth paradox?", a: "“The even-handed dealing of the world.”" },
+  { q: "What items build Marley’s money chain?", a: "Cash-boxes, keys, padlocks, ledgers, deeds, heavy purses." }
+];
+
+const grid = document.getElementById('grid');
+
+function createCard(item) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const inner = document.createElement('div');
+  inner.className = 'inner';
+  const front = document.createElement('div');
+  front.className = 'face front';
+  front.textContent = item.q;
+  const back = document.createElement('div');
+  back.className = 'face back';
+  back.textContent = item.a;
+  inner.appendChild(front);
+  inner.appendChild(back);
+  card.appendChild(inner);
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+  return card;
+}
+
+data.forEach(item => grid.appendChild(createCard(item)));
+</script>
+</body>
+</html>
