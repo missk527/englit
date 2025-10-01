@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>“Half-Caste” by John Agard — Flashcards</title>
+<style>
+  :root{
+    --bg: #0b0f14;
+    --card: #111827;
+    --ink: #e5e7eb;
+    --muted:#9ca3af;
+    --accent:#22d3ee;
+    --accent-2:#a78bfa;
+    --good:#34d399;
+    --warn:#f59e0b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    color:var(--ink);
+    background: radial-gradient(1000px 600px at 10% -10%, #1f2937 0%, var(--bg) 50%) fixed;
+    min-height:100dvh;
+  }
+  header{
+    padding:32px 16px 8px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  h1{
+    margin:0 0 6px;
+    font-weight:800;
+    letter-spacing:.2px;
+    font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2.1rem);
+  }
+  .sub{
+    color:var(--muted);
+    margin:0 0 12px;
+  }
+  .controls{
+    display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0 8px;
+  }
+  .controls input, .controls button, .controls select{
+    background: #0b1220;
+    color:var(--ink);
+    border:1px solid #253048;
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:14px;
+    outline:none;
+  }
+  .controls button{
+    cursor:pointer;
+    border:1px solid #283957;
+  }
+  .controls .tag{
+    border:none;background:#111827;color:#cbd5e1;padding:6px 10px;border-radius:999px;font-size:12px
+  }
+  main{max-width:1100px;margin:0 auto;padding:6px 16px 40px}
+  .grid{
+    display:grid;gap:14px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  .card{
+    perspective:1000px;
+  }
+  .inner{
+    position:relative;width:100%;min-height:170px;border-radius:16px;
+    transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.flipped .inner{transform:rotateY(180deg)}
+  .face{
+    position:absolute;inset:0;padding:16px;border-radius:16px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    backface-visibility:hidden;
+    background:linear-gradient(180deg, rgba(34,211,238,.08), rgba(167,139,250,.08)), var(--card);
+    border:1px solid #1f2937;
+    box-shadow:0 6px 14px rgba(0,0,0,.35);
+  }
+  .back{transform:rotateY(180deg);background:linear-gradient(180deg, rgba(52,211,153,.08), rgba(34,197,94,.08)), var(--card)}
+  .kicker{font-size:12px;letter-spacing:.5px;color:var(--accent)}
+  .title{font-size:16px;font-weight:700;margin:6px 0 4px}
+  .content{font-size:14px;line-height:1.35;color:#e5e7eb}
+  .hint{font-size:12px;color:var(--muted);margin-top:10px}
+  .pill{font-size:11px;color:#93c5fd;background:#0b1220;border:1px solid #253048;border-radius:999px;padding:4px 8px;align-self:flex-start}
+  footer{max-width:1100px;margin:6px auto 24px;padding:0 16px;color:#94a3b8;font-size:12px}
+  .sr{border:1px dashed #334155;border-radius:12px;padding:10px 12px}
+  .hidden{display:none}
+  .footer-links a{color:#a5b4fc;text-underline-offset:3px}
+  .tip{color:#86efac}
+</style>
+</head>
+<body>
+<header>
+  <h1>“Half-Caste” — Key Points Flashcards</h1>
+  <p class="sub">Tap/click any card to flip. Use the controls to focus your revision.</p>
+  <div class="controls">
+    <input id="search" type="search" placeholder="Search cards (e.g., 'structure', 'explain yuself', 'tone')" aria-label="Search flashcards">
+    <select id="filter">
+      <option value="all">All tags</option>
+      <option value="context">Context</option>
+      <option value="themes">Themes</option>
+      <option value="language">Language & Quotes</option>
+      <option value="structure">Structure & Form</option>
+      <option value="analysis">Analysis & Effects</option>
+      <option value="assessment">Assessment & Comparison</option>
+      <option value="vocab">Vocabulary</option>
+    </select>
+    <button id="shuffle" title="Shuffle cards">Shuffle</button>
+    <button id="reset" title="Reset filters">Reset</button>
+    <span class="tag">Tip: Press <strong>F</strong> to flip a focused card</span>
+  </div>
+</header>
+
+<div style="max-width:1100px;margin:0 auto 20px;">
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/KK-SLNOwqdA" 
+title="YouTube video" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
+<main>
+  <section class="grid" id="cards" aria-live="polite">
+    <!-- Cards are inserted by JS -->
+  </section>
+</main>
+
+
+<section id="practice" style="max-width:1100px;margin:0 auto;padding:20px 16px;">
+  <h2>Practice Question</h2>
+  <p><strong>Essay-style:</strong> Compare how identity is explored in ‘Half-Caste’ by John Agard and one other poem you have studied.</p>
+</section>
+
+<footer>
+  <div class="sr">
+    <div><strong>Study routine idea:</strong> Do a 10–15 minute cycle: read fronts → flip for explanations → say it aloud → compose a single-sentence takeaway.</div>
+    <div class="tip">Exam tip: Link every language point to an effect on the reader and the poem’s central argument about labels and identity.</div>
+  </div>
+  <p class="footer-links">Created for study use.</p>
+</footer>
+
+<script>
+const data = [
+  {
+    tag:"context",
+    front:{kicker:"Context", title:"Poet & Background", content:"John Agard (b. 1949), Guyanese of African and Portuguese heritage; moved to the UK in 1977 where the label “half-caste” was common."},
+    back:{content:"Agard’s lived experience with the term motivates the poem’s confrontational yet witty tone and the choice to write in Caribbean dialect to assert identity."}
+  },
+  {
+    tag:"themes",
+    front:{kicker:"Theme", title:"Language as Power", content:"The poem interrogates how a single label can diminish a person’s wholeness."},
+    back:{content:"By forcing the audience to “Explain yuself”, Agard flips power dynamics, exposing prejudice encoded in everyday speech."}
+  },
+  {
+    tag:"language",
+    front:{kicker:"Quote", title:"“Explain yuself” (refrain)", content:"Demand repeated across stanzas."},
+    back:{content:"Creates an interrogative, accusatory stance; positions the listener as accountable. Rhythm builds momentum and insistence."}
+  },
+  {
+    tag:"language",
+    front:{kicker:"Quote", title:"Picasso: “mix red an green”", content:"Is a half‑caste canvas?"},
+    back:{content:"Visual colour contrast satirises the logic of “half-caste”; mixing in art produces richness, not lack."}
+  },
+  {
+    tag:"language",
+    front:{kicker:"Quote", title:"Weather: “light an shadow… england weather nearly always half‑caste”", content:"Metaphor of mixed weather."},
+    back:{content:"Pathetic fallacy + irony: if mixing = ‘half-caste’, then Britain’s skies are perpetually “half”. Ridicules the label."}
+  },
+  {
+    tag:"language",
+    front:{kicker:"Quote", title:"Music: “mix a black key wid a white key”", content:"“is a half‑caste symphony”"},
+    back:{content:"Auditory imagery disarms prejudice: harmony arises from combination; cultural mixing yields beauty."}
+  },
+  {
+    tag:"structure",
+    front:{kicker:"Form", title:"Free verse & variable stanza lengths", content:"Opens and closes with tight 3‑line stanzas; middle sections expand."},
+    back:{content:"Framing suggests a movement from provocation to resolution; long mid‑stanzas resemble a free‑flow rant challenging assumptions."}
+  },
+  {
+    tag:"language",
+    front:{kicker:"Voice", title:"Dialect & Phonetic spelling", content:"“yu / yuself / wid / mih”"},
+    back:{content:"Asserts Caribbean identity, resists ‘standard English’ gatekeeping, adds orality and performance energy."}
+  },
+  {
+    tag:"analysis",
+    front:{kicker:"Tone", title:"Sarcastic, witty, resolute", content:"Humour softens but does not dilute anger."},
+    back:{content:"Satire invites reflection without alienating; the speaker’s control of tone models confidence in self-definition."}
+  },
+  {
+    tag:"analysis",
+    front:{kicker:"Perspective", title:"Direct address to the listener", content:"Second person “yu” vs “I”"},
+    back:{content:"Creates confrontation and role reversal: the labelled becomes the examiner, the labeller is examined."}
+  },
+  {
+    tag:"language",
+    front:{kicker:"Quote", title:"“Excuse me / standing on one leg / I’m half‑caste”", content:"Opening image."},
+    back:{content:"Comic yet unsettling: ‘one leg’ suggests forced incompleteness; announces irony from the outset."}
+  },
+  {
+    tag:"analysis",
+    front:{kicker:"Device", title:"Repetition of 'whole' at the end", content:"“whole of yu eye… ear… mind”"},
+    back:{content:"Semantic contrast with ‘half’ clinches the argument: the speaker is whole; it is the listener’s perception that is partial."}
+  },
+  {
+    tag:"language",
+    front:{kicker:"Quote", title:"“Ah listening… wid de keen half of mih ear … half‑a‑hand … half‑a‑dream”", content:"Hyperbolic halves."},
+    back:{content:"Absurd extension exposes the cruelty of the label; playful sound patterning (alliteration/assonance) adds pace."}
+  },
+  {
+    tag:"structure",
+    front:{kicker:"Ending", title:"Invitation + withheld story", content:"“yu come back tomorrow… I will tell yu de other half of my story”"},
+    back:{content:"Clever volta: the ‘other half’ is not deficiency but complexity; the speaker chooses when/how to narrate it."}
+  },
+  {
+    tag:"themes",
+    front:{kicker:"Big idea", title:"Wholeness vs. Fragmentation", content:"Identity is indivisible."},
+    back:{content:"The poem dismantles binary thinking (pure/mixed) and reframes mixture as generative."}
+  },
+  {
+    tag:"assessment",
+    front:{kicker:"Exam focus", title:"Writer’s methods → effects → message", content:"Always link device → reader response → theme."},
+    back:{content:"e.g., Dialect (method) makes voice authentic (effect) to challenge linguistic prejudice (message)."}
+  },
+  {
+    tag:"assessment",
+    front:{kicker:"Comparison", title:"Compare with poems on identity or prejudice", content:"e.g., identity, belonging, voice."},
+    back:{content:"Look for direct address, vernacular, satire, and reclamation arcs as points of comparison."}
+  },
+  {
+    tag:"vocab",
+    front:{kicker:"Key terms", title:"Use precise metalanguage", content:"interrogative stance, satire, code-switching, phonology, pathetic fallacy, juxtaposition, refrain, volta."},
+    back:{content:"Deploy in analysis to secure AO2/AO3 credit (methods & context). Keep effects specific."}
+  },
+  {
+    tag:"themes",
+    front:{kicker:"Contextual note", title:"British multiculturalism", content:"Critique of cultural gatekeeping."},
+    back:{content:"References to British weather and European ‘high art’ (Picasso, Tchaikovsky) expose hypocrisy in devaluing racial mixing."}
+  },
+  {
+    tag:"assessment",
+    front:{kicker:"Stretch", title:"Critical thesis starter", content:"“Agard weaponises wit to reveal how language polices belonging, then restores dignity by asserting linguistic self‑rule.”"},
+    back:{content:"Memorise a one‑sentence thesis; adapt with chosen quotations to structure responses quickly."}
+  }
+];
+
+const cardsEl = document.getElementById('cards');
+
+function render(list){
+  cardsEl.innerHTML = '';
+  list.forEach((item, idx)=>{
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.tabIndex = 0;
+    card.dataset.tag = item.tag;
+    card.dataset.index = idx;
+    card.innerHTML = `
+      <div class="inner">
+        <div class="face front">
+          <div class="kicker">${item.front.kicker}</div>
+          <div class="title">${item.front.title}</div>
+          <div class="content">${item.front.content}</div>
+          <div class="hint">Click or press F to flip</div>
+          <span class="pill">${item.tag}</span>
+        </div>
+        <div class="face back">
+          <div class="kicker">Back</div>
+          <div class="title">Why it matters</div>
+          <div class="content">${item.back.content}</div>
+          <div class="hint">Click or press F to flip back</div>
+          <span class="pill">${item.tag}</span>
+        </div>
+      </div>`;
+    card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+    card.addEventListener('keydown', (e)=>{
+      if(e.key.toLowerCase()==='f'){ e.preventDefault(); card.classList.toggle('flipped'); }
+    });
+    cardsEl.appendChild(card);
+  });
+}
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+const input = document.getElementById('search');
+const filter = document.getElementById('filter');
+const btnShuffle = document.getElementById('shuffle');
+const btnReset = document.getElementById('reset');
+
+function applyFilters(){
+  const q = input.value.trim().toLowerCase();
+  const tag = filter.value;
+  const filtered = data.filter(d => {
+    const hay = JSON.stringify(d).toLowerCase();
+    const byText = q ? hay.includes(q) : true;
+    const byTag = tag==='all' ? true : d.tag===tag;
+    return byText && byTag;
+  });
+  render(filtered);
+}
+
+input.addEventListener('input', applyFilters);
+filter.addEventListener('change', applyFilters);
+btnShuffle.addEventListener('click', ()=>{ shuffle(data); applyFilters(); });
+btnReset.addEventListener('click', ()=>{
+  input.value=''; filter.value='all'; render(data);
+});
+
+render(data);
+</script>
+</body>
+</html>
