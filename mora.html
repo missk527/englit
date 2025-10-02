@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morality – A Christmas Carol | Flashcards</title>
+<style>
+:root {
+  --bg: #0f172a;
+  --accent: #22d3ee;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+}
+body { margin:0; font-family: sans-serif; background: var(--bg); color: var(--text); }
+header { padding:24px 20px 8px; max-width:960px; margin:0 auto; }
+.deck { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; max-width:960px; margin:22px auto; padding:0 20px; }
+.card { perspective:1000px; }
+.inner { position:relative; width:100%; height:220px; transform-style:preserve-3d; transition:transform .5s; border-radius:18px; overflow:hidden; border:1px solid #1f2937; }
+.card.flipped .inner {}
+
+.face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;text-align:center;}
+.front{display:flex;background:#0b1220;}
+.back{display:none;background:linear-gradient(135deg,#1e293b,#0f172a);color:#22d3ee;}
+.card.show-back .front{display:none;}
+.card.show-back .back{display:flex;}
+
+.tag { position:absolute; top:10px; left:10px; font-size:.75rem; color:var(--accent); }
+</style>
+</head>
+<body>
+<header>
+
+  <!-- YouTube Embed -->
+  <div style="max-width:960px; margin:0 auto; aspect-ratio:16/9;">
+    <iframe width="100%" height="100%"
+      src="https://www.youtube.com/embed/bpC3yn0mfGs"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <h1>Morality – <em>A Christmas Carol</em> Flashcards</h1>
+  <p>Click any card to flip and see the answer.</p>
+</header>
+<main class="deck" id="deck"></main>
+<script>
+const DATA = [
+  {
+    "category": "Overview",
+    "front": "What is Dickens’ core purpose in A Christmas Carol regarding morality?",
+    "back": "It’s a didactic novel: Dickens teaches moral lessons, showing that true morality comes from compassionate behavior and personal change—not just outward charity."
+  },
+  {
+    "category": "Victorian Society",
+    "front": "Which Victorian policy does Dickens criticize as unethical, and why?",
+    "back": "The Poor Law of 1834 and the union workhouses, which were cruel and unforgiving—evidence of society’s immorality toward the poor."
+  },
+  {
+    "category": "Philanthropy",
+    "front": "How does Dickens redefine philanthropy in the novella?",
+    "back": "Philanthropy isn’t just grand donations; it’s everyday behavior—how you act. Scrooge’s change shows that being good is about conduct, not displays of wealth."
+  },
+  {
+    "category": "Scrooge’s Transformation",
+    "front": "Give one concrete sign of Scrooge’s new morality in Stave 5.",
+    "back": "He tells Bob Cratchit, “I am about to raise your salary,” shifting from tight-fisted to generous and caring."
+  },
+  {
+    "category": "Scrooge’s Character",
+    "front": "How is Scrooge described after his change?",
+    "back": "“As good a friend, as good a master, and as good a man,” showing both charitable action and a transformed attitude."
+  },
+  {
+    "category": "Religion & Morality",
+    "front": "How do Christian ideas shape the book’s moral framework?",
+    "back": "Victorian morality drew on the Bible; Scrooge is a “covetous old sinner” (covetousness breaks Exodus 20:17). But Dickens also believes change can come via self-awareness, not only religious salvation."
+  },
+  {
+    "category": "Authentic Faith",
+    "front": "What warning does the Ghost of Christmas Present give about false morality done ‘in God’s name’?",
+    "back": "Some who claim to know the divine commit passion, pride, ill-will, hatred, envy, bigotry, and selfishness—Christianity alone doesn’t guarantee morality; deeds must align with values."
+  },
+  {
+    "category": "Consequences: Marley",
+    "front": "What does Marley’s Ghost teach about the consequences of an immoral life?",
+    "back": "He’s trapped in purgatory, “doomed to wander the earth,” because he didn’t go forth to help others in life—an eternal consequence that warns readers as well as Scrooge."
+  },
+  {
+    "category": "Consequences: Yet to Come",
+    "front": "What social reaction to Scrooge’s death does the Ghost of Christmas Yet To Come reveal?",
+    "back": "Relief and even joy—no mourning—demonstrating how a selfish life breeds a callous legacy."
+  },
+  {
+    "category": "Cycle of Immorality",
+    "front": "How do the three thieves at the end illustrate a ‘cycle of immorality’?",
+    "back": "They justify stealing Scrooge’s effects as “a judgment on him,” echoing his selfishness: immorality breeds immorality."
+  },
+  {
+    "category": "Mrs Dilber",
+    "front": "What key idea does Mrs Dilber express to justify taking Scrooge’s belongings?",
+    "back": "“Every person has a right to take care of themselves... He always did.” Their theft mirrors Scrooge’s lifelong self-interest."
+  },
+  {
+    "category": "Big Picture",
+    "front": "Summarize Dickens’ moral message in one line.",
+    "back": "Live so that your actions—generosity, empathy, responsibility—positively shape others and your legacy."
+  },
+  {
+    "category": "Quotes: Morality",
+    "front": "Finish the quote: Scrooge is a “_____ old sinner.”",
+    "back": "“covetous” — highlighting a Biblical sin and setting up the need for moral reform."
+  },
+  {
+    "category": "Quotes: Action",
+    "front": "Finish the quote to Bob: “I am about to raise your _____.”",
+    "back": "“salary.” A tangible example of Scrooge’s moral transformation."
+  },
+  {
+    "category": "Quotes: Identity vs Deeds",
+    "front": "What’s the Ghost of Christmas Present’s critique of those who ‘lay claim to know us’?",
+    "back": "They perform passion, pride, ill-will, hatred, envy, bigotry, and selfishness in the divine name—words and labels without righteous deeds are empty."
+  }
+];
+const deckEl = document.getElementById('deck');
+let state = {flipped:new Set()};
+
+function render() {
+  deckEl.innerHTML='';
+  DATA.forEach((c,i)=>deckEl.appendChild(cardNode(c,i)));
+}
+function cardNode(c,i) {
+  const card=document.createElement('div');
+  card.className='card';
+  const inner=document.createElement('div');
+  inner.className='inner';
+  const front=document.createElement('div'); front.className='face front'; front.textContent=c.front;
+  const back=document.createElement('div'); back.className='face back'; back.textContent=c.back;
+  const tag=document.createElement('div'); tag.className='tag'; tag.textContent=c.category;
+  inner.appendChild(tag); inner.appendChild(front); inner.appendChild(back);
+  card.appendChild(inner);
+  card.addEventListener('click',()=>{ card.classList.toggle('show-back'); });
+  return card;
+}
+render();
+</script>
+</body>
+</html>
