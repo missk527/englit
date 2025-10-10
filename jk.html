@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flip Flashcards — La Belle Dame sans Merci (Keats)</title>
+<style>
+  :root{
+    --bg:#0e1426;
+    --text:#e5e7eb;
+    --muted:#94a3b8;
+    --accent:#60a5fa;
+    --border:#1f2a44;
+    --card:#0b1224;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+    background: radial-gradient(1200px 800px at 50% -10%, #172554 0%, #0e1426 45%, #0b1020 100%);
+    color:var(--text);
+    display:grid;
+    grid-template-rows:auto 1fr auto;
+    gap:10px;
+  }
+  header, footer{padding:10px 16px; text-align:center; color:var(--muted)}
+  header h1{margin:.2rem 0;font-size:clamp(18px,3.2vw,28px)}
+  .controls{
+    display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;
+    margin:0 auto 6px;
+  }
+  .btn, select, input[type="search"]{
+    background:var(--card); color:var(--text); border:1px solid var(--border);
+    padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:600;
+  }
+  .btn:disabled{opacity:.5; cursor:not-allowed}
+  input[type="search"]{min-width:220px}
+  main{display:grid; place-items:center; padding:10px}
+  .stage{ perspective: 1200px; width:min(720px, 92vw); height:min(420px, calc(92vw*0.58));}
+  .card{
+    width:100%; height:100%; position:relative; transform-style:preserve-3d;
+    transition: transform .6s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.flipped{ transform: rotateY(180deg) }
+  .face{
+    position:absolute; inset:0; border-radius:18px; border:1px solid var(--border);
+    padding:24px; background:linear-gradient(180deg, #0b1224, #0b1220);
+    display:flex; flex-direction:column; justify-content:center; align-items:center; gap:12px;
+    backface-visibility:hidden;
+    box-shadow: 0 12px 32px rgba(0,0,0,.35);
+  }
+  .back{ transform: rotateY(180deg) }
+  .topic{ font-size:13px; letter-spacing:.06em; color:var(--accent); text-transform:uppercase }
+  .q{ font-size:clamp(18px,3.5vw,28px); text-align:center; line-height:1.25; }
+  .a{ font-size:clamp(16px,3.1vw,24px); text-align:center; line-height:1.35; }
+  .meta{ position:absolute; bottom:14px; left:18px; right:18px; display:flex; justify-content:space-between; color:var(--muted); font-size:12px}
+  .kbd{border:1px solid var(--border); padding:2px 6px; border-radius:6px}
+  .progress{
+    width:min(720px,92vw); margin:0 auto; height:8px; background:#0a1020; border:1px solid var(--border); border-radius:999px; overflow:hidden;
+  }
+  .bar{height:100%; width:0%; background:linear-gradient(90deg, #60a5fa, #a78bfa)}
+</style>
+</head>
+<body>
+  <header>
+    <h1>Flip Flashcards — <em>La Belle Dame sans Merci</em> (John Keats)</h1>
+    <div class="controls">
+      <button class="btn" id="prev" title="← or A">◀ Prev</button>
+      <button class="btn" id="flip" title="Space / Enter">Flip</button>
+      <button class="btn" id="next" title="→ or D">Next ▶</button>
+      <select id="filter" title="Filter by topic">
+        <option value="All">All topics</option>
+      </select>
+      <button class="btn" id="shuffle" title="Shuffle (S)">Shuffle</button>
+      <input id="search" type="search" placeholder="Search in questions/answers" />
+    </div>
+  </header>
+
+  <div style="max-width:1100px;margin:0 auto;">
+    <iframe width="100%" height="550"
+      src="https://www.youtube.com/embed/oQ93w5xr_c4"
+      title="YouTube video player" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+
+
+  <main>
+    <div class="stage" aria-live="polite" aria-atomic="true">
+      <section class="card" id="card">
+        <div class="face front">
+          <div class="topic" id="topicFront"></div>
+          <div class="q" id="question"></div>
+          <div class="meta">
+            <span id="count">1 / 1</span>
+            <span>Tip: <span class="kbd">Space</span> to flip</span>
+          </div>
+        </div>
+        <div class="face back">
+          <div class="topic" id="topicBack"></div>
+          <div class="a" id="answer"></div>
+          <div class="meta">
+            <span>Press <span class="kbd">→</span> for next</span>
+            <span id="tags"></span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="progress"><div class="bar" id="bar"></div></div>
+
+  <footer>
+    <small>Keyboard: ←/A = Prev · Space/Enter = Flip · →/D = Next · S = Shuffle · / = Search · Esc = Clear filters</small>
+  </footer>
+
+<script>
+const CARDS = [
+  {topic:"Summary", q:"What is the poem’s core narrative?", a:"A knight is enchanted by a mysterious woman ('a faery’s child'), lulled to sleep, dreams of ghostly nobles warning he is in thrall, and wakes abandoned on a cold hillside."},
+  {topic:"Context", q:"Who is the poet and when was the poem published?", a:"John Keats (1795–1821), Romantic poet. First version 1819; revised 1820."},
+  {topic:"Context", q:"Which Romantic concerns feature in the poem?", a:"Emotion over reason; nature mirroring feeling; the supernatural; beauty and transience; scepticism toward modernity."},
+  {topic:"Form/Structure", q:"What is the poem’s form and metre?", a:"A ballad in quatrains; mainly iambic tetrameter with shortened final lines (two stresses) for abruptness."},
+  {topic:"Structure", q:"How does Keats create a cyclical effect?", a:"The refrain 'And no birds sing' opens and closes the poem, returning to desolation and implying entrapment."},
+  {topic:"Voice", q:"How does the poem use perspective?", a:"A framing voice questions the knight; the knight narrates his tale in first person, creating distance and uncertainty."},
+  {topic:"Setting", q:"What does the landscape convey?", a:"Withered sedge, finished harvest, silence—images of barrenness and death that mirror the knight’s state."},
+  {topic:"Imagery", q:"Which contrasting semantic fields appear?", a:"Infertility/decay ('withered', 'fading rose') vs. lush enchantment ('honey wild', 'manna-dew', 'elfin grot')."},
+  {topic:"Character", q:"How is the knight presented?", a:"'Alone and palely loitering': sickly, weakened, and emotionally defeated—an entranced victim."},
+  {topic:"Character", q:"How is the lady presented?", a:"Ethereal and seductive; affection appears performative. She leads, lulls, and vanishes—an archetypal femme fatale/siren."},
+  {topic:"Theme", q:"What does the poem suggest about illusion vs reality?", a:"Surface beauty conceals danger; enchantment hides exploitation. The dream reveals prior victims."},
+  {topic:"Theme", q:"How are power and gender explored?", a:"Role reversal from chivalric norms: the lady holds power; the knight is passive—raising questions about control and consent."},
+  {topic:"Theme", q:"How does desire lead to consequence?", a:"Intoxication of desire ends in isolation and spiritual 'death'—the 'cold' after the high."},
+  {topic:"Language", q:"How do sound patterns support meaning?", a:"Assonant 'o' sounds and lingering consonants slow the pace ('palely loitering'), building lethargy and unease."},
+  {topic:"Diction", q:"Effect of archaic/medieval lexis?", a:"'Knight-at-arms', 'faery' give a mythic, timeless, cautionary quality."},
+  {topic:"Symbol", q:"Meaning of repeated 'pale' imagery?", a:"Signals sickness, deathliness, and depletion—seen on the knight and the vision of past victims."},
+  {topic:"Symbol", q:"Function of the 'cold hill side'?", a:"Literal and emotional cold—abandonment and lifelessness after enchantment."},
+  {topic:"Symbol", q:"What do 'garland/bracelets/fragrant zone' suggest?", a:"Courtly devotion and idealisation that blinds the knight to danger."},
+  {topic:"Quote", q:"Give a line that sets the tone.", a:"“O what can ail thee, knight-at-arms, / Alone and palely loitering?”"},
+  {topic:"Quote", q:"Give the bleak refrain that frames the poem.", a:"“And no birds sing.”"},
+  {topic:"Quote", q:"Quote evidence for deception/enchantment.", a:"“She lulled me asleep”; vision of 'pale kings and princes': “La Belle Dame sans Merci / Thee hath in thrall!”"},
+  {topic:"Quote", q:"Give one image of decay vs one of beauty.", a:"Decay: “fading rose”, “sedge…withered”. Beauty: “honey wild”, “manna-dew”, “elfin grot”."},
+  {topic:"Criticism", q:"State one GCSE-friendly critical angle.", a:"Keats exposes how idealised desire and beauty can mask exploitation, leaving the lover spiritually ruined."},
+  {topic:"Comparison", q:"Link to Browning’s 'My Last Duchess'.", a:"Both show distorted love and power imbalance: Browning—male control; Keats—female enchantment overpowering the knight."},
+];
+
+// Build topics list
+const filter = document.getElementById("filter");
+const topics = ["All", ...Array.from(new Set(CARDS.map(c=>c.topic)))];
+topics.forEach(t=>{
+  const opt = document.createElement("option");
+  opt.value = t; opt.textContent = t;
+  filter.appendChild(opt);
+});
+
+let order = [...CARDS.keys()];
+let i = 0;
+const card = document.getElementById("card");
+const qEl = document.getElementById("question");
+const aEl = document.getElementById("answer");
+const topicFront = document.getElementById("topicFront");
+const topicBack = document.getElementById("topicBack");
+const tagEl = document.getElementById("tags");
+const countEl = document.getElementById("count");
+const bar = document.getElementById("bar");
+const search = document.getElementById("search");
+
+function show(idx){
+  const item = CARDS[order[idx]];
+  topicFront.textContent = item.topic;
+  topicBack.textContent = item.topic;
+  qEl.textContent = item.q;
+  aEl.textContent = item.a;
+  countEl.textContent = (idx+1) + " / " + order.length;
+  bar.style.width = ((idx+1)/order.length*100).toFixed(1)+"%";
+  card.classList.remove("flipped");
+}
+
+function next(){ if(i<order.length-1){ i++; show(i); } }
+function prev(){ if(i>0){ i--; show(i); } }
+function flip(){ card.classList.toggle("flipped"); }
+
+function doShuffle(){
+  // Fisher-Yates
+  for(let j=order.length-1;j>0;j--){
+    const k = Math.floor(Math.random()*(j+1));
+    [order[j], order[k]] = [order[k], order[j]];
+  }
+  i = 0; show(i);
+}
+
+function applyFilter(){
+  const topic = filter.value;
+  const query = search.value.trim().toLowerCase();
+  order = CARDS.map((_,idx)=>idx).filter(idx=>{
+    const c = CARDS[idx];
+    const topicOk = topic==="All" || c.topic===topic;
+    if(!topicOk) return false;
+    if(!query) return true;
+    return c.q.toLowerCase().includes(query) || c.a.toLowerCase().includes(query);
+  });
+  if(order.length===0){ order=[0]; }
+  i = 0; show(i);
+}
+
+document.getElementById("next").onclick = next;
+document.getElementById("prev").onclick = prev;
+document.getElementById("flip").onclick = flip;
+document.getElementById("shuffle").onclick = ()=>{ doShuffle(); };
+
+filter.onchange = applyFilter;
+search.oninput = applyFilter;
+
+window.addEventListener("keydown",(e)=>{
+  if(e.key==="ArrowRight"||e.key.toLowerCase()==="d") next();
+  if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a") prev();
+  if(e.key===" "||e.key==="Enter"){ e.preventDefault(); flip(); }
+  if(e.key.toLowerCase()==="s") doShuffle();
+  if(e.key==="/"){ e.preventDefault(); search.focus(); }
+  if(e.key==="Escape"){ search.value=""; filter.value="All"; applyFilter(); }
+});
+
+// init
+applyFilter();
+</script>
+
+  <section style="max-width:720px;margin:40px auto;color:#e5e7eb;padding:0 16px;">
+    <h2 style="font-size:22px;margin-bottom:16px;text-align:center;">Practice Questions</h2>
+    <ol style="line-height:1.6;font-size:16px;">
+      <li>How does Keats present the dangers of desire in <em>La Belle Dame sans Merci</em>?</li>
+      <li>In what ways does the poem use nature to reflect the knight’s emotional state?</li>
+    </ol>
+  </section>
+
+</body>
+</html>
