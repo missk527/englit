@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A Christmas Carol — Poverty &amp; Social Injustice — Flashcards</title>
+<style>
+  :root{
+    --bg:#0b1020;
+    --card:#11172b;
+    --ink:#eaf1ff;
+    --muted:#a9b4cc;
+    --accent:#7aa2ff;
+    --ok:#77e0a6;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  header{padding:28px 20px 10px; text-align:center}
+  h1{margin:0;font-size:clamp(1.2rem,3vw,1.8rem);letter-spacing:.3px}
+  p.sub{margin:.4rem 0 0;color:var(--muted)}
+  .wrap{max-width:1000px;margin:18px auto;padding:0 16px 40px}
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin:12px 0 22px}
+  .controls input[type="search"]{flex:1 1 280px;min-width:220px;border:1px solid #243252;background:#0e1426;color:var(--ink);padding:10px 12px;border-radius:12px;outline:none}
+  .controls button{border:1px solid #243252;background:#0e1426;color:var(--ink);padding:10px 14px;border-radius:12px;cursor:pointer}
+  .controls button:hover{border-color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid #243252;border-radius:18px;min-height:170px;perspective:1000px;position:relative}
+  .inner{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d;border-radius:inherit}
+  .card.flip .inner{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;padding:16px 16px 18px;border-radius:inherit;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between}
+  .face h3{margin:0 0 8px;font-size:1.05rem}
+  .face p{margin:0;color:var(--muted)}
+  .back{transform:rotateY(180deg)}
+  .tag{font-size:.74rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
+  .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+  .actions button{background:transparent;border:1px solid #2c3a5e;color:var(--ink);padding:6px 10px;border-radius:10px;cursor:pointer}
+  .actions button:hover{border-color:var(--accent)}
+  footer{color:var(--muted);text-align:center;margin-top:26px;font-size:.9rem}
+  .kbd{border:1px solid #2c3a5e;padding:1px 6px;border-radius:6px;background:#0e1426}
+  .hidden{display:none !important}
+  .count{font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<header>
+  <h1>Poverty &amp; Social Injustice in <em>A Christmas Carol</em> — Flashcards</h1>
+  <p class="sub">Flip each card to study the key points. Search to filter. Press <span class="kbd">F</span> to flip, <span class="kbd">N</span>/<span class="kbd">P</span> to move focus.</p>
+</header>
+<div class="wrap">
+  <div class="flashcard-video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/SMhpoAfpmhE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="controls">
+    <input id="search" type="search" placeholder="Filter flashcards (e.g., Scrooge, setting, Tiny Tim)…" />
+    <button id="shuffle">Shuffle</button>
+    <button id="reset">Reset</button>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="grid" id="grid">
+    <!-- Card 1 -->
+    <div class="card" tabindex="0" data-q="Theme focus" data-a="Poverty and social injustice underpin the novella">
+      <div class="inner">
+        <div class="face front">
+          <div>
+            <span class="tag">Key Point</span>
+            <h3>What central theme underpins the novella?</h3>
+            <p>Frame the whole text in one line.</p>
+          </div>
+          <div class="actions"><button class="flipBtn" aria-label="Flip">Flip</button></div>
+        </div>
+        <div class="face back">
+          <div>
+            <span class="tag">Answer</span>
+            <h3>Poverty &amp; Social Injustice</h3>
+            <p>The theme drives the plot, characters, and message.</p>
+          </div>
+          <div class="actions"><button class="flipBtn" aria-label="Flip back">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card" tabindex="0" data-q="Dickens’ purpose" data-a="Use literature for ethical & political change">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>Why does Dickens spotlight poverty?</h3>
+          <p>His aim for readers &amp; society.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>To drive ethical, social change</h3>
+          <p>He believed literature should provoke responsibility.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card" tabindex="0" data-q="Opening signals poverty" data-a="Charity collectors reveal the 'poor and destitute'">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>How is poverty introduced in Stave One?</h3>
+          <p>Look for first clear signal.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Charity Collectors</h3>
+          <p>They expose the “poor and destitute,” setting the tone.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card" tabindex="0" data-q="Scrooge initial stance" data-a="Selfish, Malthusian: 'surplus population'">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>What does Scrooge’s early attitude represent?</h3>
+          <p>Think class views in Victorian society.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Upper-class selfishness</h3>
+          <p>His Malthusian view labels the poor “surplus population.”</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card" tabindex="0" data-q="Scrooge transformation" data-a="Becomes socially responsible">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>What’s the significance of Scrooge’s change?</h3>
+          <p>Consider the message after redemption.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Social Responsibility as Ideal</h3>
+          <p>Post-redemption, he models generosity and care.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card" tabindex="0" data-q="Tiny Tim" data-a="His fate shows the real impact of charity">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>What does Tiny Tim’s fate demonstrate?</h3>
+          <p>Think practical effects of action.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Charity Saves Lives</h3>
+          <p>Without Scrooge’s help, Tim would have died.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card" tabindex="0" data-q="Setting: London" data-a="Fog, darkness, filth; reflects social coldness & industrial impact">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>How does the setting reinforce the theme?</h3>
+          <p>Notice the atmosphere and imagery.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Gloom Mirrors Society</h3>
+          <p>“Fog,” “darkness,” “filth” expose poverty’s realities.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card" tabindex="0" data-q="Challenging stereotypes" data-a="Poor remain cheerful, human; prejudice challenged">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>How are stereotypes about the poor challenged?</h3>
+          <p>Look for tone toward lower classes.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Humanity &amp; Cheerfulness</h3>
+          <p>Despite hardship, people “laughed heartily.”</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="card" tabindex="0" data-q="Ignorance & Want; Old Joe" data-a="Symbols of neglect; poverty can breed crime">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>What do Ignorance &amp; Want / Old Joe show?</h3>
+          <p>Think symbolism &amp; consequences.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Neglect &amp; Consequence</h3>
+          <p>Society’s abandonment + poverty’s link to crime.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="card" tabindex="0" data-q="Cratchits & class relations" data-a="Scrooge’s power vs. Bob’s struggle; later assistance">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>What do the Cratchits reveal?</h3>
+          <p>Consider fear, scarcity, and class dynamics.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Life on the Edge</h3>
+          <p>They show insecurity; Scrooge’s raise models responsibility.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 11 -->
+    <div class="card" tabindex="0" data-q="Core message" data-a="Poverty is a shared social responsibility">
+      <div class="inner">
+        <div class="face front">
+          <span class="tag">Key Point</span>
+          <h3>What’s the core message?</h3>
+          <p>Sum it all up.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+        <div class="face back">
+          <span class="tag">Answer</span>
+          <h3>Collective Duty</h3>
+          <p>Society must care for its most vulnerable.</p>
+          <div class="actions"><button class="flipBtn">Flip</button></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Tip: Use the search box to filter cards by topic (e.g., “Tiny Tim”, “setting”, “Scrooge”). You can also print or save this page as PDF.
+  </footer>
+  <section style="margin-top:40px;">
+    <h2>Practice Questions</h2>
+    <ol>
+      <li>How does Dickens use Scrooge’s transformation to highlight social responsibility?</li>
+      <li>What role does the setting of London play in exposing poverty in the novella?</li>
+      <li>Explain how characters like Ignorance and Want symbolize society’s neglect.</li>
+    </ol>
+  </section>
+
+</div>
+
+<script>
+  const grid = document.getElementById('grid');
+  const search = document.getElementById('search');
+  const shuffleBtn = document.getElementById('shuffle');
+  const resetBtn = document.getElementById('reset');
+  const count = document.getElementById('count');
+
+  function updateCount(){
+    const total = grid.querySelectorAll('.card').length;
+    const visible = grid.querySelectorAll('.card:not(.hidden)').length;
+    count.textContent = `Showing ${visible} / ${total}`;
+  }
+
+  function attachCardHandlers(card){
+    const toggle = (e)=>{
+      if(e) e.preventDefault();
+      card.classList.toggle('flip');
+    };
+    card.querySelectorAll('.flipBtn').forEach(b=>b.addEventListener('click',toggle));
+    card.addEventListener('keydown', (e)=>{
+      if(e.key.toLowerCase()==='f'){ toggle(e); }
+    });
+  }
+
+  // Initialize
+  grid.querySelectorAll('.card').forEach(attachCardHandlers);
+  updateCount();
+
+  // Search filter
+  search.addEventListener('input', (e)=>{
+    const q = e.target.value.trim().toLowerCase();
+    grid.querySelectorAll('.card').forEach(card=>{
+      const hay = (card.dataset.q + ' ' + card.dataset.a).toLowerCase();
+      card.classList.toggle('hidden', q && !hay.includes(q));
+    });
+    updateCount();
+  });
+
+  // Shuffle
+  function shuffle(array){ for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [array[i],array[j]]=[array[j],array[i]];} return array; }
+  shuffleBtn.addEventListener('click', ()=>{
+    const cards = Array.from(grid.children);
+    shuffle(cards).forEach(c=>grid.appendChild(c));
+  });
+
+  // Reset
+  resetBtn.addEventListener('click', ()=>{
+    search.value='';
+    grid.querySelectorAll('.card').forEach(c=>c.classList.remove('hidden','flip'));
+    updateCount();
+  });
+
+  // Keyboard navigation N/P
+  document.addEventListener('keydown', (e)=>{
+    const cards = Array.from(grid.querySelectorAll('.card:not(.hidden)'));
+    const active = document.activeElement;
+    const idx = Math.max(0, cards.indexOf(active));
+    if(e.key.toLowerCase()==='n'){ const next = cards[(idx+1)%cards.length] || cards[0]; next.focus(); }
+    if(e.key.toLowerCase()==='p'){ const prev = cards[(idx-1+cards.length)%cards.length] || cards[0]; prev.focus(); }
+  });
+</script>
+</body>
+</html>
