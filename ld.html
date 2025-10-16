@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Last Duchess — Flashcards + Practice</title>
+<style>
+  :root{
+    --bg:#0f172a;        /* slate-900 */
+    --card:#0b1220;      /* deep */
+    --card-2:#101827;    /* alt */
+    --ink:#e5e7eb;       /* gray-200 */
+    --muted:#94a3b8;     /* slate-400 */
+    --accent:#22d3ee;    /* cyan-400 */
+    --accent-2:#a78bfa;  /* violet-400 */
+    --good:#10b981;      /* emerald-500 */
+    --warn:#f59e0b;      /* amber-500 */
+  }
+  html,body{height:100%}
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    background: radial-gradient(1200px 800px at 80% -10%, rgba(167,139,250,0.12), transparent 60%),
+                radial-gradient(1000px 700px at 0% 100%, rgba(34,211,238,0.14), transparent 60%),
+                var(--bg);
+    color:var(--ink);
+    display:block;
+    padding:24px;
+  }
+  .wrap{ width:min(980px, 100%); margin: 0 auto; }
+  header{ text-align:center; margin-bottom:16px; }
+  header h1{ font-size:clamp(20px, 4vw, 36px); margin:0 0 8px 0; letter-spacing:.3px; }
+  header p{ margin:0; color:var(--muted); font-size:clamp(12px, 2vw, 14px); }
+
+  .cluster{ display:grid; grid-template-columns: 1fr; gap:18px; }
+  @media (min-width: 840px){
+    .cluster{ grid-template-columns: 1fr; }
+  }
+
+  .card, .card-practice{
+    position:relative;
+    background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015)) , var(--card);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+    padding: 26px 26px 78px 26px;
+    backdrop-filter: blur(6px);
+  }
+  .card-practice{
+    padding-bottom:26px;
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)) , var(--card-2);
+  }
+  .stage{
+    min-height: 210px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 8px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .front{}
+  .back{ display:none; }
+
+  .q{ font-size: clamp(18px, 3.6vw, 30px); line-height:1.2; font-weight:700; letter-spacing:.2px; }
+  .a{ font-size: clamp(16px, 3vw, 22px); line-height:1.4; }
+  .a ul{ list-style: none; padding:0; margin: 0; }
+  .a li{ margin:.35em 0; }
+  .a .quote{ font-style: italic; opacity:.95; }
+
+  .controls{
+    position:absolute; left:0; right:0; bottom:0;
+    display:flex; gap:10px; align-items:center; justify-content:space-between;
+    padding: 12px 16px 16px 16px;
+  }
+  .btn{
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(255,255,255,.02);
+    color:var(--ink);
+    padding:10px 14px;
+    border-radius:12px;
+    font-size:14px;
+    cursor:pointer;
+    transition: background .15s ease, transform .05s ease, border-color .2s ease;
+  }
+  .btn:hover{ background: rgba(255,255,255,.06); }
+  .btn:active{ transform: translateY(1px); }
+  .btn.primary{ border-color: rgba(34,211,238,.6); }
+  .btn.alt{ border-color: rgba(167,139,250,.5); }
+  .btn.success{ border-color: rgba(16,185,129,.7); }
+  .meta{ color:var(--muted); font-size: 12px; }
+  .pill{
+    border:1px solid rgba(255,255,255,.17);
+    padding:6px 10px; border-radius:999px;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .kbd{ border:1px solid rgba(255,255,255,.2); padding:.25em .5em; border-radius:6px; font-size:12px; }
+  footer{ text-align:center; margin:16px 0 10px; color:var(--muted); font-size:12px; }
+
+  /* Practice section */
+  .practice-title{ margin: 8px 0 12px; font-size: clamp(16px, 2.6vw, 22px); font-weight:700; }
+  .prompt{ color:var(--ink); font-size: clamp(14px, 2.2vw, 18px); line-height:1.5; }
+  textarea{
+    width:100%; min-height: 160px; resize: vertical; margin-top:12px;
+    background:#0a0f1a; color:var(--ink); border:1px solid rgba(255,255,255,.12);
+    border-radius:12px; padding:12px; font-size: 15px;
+  }
+  .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px; }
+  .hint{ margin-top:12px; padding:12px; border:1px dashed rgba(255,255,255,.2); border-radius:12px; display:none; }
+  .hint ul{ margin:6px 0 0 18px; }
+  .stats{ color:var(--muted); font-size:12px; margin-left:auto; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>My Last Duchess — Detailed Flashcards</h1>
+      <p>Flip with <span class="kbd">Space</span> • Next <span class="kbd">→</span> • Prev <span class="kbd">←</span> • Shuffle to study • Extra practice at the bottom</p>
+    </header>
+<div class="video-container" style="margin-bottom:20px;text-align:center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/jQZ8AjB3NzE" frameborder="0" allowfullscreen></iframe></div>
+
+    <section class="cluster">
+      <!-- Flashcard widget -->
+      <div class="card" id="card">
+        <div class="stage" id="stage" title="Click to flip (Space)">
+          <div class="front" id="front"><div class="q"></div></div>
+          <div class="back" id="back"><div class="a"></div></div>
+        </div>
+
+        <div class="controls">
+          <div class="left">
+            <button class="btn" id="prev" title="← Previous">&larr; Prev</button>
+            <button class="btn primary" id="flip" title="Space to flip">Flip</button>
+            <button class="btn" id="next" title="Next →">Next &rarr;</button>
+          </div>
+          <div class="right">
+            <button class="btn alt" id="shuffle">Shuffle</button>
+            <span class="pill"><span id="count">1</span>/<span id="total">1</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practice widget -->
+      <div class="card-practice">
+        <div class="practice-title">Practice Question</div>
+        <div class="prompt" id="practice-prompt">
+          How does Browning use <b>structure and form</b> to reveal the Duke’s character in <i>My Last Duchess</i>?
+          Refer to <u>iambic pentameter</u>, the <u>single stanza</u>, <u>enjambment</u>, <u>caesura</u>, and <u>rhyming couplets</u>.
+        </div>
+        <textarea id="answer" placeholder="Write your answer here..."></textarea>
+        <div class="row">
+          <button class="btn success" id="show-hint">Show suggested points</button>
+          <button class="btn" id="clear">Clear</button>
+          <div class="stats"><span id="words">0</span> words</div>
+        </div>
+        <div class="hint" id="hint">
+          <strong>Suggested points to include:</strong>
+          <ul>
+            <li><b>Iambic pentameter</b> echoes aristocratic control and tradition; a measured, “composed” exterior.</li>
+            <li><b>Single stanza / no breaks</b> mirrors the Duke’s dominance and unbroken control of the conversation.</li>
+            <li><b>Enjambment</b> creates a flowing, pressuring voice; shows his lack of self-control beneath polish.</li>
+            <li><b>Caesura</b> (commas, dashes, parentheses) show interruptions and self-qualifications — an anxious, obsessive speaker.</li>
+            <li><b>Rhyming (heroic) couplets</b> mostly hidden by enjambment — suggests tight control masked as “natural speech.”</li>
+            <li>Overall: form presents a courteous surface with coercive power underneath.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Built from the poem’s key concepts and quotations for deeper, faster revision.
+    </footer>
+  </div>
+
+<script>
+// --- Flashcard data (more detailed) ---
+const CARDS = [
+  { q: "Author & Date", a: "<ul><li>Robert Browning</li><li>Published <b>1842</b></li></ul>" },
+  { q: "Form & Genre", a: "<ul><li><b>Dramatic monologue</b> (single speaker)</li><li>Set in Renaissance <b>Ferrara</b></li><li>Unreliable narrator; reader infers truth</li></ul>" },
+  { q: "Speaker", a: "<ul><li><b>Duke of Ferrara</b></li><li>Addressing a <b>marriage envoy</b></li></ul>" },
+  { q: "Opening Significance", a: "<ul><li>Possessive: <span class='quote'>“That’s <b>my</b> last Duchess”</span></li><li>Sinister hint: <span class='quote'>“as if she were alive”</span></li></ul>" },
+  { q: "Control of Access", a: "<ul><li><span class='quote'>“none puts by the curtain I have drawn for you but I”</span></li><li>Control over who sees her — objectification continues after death</li></ul>" },
+  { q: "Jealousy & Insecurity", a: "<ul><li><span class='quote'>“too easily impressed”</span></li><li><span class='quote'>“my gift of a <b>nine-hundred-years-old name</b>”</span> — status obsession</li></ul>" },
+  { q: "Euphemism for Murder", a: "<ul><li><span class='quote'>“I <b>gave commands</b>; then <b>all smiles stopped together</b>”</span></li><li>Cold, indirect confession</li></ul>" },
+  { q: "Art as Possession", a: "<ul><li>Portrait replaces living wife</li><li>People treated like objects to display</li></ul>" },
+  { q: "Neptune Statue", a: "<ul><li><span class='quote'>“Notice Neptune, though, <b>taming</b> a sea-horse”</span></li><li>Metaphor for the Duke’s desire to tame women</li></ul>" },
+  { q: "Themes", a: "<ul><li>Power & control; patriarchy</li><li>Pride, jealousy, status</li><li>Appearance vs reality</li></ul>" },
+  { q: "Structure", a: "<ul><li>Single stanza (over 50 lines)</li><li><b>Iambic pentameter</b></li><li>Rhyming couplets (often disguised)</li></ul>" },
+  { q: "Enjambment & Caesura", a: "<ul><li>Enjambment: flowing but relentless voice</li><li>Caesura: hesitations, self-corrections, anxiety</li></ul>" },
+  { q: "Language & Tone", a: "<ul><li>Polite surface, menacing undertow</li><li>Rhetorical questions; parenthesis</li></ul>" },
+  { q: "Context (Victorian)", a: "<ul><li>Patriarchal norms; wives as property</li><li>Historical setting used to critique the present</li></ul>" },
+  { q: "Context (Ferrara / Source)", a: "<ul><li>Likely alludes to <b>Alfonso II</b>, Duke of Ferrara</li><li>First wife’s death under suspicion (literary inspiration)</li></ul>" },
+  { q: "Purpose / Message", a: "<ul><li>Expose dangers of <b>entitled authority</b></li><li>Show how women’s voices are silenced</li></ul>" },
+  { q: "Exam Quick Quote Set", a: "<ul><li>“my last Duchess”</li><li>“as if she were alive”</li><li>“none puts by the curtain… but I”</li><li>“too easily impressed”</li><li>“I gave commands”</li><li>“taming a sea-horse”</li></ul>" }
+];
+
+let idx = 0;
+let showingBack = false;
+
+const qEl = document.querySelector(".q");
+const aEl = document.querySelector(".a");
+const countEl = document.getElementById("count");
+const totalEl = document.getElementById("total");
+const stage = document.getElementById("stage");
+const flipBtn = document.getElementById("flip");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const shuffleBtn = document.getElementById("shuffle");
+
+function render() {
+  const card = CARDS[idx];
+  qEl.innerHTML = card.q;
+  aEl.innerHTML = card.a;
+  countEl.textContent = (idx + 1).toString();
+  totalEl.textContent = CARDS.length.toString();
+  // show front by default
+  showingBack = false;
+  document.getElementById("front").style.display = "block";
+  document.getElementById("back").style.display = "none";
+}
+function flip() {
+  showingBack = !showingBack;
+  document.getElementById("front").style.display = showingBack ? "none" : "block";
+  document.getElementById("back").style.display = showingBack ? "block" : "none";
+}
+function next() {
+  idx = (idx + 1) % CARDS.length;
+  render();
+}
+function prev() {
+  idx = (idx - 1 + CARDS.length) % CARDS.length;
+  render();
+}
+function shuffle() {
+  // Fisher–Yates shuffle
+  for (let i = CARDS.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [CARDS[i], CARDS[j]] = [CARDS[j], CARDS[i]];
+  }
+  idx = 0;
+  render();
+}
+
+stage.addEventListener("click", flip);
+flipBtn.addEventListener("click", flip);
+nextBtn.addEventListener("click", next);
+prevBtn.addEventListener("click", prev);
+shuffleBtn.addEventListener("click", shuffle);
+
+window.addEventListener("keydown", (e) => {
+  if (e.code === "Space") { e.preventDefault(); flip(); }
+  if (e.key === "ArrowRight") { next(); }
+  if (e.key === "ArrowLeft") { prev(); }
+});
+
+render();
+
+// --- Practice logic ---
+const answer = document.getElementById("answer");
+const words = document.getElementById("words");
+const showHint = document.getElementById("show-hint");
+const hint = document.getElementById("hint");
+const clearBtn = document.getElementById("clear");
+
+function countWords(txt){
+  return (txt.trim().match(/\b[\w’'-]+\b/g) || []).length;
+}
+answer.addEventListener("input", () => {
+  words.textContent = countWords(answer.value);
+});
+
+showHint.addEventListener("click", () => {
+  hint.style.display = hint.style.display === "none" || hint.style.display === "" ? "block" : "none";
+  showHint.textContent = hint.style.display === "block" ? "Hide suggested points" : "Show suggested points";
+});
+clearBtn.addEventListener("click", () => {
+  answer.value = "";
+  words.textContent = "0";
+});
+</script>
+</body>
+</html>
