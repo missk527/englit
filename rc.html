@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Christmas Carol — Redemption & Change: Flashcards</title>
+  <style>
+    :root{
+      --bg:#0f172a;       /* slate-900 */
+      --fg:#e5e7eb;       /* gray-200 */
+      --muted:#94a3b8;    /* slate-400 */
+      --accent:#22d3ee;   /* cyan-400 */
+      --accent2:#a78bfa;  /* violet-400 */
+      --card:#111827;     /* gray-900 */
+      --ok:#10b981;       /* emerald-500 */
+      --warn:#f59e0b;     /* amber-500 */
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:linear-gradient(160deg, #0b1024, #0f172a 40%, #111827); 
+      color:var(--fg); font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      min-height:100vh; display:flex; flex-direction:column; gap:1rem;
+    }
+    header{
+      padding:1.25rem 1rem 0;
+      text-align:center;
+    }
+    header h1{ 
+      margin:0 0 .25rem 0; font-weight:800; letter-spacing:.3px; 
+      font-size: clamp(1.25rem, 2vw + 1rem, 2rem);
+      background: linear-gradient(90deg,var(--accent), var(--accent2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    header p{ margin:.25rem auto 0; max-width:800px; color:var(--muted); font-size:.95rem}
+    .wrap{ width:min(1100px, 96%); margin:0 auto 2rem; }
+    .deck{
+      background: rgba(17,24,39,.6); 
+      border:1px solid rgba(148,163,184,.2); 
+      border-radius:18px; padding:1rem; 
+      box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    }
+    .controls{
+      display:flex; align-items:center; justify-content:space-between; gap:.5rem; flex-wrap:wrap; margin-bottom:.75rem;
+    }
+    .controls .left, .controls .right{display:flex; gap:.5rem; align-items:center}
+    .btn{
+      border:1px solid rgba(148,163,184,.25);
+      background:rgba(255,255,255,.03);
+      color:var(--fg);
+      padding:.6rem .9rem; border-radius:12px; cursor:pointer; 
+      transition:transform .06s ease, background .2s ease, border-color .2s ease;
+      font-weight:600;
+    }
+    .btn:hover{ background:rgba(255,255,255,.07)}
+    .btn:active{ transform:translateY(1px)}
+    .btn.primary{ border-color:rgba(34,211,238,.5); }
+    .btn.success{ border-color:rgba(16,185,129,.5); }
+    .counter{ color:var(--muted); font-size:.95rem}
+    .grid{
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+      gap:14px;
+    }
+    .card{
+      position:relative; height: 210px;
+    }
+    .inner{
+      position:absolute; inset:0;
+      border-radius:16px; overflow:hidden; border:1px solid rgba(148,163,184,.2);
+      background: linear-gradient(180deg, rgba(2,6,23,.6), rgba(2,6,23,.25));
+      padding:16px; display:flex; flex-direction:column; gap:.5rem;
+    }
+    .face{ display:none; flex-direction:column; gap:.5rem; height:100%; }
+    .card .front{ display:flex; }
+    .card.flipped .front{ display:none; }
+    .card.flipped .back{ display:flex; }
+    .back{
+      background: radial-gradient(1200px 500px at 50% -10%, rgba(167,139,250,.15), transparent 60%);
+    }
+    .tag{
+      font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); font-weight:800;
+    }
+    .q{ font-weight:800; font-size:1.05rem}
+    .a{ color:#cbd5e1; line-height:1.35}
+    .mini{ color:var(--muted); font-size:.82rem }
+    .actions{ display:flex; gap:.5rem; margin-top:auto}
+    .tiny{ font-size:.8rem; padding:.4rem .6rem; border-radius:10px}
+    .bottom{
+      margin-top:1.25rem; background:rgba(17,24,39,.6); border:1px solid rgba(148,163,184,.2);
+      border-radius:18px; padding:1rem;
+    }
+    details{
+      background:rgba(255,255,255,.02); border:1px solid rgba(148,163,184,.2); padding:.8rem 1rem; border-radius:12px;
+    }
+    details + details{ margin-top:.6rem}
+    summary{ cursor:pointer; font-weight:700 }
+    .credits{ color:var(--muted); text-align:center; font-size:.8rem; margin-top:.75rem}
+    .kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:.82rem; padding:.1rem .4rem; border:1px solid rgba(148,163,184,.35); border-radius:6px; }
+  </style>
+</head>
+<body>
+
+<div style="width:100%; max-width:1100px; margin:0 auto;">
+  <iframe 
+    width="100%" 
+    height="450" 
+    src="https://www.youtube.com/embed/gQ5K1D5l_XY" 
+    title="YouTube video"
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+  <header>
+    <h1>A Christmas Carol — Theme: Redemption & Change</h1>
+    <p>Click or press <span class="kbd">space</span> to toggle each card. Use the controls to shuffle or mark cards you want to revisit.</p>
+  </header>
+
+  <main class="wrap">
+    <section class="deck">
+      <div class="controls">
+        <div class="left">
+          <button class="btn primary" id="shuffleBtn" title="Shuffle cards">Shuffle</button>
+          <button class="btn" id="reviewBtn" title="Show only 'review' cards">Review only</button>
+          <button class="btn" id="allBtn" title="Show all cards">Show all</button>
+        </div>
+        <div class="right">
+          <span class="counter" id="counter">0 cards</span>
+        </div>
+      </div>
+      <div class="grid" id="grid">
+        <!-- Cards injected by JS -->
+      </div>
+      <div class="credits">Made for quick study practice • Key ideas distilled from the text</div>
+    </section>
+
+    <section class="bottom">
+      <h2 style="margin:.25rem 0 .75rem 0;">Practice Questions (3)</h2>
+      <details>
+        <summary>1) How does Dickens use foreshadowing early in the novella to prepare us for Scrooge’s redemption?</summary>
+        <div class="mini">Consider the images “solitary as an oyster” and Fan’s line that their father is “much kinder than he used to be,” and explain how each hints at change.</div>
+      </details>
+      <details>
+        <summary>2) Compare Dickens’ presentation of weather in Stave One and Stave Five. What is the effect on the theme?</summary>
+        <div class="mini">Explain how pathetic fallacy mirrors Scrooge’s inner state and reinforces the completeness of his transformation.</div>
+      </details>
+      <details>
+        <summary>3) Track the shift in narrative voice from the opening to the ending. Why does this matter for the theme of change?</summary>
+        <div class="mini">Discuss the unsympathetic opening description versus the jubilant tone and “splendid...most illustrious laugh” in Stave Five.</div>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const data = [
+      {
+        tag:"Core Idea",
+        q:"Define ‘redemption’ and explain why it underpins the novella’s structure.",
+        a:"Redemption = being saved from error or sin. The plot is built around Scrooge’s journey from vice to renewal, so the theme becomes a structural backbone that drives the whole narrative arc."
+      },
+      {
+        tag:"Tension",
+        q:"How does Dickens generate suspense around whether Scrooge can change?",
+        a:"By first characterising him as an unyielding ‘covetous old sinner… hard and sharp as flint’. This makes change feel unlikely, raising stakes and reader tension."
+      },
+      {
+        tag:"Emotional Crescendo",
+        q:"What is the emotional pattern across the ghostly visits?",
+        a:"Regret → sadness → fear intensify through each supernatural encounter, reaching a crescendo in Stave Five where transformation is finally realized."
+      },
+      {
+        tag:"Foreshadowing",
+        q:"Explain ‘solitary as an oyster’.",
+        a:"An oyster often hides a pearl: the simile hints that value/kindness lies within Scrooge, waiting to be opened—foreshadowing redemption."
+      },
+      {
+        tag:"Foreshadowing",
+        q:"How does Fan’s message about their father work as foreshadowing?",
+        a:"If their stern father could become ‘much kinder’, the text implies Scrooge can too, cueing the audience to expect change."
+      },
+      {
+        tag:"Marley’s Warning",
+        q:"What does Marley teach about the urgency of change?",
+        a:"He realizes too late that ‘mankind’ should have been his ‘business’; he warns Scrooge that without improvement he is ‘doomed’, urging immediate moral reform."
+      },
+      {
+        tag:"Social Purpose",
+        q:"How is Scrooge’s change didactic for readers?",
+        a:"His theatrical shift—from miser to someone ‘quite a baby’—models that even the hardest hearts can reform, serving Dickens’s moral and social aims."
+      },
+      {
+        tag:"Contrast: Charity",
+        q:"Contrast Scrooge’s response to the charity collectors in Stave One vs. Stave Five.",
+        a:"From dismissive ‘not my business’ to actively chasing them down and offering ‘many back-payments’—showing thorough, restorative change."
+      },
+      {
+        tag:"Contrast: Christmas",
+        q:"How do Scrooge’s views on Christmas change?",
+        a:"From violent rejection (‘boiled with his own pudding’) to praise—‘knew how to keep Christmas well’—a polar shift that signals deep moral renewal."
+      },
+      {
+        tag:"Pathetic Fallacy",
+        q:"What does the weather’s shift signify?",
+        a:"From ‘cold, bleak, biting’ and invasive fog to ‘no fog, no mist’ and ‘golden sunlight’: the external world mirrors Scrooge’s inner thaw and joy."
+      },
+      {
+        tag:"Symbolic Cold",
+        q:"Explain ‘the cold within him’ vs. his later ‘glowing’ state.",
+        a:"Early chill radiates from his spirit (‘froze his old features’); by the end, his warmth seems to brighten the world—suggesting absolute transformation."
+      },
+      {
+        tag:"Narrative Voice",
+        q:"How does the narrator’s tone help prove change?",
+        a:"From a merciless list of miserly verbs to an exultant ‘Yes!’ and celebration of his ‘most illustrious laugh’, the voice itself converts—validating Scrooge’s renewal."
+      }
+    ];
+
+    const grid = document.getElementById('grid');
+    const counter = document.getElementById('counter');
+
+    function cardTemplate(c){
+      return `
+        <div class="card" role="button" tabindex="0" aria-label="Flashcard">
+          <div class="inner">
+            <div class="face front">
+              <span class="tag">${c.tag}</span>
+              <div class="q">${c.q}</div>
+              <div class="mini">Click to flip</div>
+              <div class="actions">
+                <button class="btn tiny" data-flag="review" type="button">Mark review</button>
+                <button class="btn tiny success" data-flag="known" type="button">Mark known</button>
+              </div>
+            </div>
+            <div class="face back">
+              <span class="tag">${c.tag}</span>
+              <div class="a">${c.a}</div>
+              <div class="mini" style="margin-top:auto;">Click to flip back</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function render(cards){
+      grid.innerHTML = cards.map(cardTemplate).join("");
+      [...grid.querySelectorAll('.card')].forEach((el)=>{
+        el.addEventListener('click', (e)=>{
+          if(e.target.closest('button')) return;
+          el.classList.toggle('flipped');
+        });
+        el.addEventListener('keydown', (e)=>{
+          if(e.code==='Space' || e.key==='Enter'){ e.preventDefault(); el.classList.toggle('flipped'); }
+        });
+        const reviewBtn = el.querySelector('[data-flag="review"]');
+        const knownBtn = el.querySelector('[data-flag="known"]');
+        reviewBtn.addEventListener('click', (e)=>{
+          e.stopPropagation(); el.dataset.status='review'; el.style.outline='2px solid var(--warn)';
+        });
+        knownBtn.addEventListener('click', (e)=>{
+          e.stopPropagation(); el.dataset.status='known'; el.style.outline='2px solid var(--ok)';
+        });
+      });
+      counter.textContent = cards.length + ' cards';
+    }
+
+    function shuffle(arr){
+      for(let i=arr.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]]=[arr[j],arr[i]];
+      }
+      return arr;
+    }
+
+    document.getElementById('shuffleBtn').addEventListener('click', ()=>{
+      render(shuffle([...data]));
+    });
+    document.getElementById('reviewBtn').addEventListener('click', ()=>{
+      const reviewCards = [...grid.children].filter(c=>c.dataset.status==='review');
+      if(reviewCards.length===0){ alert('No cards marked for review yet.'); return; }
+      grid.innerHTML = '';
+      reviewCards.forEach(c=> grid.appendChild(c));
+      counter.textContent = reviewCards.length + ' cards';
+    });
+    document.getElementById('allBtn').addEventListener('click', ()=>{
+      render([...data]);
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.code==='Space'){
+        e.preventDefault();
+        const first = grid.querySelector('.card');
+        if(first) first.classList.toggle('flipped');
+      }
+    });
+
+    render([...data]);
+  </script>
+</body>
+</html>
