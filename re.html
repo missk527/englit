@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regret – A Christmas Carol: Flashcards</title>
+<style>
+  :root{
+    --bg:#0f172a;
+    --card:#111827;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --accent:#38bdf8;
+    --accent2:#a78bfa;
+    --good:#34d399;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    background: radial-gradient(1200px 800px at 70% -20%, #1f2937 0%, var(--bg) 60%);
+    color:var(--text);
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:24px;
+  }
+  .wrap{max-width:980px;width:100%}
+  header{text-align:center;margin-bottom:18px;}
+  h1{margin:0 0 6px 0;font-size:clamp(1.25rem,1rem + 1.2vw,2rem);letter-spacing:.3px}
+  p.sub{margin:0;color:var(--muted);font-size:.95rem}
+  /* Responsive video */
+  .video{position:relative;padding-top:56.25%;border-radius:18px;overflow:hidden;
+    border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 30px rgba(0,0,0,.35);
+    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); margin:18px auto 24px;}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .deck{display:grid;grid-template-columns:1fr;gap:18px;}
+  .card{
+    background:
+      radial-gradient(800px 400px at 30% -20%, rgba(56,189,248,.15), transparent 40%),
+      radial-gradient(600px 300px at 120% -10%, rgba(167,139,250,.12), transparent 40%),
+      linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:22px;
+    padding:26px;
+    min-height:230px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    perspective:1000px;
+    cursor:pointer;
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+  .inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s ease;}
+  .card.flipped .inner{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;}
+  .back{transform:rotateY(180deg)}
+  .eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:8px;}
+  .title{font-size:1.25rem;line-height:1.35;margin:0 0 8px 0}
+  .body{color:var(--text);opacity:.92}
+  .muted{color:var(--muted)}
+  .controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;}
+  .btn{appearance:none;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));color:var(--text);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:600;transition:transform .15s ease,background .2s ease,box-shadow .2s ease;box-shadow:0 4px 14px rgba(0,0,0,.25);}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{border-color:rgba(56,189,248,.6)}
+  .btn.success{border-color:rgba(52,211,153,.6)}
+  .index{text-align:center;font-size:.95rem;color:var(--muted);}
+  footer{margin-top:16px;text-align:center;color:var(--muted);font-size:.8rem}
+  kbd{background:#0b1220;border:1px solid rgba(255,255,255,.15);border-bottom-color:rgba(0,0,0,.6);border-radius:6px;padding:2px 6px;font-size:.85em}
+  .questions{margin-top:36px;padding:22px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);}
+  .questions h2{color:var(--accent2);font-size:1.3rem;margin-top:0;margin-bottom:12px;text-align:center;}
+  .questions ol{margin:0;padding-left:22px;line-height:1.7;}
+  .questions li{margin-bottom:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Regret – <em>A Christmas Carol</em> (Flashcards)</h1>
+  <p class="sub">Key points from the PMT Education theme guide, arranged as study flashcards. Click a card (or press <kbd>F</kbd>) to flip. Use <kbd>←</kbd>/<kbd>→</kbd> to navigate.</p>
+</header>
+
+<!-- Embedded YouTube (responsive) -->
+<div class="video" aria-label="YouTube video">
+  <iframe src="https://www.youtube.com/embed/TvpFh9Cshu4"
+    title="YouTube video player"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe>
+</div>
+
+<div class="deck">
+  <!-- 1 -->
+  <div class="card" tabindex="0" aria-label="1: Central Idea">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">1 • Central Idea</div>
+        <h2 class="title">Regret drives Scrooge’s transformation.</h2>
+        <p class="body muted">Tap to see why this matters.</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Why it matters</div>
+        <p class="body">Regret is the emotional catalyst of the novella, pushing Scrooge from indifference to reflection and ultimately to redemption.</p>
+      </section>
+    </div>
+  </div>
+  <!-- 2 -->
+  <div class="card" tabindex="0" aria-label="2: Structure">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">2 • Structure</div>
+        <h2 class="title">Three Spirits = three stages of regret.</h2>
+        <p class="body muted">Past • Present • Yet to Come</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">How it works</div>
+        <p class="body">Each Ghost makes Scrooge confront a different perspective—memory (Past), consequence (Present), and destiny (Yet to Come).</p>
+      </section>
+    </div>
+  </div>
+  <!-- 3 -->
+  <div class="card" tabindex="0" aria-label="3: Process">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">3 • Process</div>
+        <h2 class="title">Regret moves him from denial to action.</h2>
+        <p class="body muted">Feel → Reflect → Change</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Arc</div>
+        <p class="body">Scrooge’s arc: shock and pain, then insight, then a resolve to live differently—turning emotion into moral action.</p>
+      </section>
+    </div>
+  </div>
+  <!-- 4 -->
+  <div class="card" tabindex="0" aria-label="4: Past">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">4 • Past</div>
+        <h2 class="title">Lost love, family, youth.</h2>
+        <p class="body muted">Fanny • Belle • Lonely childhood</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Example</div>
+        <p class="body">“Leave me! Take me back!”—his pain at Belle’s scene reveals regret for choosing wealth over relationships.</p>
+      </section>
+    </div>
+  </div>
+  <!-- 5 -->
+  <div class="card" tabindex="0" aria-label="5: Present">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">5 • Present</div>
+        <h2 class="title">Shame at present cruelty.</h2>
+        <p class="body muted">Cratchits • Ignorance &amp; Want</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Example</div>
+        <p class="body">Hearing his own words, Scrooge “hung his head… overcome with penitence and grief”—regret blossoms into empathy.</p>
+      </section>
+    </div>
+  </div>
+  <!-- 6 -->
+  <div class="card" tabindex="0" aria-label="6: Future">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">6 • Future</div>
+        <h2 class="title">Fear &amp; desperation to change.</h2>
+        <p class="body muted">Gravestone vision</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Example</div>
+        <p class="body">“Tell me I may sponge away the writing on this stone!”—regret peaks and becomes a vow to change.</p>
+      </section>
+    </div>
+  </div>
+  <!-- 7 -->
+  <div class="card" tabindex="0" aria-label="7: Warning">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">7 • Warning</div>
+        <h2 class="title">Marley = eternal regret.</h2>
+        <p class="body muted">Too late to act</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Meaning</div>
+        <p class="body">Marley’s chain shows “no space of regret can make amends” after life’s opportunities are wasted.</p>
+      </section>
+    </div>
+  </div>
+  <!-- 8 -->
+  <div class="card" tabindex="0" aria-label="8: Small Signs">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">8 • Small Signs</div>
+        <h2 class="title">Growing conscience in small moments.</h2>
+        <p class="body muted">Carol singer • Nephew Fred</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Meaning</div>
+        <p class="body">He “would like to have given” the caroller something; feels “uneasy” about Fred—tiny regrets foreshadow change.</p>
+      </section>
+    </div>
+  </div>
+  <!-- 9 -->
+  <div class="card" tabindex="0" aria-label="9: Outcome">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">9 • Outcome</div>
+        <h2 class="title">Regret becomes generosity.</h2>
+        <p class="body muted">Compassion as action</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Meaning</div>
+        <p class="body">By Stave 5, regret fuels charity, reconciliation, and honouring Christmas “all the year.”</p>
+      </section>
+    </div>
+  </div>
+  <!-- 10 -->
+  <div class="card" tabindex="0" aria-label="10: Message">
+    <div class="inner">
+      <section class="face front">
+        <div class="eyebrow">10 • Message</div>
+        <h2 class="title">It’s never too late—if you act.</h2>
+        <p class="body muted">Reflection → Renewal</p>
+      </section>
+      <section class="face back">
+        <div class="eyebrow">Takeaway</div>
+        <p class="body">Dickens turns painful feeling into a moral tool: honest regret, followed by action, leads to redemption.</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn" id="prev">← Prev</button>
+  <div class="index" id="index">1 / 10</div>
+  <button class="btn primary" id="flip">Flip (F)</button>
+  <button class="btn" id="next">Next →</button>
+  <button class="btn success" id="shuffle">Shuffle</button>
+</div>
+
+<section class="questions">
+  <h2>Practice Questions</h2>
+  <ol>
+    <li>How does Dickens use the emotion of regret to drive Scrooge’s transformation?</li>
+    <li>What is the difference between Scrooge’s regret and Marley’s regret?</li>
+    <li>Why does Dickens present regret as a positive force rather than a negative emotion?</li>
+  </ol>
+</section>
+
+<footer>
+  Tip: Use <kbd>←</kbd> / <kbd>→</kbd> to move, <kbd>F</kbd> to flip, <kbd>S</kbd> to shuffle.
+</footer>
+</div>
+
+<script>
+const cards = Array.from(document.querySelectorAll('.card'));
+let idx = 0;
+function setIndex(i){
+  idx=(i+cards.length)%cards.length;
+  cards.forEach((c,j)=>c.style.display=(j===idx?'block':'none'));
+  document.getElementById('index').textContent=(idx+1)+' / '+cards.length;
+  cards[idx].focus();
+}
+function flip(){cards[idx].classList.toggle('flipped');}
+function next(){setIndex(idx+1)}
+function prev(){setIndex(idx-1)}
+function shuffle(){
+  for(let i=cards.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    cards[i].parentNode.insertBefore(cards[j],cards[i].nextSibling);
+    const tmp=cards[i];cards[i]=cards[j];cards[j]=tmp;
+  }
+  setIndex(0);
+}
+document.getElementById('next').addEventListener('click',next);
+document.getElementById('prev').addEventListener('click',prev);
+document.getElementById('flip').addEventListener('click',flip);
+document.getElementById('shuffle').addEventListener('click',shuffle);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight') next();
+  else if(e.key==='ArrowLeft') prev();
+  else if(e.key.toLowerCase()==='f') flip();
+  else if(e.key.toLowerCase()==='s') shuffle();
+});
+setIndex(0);
+cards.forEach(c=>c.addEventListener('click',()=>{
+  if(document.activeElement===c){ flip(); } else { c.focus(); }
+}));
+</script>
+</body>
+</html>
