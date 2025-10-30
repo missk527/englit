@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>region.html — Religion & Christmas | A Christmas Carol (Flashcards)</title>
+  <style>
+    :root{
+      --bg:#0b1220;--panel:#0f172a;--ink:#e5e7eb;--muted:#94a3b8;--accent:#22d3ee;--accent2:#a78bfa;--ring:rgba(34,211,238,.55);
+      --shadow:0 10px 30px rgba(0,0,0,.35)
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 800px at 80% -10%, rgba(34,211,238,.08),transparent),radial-gradient(1000px 700px at 10% 110%, rgba(167,139,250,.08),transparent),var(--bg);color:var(--ink);font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"}
+    .wrap{max-width:980px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    h1{margin:0;font-weight:800;font-size:clamp(18px,3.5vw,28px)}
+    .sub{color:var(--muted);font-size:14px}
+    .controls{display:flex;gap:10px;flex-wrap:wrap}
+    button,select{appearance:none;border:1px solid rgba(148,163,184,.3);background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));color:var(--ink);padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer;transition:transform .05s ease, border-color .2s ease, background .2s ease;box-shadow:var(--shadow)}
+    button:hover,select:hover{border-color:var(--ring)}
+    button:active{transform:translateY(1px)}
+    iframe{width:100%;height:400px;border:none;border-radius:16px;box-shadow:var(--shadow);margin-bottom:20px}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+    .card{position:relative;perspective:1400px;height:330px}
+    .inner{position:absolute;inset:0;border-radius:18px;background:linear-gradient(145deg,rgba(15,23,42,1),rgba(30,41,59,1));border:1px solid rgba(148,163,184,.25);box-shadow:var(--shadow);padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+    .inner.flipped{transform:rotateY(180deg)}
+    .face{position:absolute;inset:0;padding:22px;border-radius:18px;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center}
+    .front .tag{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+    .q{font-size:clamp(18px,2.8vw,26px);font-weight:800}
+    .a{transform:rotateY(180deg)}
+    .a .ans{font-size:clamp(16px,2.2vw,22px)}
+    .progress{display:flex;align-items:center;gap:10px;margin-top:2px;color:var(--muted);font-size:14px}
+    .meter{flex:1;height:8px;background:rgba(148,163,184,.2);border-radius:999px;overflow:hidden}
+    .bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{font-size:12px;color:var(--muted);border:1px dashed rgba(148,163,184,.3);padding:6px 10px;border-radius:999px}
+    footer{margin-top:28px;color:var(--muted);font-size:12px;text-align:center}
+    .hidden{display:none}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid rgba(148,163,184,.35);padding:1px 6px;border-radius:6px}
+    .practice{margin-top:28px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:14px;padding:16px}
+    .practice h2{margin:0 0 8px 0;font-size:18px}
+    .practice ol{margin:0;padding-left:18px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Religion & Christmas — <em>A Christmas Carol</em> (Flashcards)</h1>
+        <div class="sub">Click the card (or press <span class="kbd">Space</span>) to flip; use <span class="kbd">←</span>/<span class="kbd">→</span> to navigate; <span class="kbd">S</span> to shuffle.</div>
+      </div>
+      <div class="controls">
+        <button id="prev" title="Previous (←)">◀ Prev</button>
+        <button id="flip" title="Flip (Space)">Flip</button>
+        <button id="next" title="Next (→)">Next ▶</button>
+        <button id="shuffle" title="Shuffle cards">Shuffle 🔀</button>
+        <select id="mode">
+          <option value="all" selected>All cards</option>
+          <option value="front">Front only</option>
+          <option value="back">Back only</option>
+        </select>
+      </div>
+    </header>
+
+    <iframe src="https://www.youtube.com/embed/V25OPpzZNQc" title="YouTube video player" allowfullscreen></iframe>
+
+    <div class="grid">
+      <div class="card" aria-live="polite">
+        <div class="inner" id="inner">
+          <section class="face front">
+            <div class="tag">Key Point</div>
+            <div class="q" id="frontText">—</div>
+            <div class="row" style="margin-top:14px">
+              <span class="pill" id="cardIndex">Card 1 / 9</span>
+              <span class="pill">Press Space to flip</span>
+            </div>
+          </section>
+          <section class="face a">
+            <div class="tag">Explanation</div>
+            <div class="ans" id="backText">—</div>
+          </section>
+        </div>
+      </div>
+
+      <div class="progress" aria-hidden="false">
+        <div class="meter" aria-label="progress"><div class="bar" id="bar"></div></div>
+        <div id="count">1 / 9</div>
+      </div>
+
+      <div class="practice">
+        <h2>Practice Questions</h2>
+        <ol>
+          <li>Using evidence from Stave Three, how does Dickens support Christian values while criticising religious hypocrisy?</li>
+          <li>How does the title “A Christmas Carol” encapsulate the novella’s message about joy, unity, and moral renewal?</li>
+          <li>In what ways does Scrooge’s transformation mirror Christian repentance and spiritual rebirth?</li>
+        </ol>
+      </div>
+    </div>
+
+    <footer>
+      region.html • Built from the key points list you provided. Perfect for classroom revision or self-study.
+    </footer>
+  </div>
+
+  <script>
+    const cards = [
+      {front: 'Dickens supports Christian values like kindness and charity but criticises religious hypocrisy.', back: 'He upholds kindness, charity, and forgiveness, while condemning those who use faith to justify pride, exclusion, or selfishness.'},
+      {front: 'True religion should promote compassion and unity, not judgement or restriction.', back: 'Religious observance should lift people up and bind communities together, especially aiding the poor and working class.'},
+      {front: 'The Ghost of Christmas Present exposes false religion and selfishness.', back: 'He condemns those who “claim to know” religion yet act from pride, ill-will, bigotry, and selfishness.'},
+      {front: 'The title “A Christmas Carol” symbolises joy, togetherness, and moral renewal.', back: 'A carol is communal and celebratory; Dickens imagines Christmas as a unifying song that heals class division.'},
+      {front: 'Dickens helped shape Christmas into a time of emotion, generosity, and family.', back: 'The novella popularised a warm, charitable, family-centred Christmas beyond mere ritual.'},
+      {front: 'Scrooge’s redemption mirrors Christian repentance and spiritual rebirth.', back: 'Confronted by the Spirits, he turns from greed to charity — a moral and spiritual conversion.'},
+      {front: 'The three Spirits act as divine guides leading Scrooge toward goodness.', back: 'They function like instruments of providence: memory, empathy, consequence — steering him to reform.'},
+      {front: 'The novella links religion and virtue — goodness is shown through loving actions.', back: 'Faith is validated by deeds: love, generosity, social responsibility — not by appearances alone.'},
+      {front: 'Overall message: The real spirit of religion is compassion, generosity, and humanity.', back: 'Dickens fuses Christian ideals with social duty, urging readers to live them out in everyday life.'}
+    ];
+
+    let i = 0;
+    const inner = document.getElementById('inner');
+    const frontText = document.getElementById('frontText');
+    const backText = document.getElementById('backText');
+    const bar = document.getElementById('bar');
+    const count = document.getElementById('count');
+    const cardIndex = document.getElementById('cardIndex');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const flipBtn = document.getElementById('flip');
+    const shuffleBtn = document.getElementById('shuffle');
+    const mode = document.getElementById('mode');
+
+    function render(){
+      const c = cards[i];
+      const total = cards.length;
+      frontText.textContent = c.front;
+      backText.textContent = c.back;
+      count.textContent = `${i+1} / ${total}`;
+      cardIndex.textContent = `Card ${i+1} / ${total}`;
+      bar.style.width = `${((i+1)/total)*100}%`;
+      inner.classList.remove('flipped');
+      applyMode();
+    }
+
+    function flip(){ inner.classList.toggle('flipped'); }
+
+    function nextCard(){ i = (i + 1) % cards.length; render(); }
+    function prevCard(){ i = (i - 1 + cards.length) % cards.length; render(); }
+
+    function shuffle(){
+      for (let j = cards.length - 1; j > 0; j--) {
+        const k = Math.floor(Math.random() * (j + 1));
+        [cards[j], cards[k]] = [cards[k], cards[j]];
+      }
+      i = 0; render();
+    }
+
+    function applyMode(){
+      const m = mode.value;
+      const f = inner.querySelector('.front');
+      const a = inner.querySelector('.a');
+      if(m === 'front'){
+        f.classList.remove('hidden'); a.classList.add('hidden');
+      } else if(m === 'back'){
+        f.classList.add('hidden'); a.classList.remove('hidden');
+      } else {
+        f.classList.remove('hidden'); a.classList.remove('hidden');
+      }
+      if(m !== 'all') inner.classList.remove('flipped');
+    }
+
+    next.addEventListener('click', nextCard);
+    prev.addEventListener('click', prevCard);
+    flipBtn.addEventListener('click', flip);
+    shuffleBtn.addEventListener('click', shuffle);
+    mode.addEventListener('change', applyMode);
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowRight'){ nextCard(); }
+      if(e.key === 'ArrowLeft'){ prevCard(); }
+      if(e.code === 'Space'){ e.preventDefault(); flip(); }
+      if(e.key.toLowerCase() === 's'){ shuffle(); }
+    });
+
+    render();
+  </script>
+</body>
+</html>
