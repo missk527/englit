@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Supernatural in A Christmas Carol — Flashcards</title>
+<style>
+  :root{
+    --bg:#0f172a;        /* slate-900 */
+    --card:#111827;      /* gray-900 */
+    --muted:#94a3b8;     /* slate-400 */
+    --text:#e5e7eb;      /* gray-200 */
+    --accent:#f59e0b;    /* amber-500 */
+    --accent-2:#22d3ee;  /* cyan-400 */
+  }
+
+  html, body { height:100%; }
+  body{
+    margin:0;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;
+    color:var(--text);
+    background: radial-gradient(1200px 800px at 50% -20%, #1f2937, var(--bg));
+    line-height:1.5;
+  }
+
+  .wrap{ max-width:1100px; margin:0 auto; padding:32px 20px 80px; }
+
+  header{
+    text-align:center;
+    margin-bottom:28px;
+  }
+  header h1{
+    font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+    margin:0 0 8px;
+    letter-spacing:.4px;
+  }
+  header p{
+    color:var(--muted);
+    margin:0;
+  }
+
+  /* Flashcard grid */
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap:18px;
+    margin-top:18px;
+  }
+
+  .card{
+    perspective: 1100px;
+  }
+  .inner{
+    position:relative;
+    width:100%;
+    height:190px;
+    transform-style: preserve-3d;
+    transition: transform .7s cubic-bezier(.2,.7,.2,1);
+    border-radius:16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
+  }
+  .front, .back{
+    position:absolute;
+    inset:0;
+    padding:16px 16px 18px;
+    border-radius:16px;
+    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.08);
+    backface-visibility: hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .front .tag{
+    font-size:.75rem;
+    letter-spacing:.6px;
+    text-transform:uppercase;
+    color: var(--accent-2);
+    opacity:.9;
+    margin-bottom:8px;
+  }
+  .front h3{
+    margin:0;
+    font-size:1.05rem;
+  }
+  .back{
+    transform: rotateY(180deg);
+  }
+  .back p{ margin:0; }
+
+  .card.flipped .inner{
+    transform: rotateY(180deg);
+  }
+
+  /* Middle centered key points */
+  .middle{
+    margin:54px 0 22px;
+    display:grid;
+    place-items:center;
+    text-align:center;
+  }
+  .middle .panel{
+    max-width:900px;
+    padding:28px 26px;
+    border-radius:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow: 0 12px 28px rgba(0,0,0,.35);
+  }
+  .middle h2{
+    margin:0 0 10px;
+    font-size: clamp(1.4rem, 2.1vw, 2rem);
+    color: var(--accent);
+  }
+  .middle ul{
+    list-style: none;
+    padding:0;
+    margin: 14px auto 0;
+    max-width: 780px;
+  }
+  .middle ul li{
+    margin:8px 0;
+  }
+  .bullet{ color:var(--accent-2); margin-right:8px; }
+
+  /* Practice questions */
+  .practice{
+    margin-top:44px;
+  }
+  .practice h3{ margin:0 0 10px; }
+  .q{
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;
+    padding:14px 16px;
+    margin:10px 0;
+  }
+  footer{
+    margin-top:36px;
+    text-align:center;
+    color: var(--muted);
+    font-size:.95rem;
+  }
+  .hint{ color:var(--muted); font-size:.9rem; margin-top:4px; }
+
+  /* Small helper button */
+  .toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:10px;
+    margin:6px 2px 0;
+  }
+  .btn{
+    appearance:none;
+    border:1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.08);
+    color:var(--text);
+    border-radius:12px;
+    padding:8px 12px;
+    cursor:pointer;
+    transition:.2s;
+    font-weight:600;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Flashcards — The Supernatural in <em>A Christmas Carol</em></h1>
+      <p>Click any card to flip. Press <strong>F</strong> to flip all.</p>
+    </header>
+
+    <div class="toolbar">
+      <button class="btn" id="flipAll">Flip All</button>
+      <button class="btn" id="resetAll">Reset</button>
+    </div>
+
+    
+    <div style="text-align:center; margin-bottom:28px;">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/XSzDYZy1DT0"
+      title="YouTube video player" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+    </div>
+
+    <!-- FLASHCARDS -->
+    <section class="grid" id="flashcards">
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Core Idea</div>
+            <h3>Why is the supernatural important in the novella?</h3>
+          </div>
+          <div class="back">
+            <p>It’s central and shapes the whole plot, giving Scrooge’s journey purpose and consequences.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Context</div>
+            <h3>Why did Dickens choose ghosts at Christmas?</h3>
+          </div>
+          <div class="back">
+            <p>Victorian Gothic loved ghost stories—especially at Christmas—so Dickens wrote into a popular tradition.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Structure</div>
+            <h3>How do the Spirits structure the story?</h3>
+          </div>
+          <div class="back">
+            <p>The three Ghosts act as catalysts for Scrooge’s transformation—Past, Present, and Yet to Come.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Ghost of Past</div>
+            <h3>What does the Ghost of Christmas Past represent?</h3>
+          </div>
+          <div class="back">
+            <p>Memory and truth; paradoxical child/old man with a bright light symbolising innocence and revelation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Ghost of Present</div>
+            <h3>How is the Present depicted?</h3>
+          </div>
+          <div class="back">
+            <p>A “jolly giant” like Father Christmas who spreads generosity, joy, and goodwill.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Ghost of Future</div>
+            <h3>What’s the role of Yet to Come?</h3>
+          </div>
+          <div class="back">
+            <p>Silent, Grim Reaper-like warning: shows consequences, including Scrooge’s neglected grave.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Marley</div>
+            <h3>What do Marley’s chains mean?</h3>
+          </div>
+          <div class="back">
+            <p>He’s bound by the “cashboxes, keys, ledgers” he valued—punishment after death for greed.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Religion</div>
+            <h3>How does religion support the supernatural?</h3>
+          </div>
+          <div class="back">
+            <p>Ideas like purgatory made ghostly visitations believable to Victorian readers.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Characters</div>
+            <h3>Which characters carry “supernatural” goodness?</h3>
+          </div>
+          <div class="back">
+            <p>Fred and Tiny Tim glow with symbolic light; Scrooge seems almost inhuman before he changes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="card">
+        <div class="inner">
+          <div class="front">
+            <div class="tag">Climax & Message</div>
+            <h3>What’s the climax and moral?</h3>
+          </div>
+          <div class="back">
+            <p>Scrooge sees his own grave and learns to change, be kind, and live with compassion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CENTERED KEY POINTS (exact wordings provided) -->
+    <section class="middle" aria-label="Key Points">
+      <div class="panel">
+        <h2>The Supernatural in A Christmas Carol</h2>
+        <ul>
+          <li><span class="bullet">•</span>The supernatural is central to A Christmas Carol and shapes the entire plot.</li>
+          <li><span class="bullet">•</span>Dickens wrote in the Victorian Gothic tradition, when ghost stories were popular—especially at Christmas.</li>
+          <li><span class="bullet">•</span>The supernatural provides structure: the Ghosts act as catalysts for Scrooge’s transformation.</li>
+        </ul>
+
+        <ul>
+          <li><strong>The Ghost of Christmas Past:</strong></li>
+          <li>— Represents memory and truth.</li>
+          <li>— Looks both like a child and an old man — a supernatural paradox.</li>
+          <li>— Its bright light symbolises truth and innocence.</li>
+        </ul>
+
+        <ul>
+          <li><strong>The Ghost of Christmas Present:</strong></li>
+          <li>— A “jolly giant” resembling Father Christmas.</li>
+          <li>— Symbolises generosity, joy and the Christmas spirit.</li>
+          <li>— Spreads goodwill through supernatural influence.</li>
+        </ul>
+
+        <ul>
+          <li><strong>The Ghost of Christmas Yet to Come:</strong></li>
+          <li>— Grim Reaper-like, silent, terrifying.</li>
+          <li>— Shows Scrooge the consequences of his choices, including his own grave.</li>
+        </ul>
+
+        <ul>
+          <li><strong>Marley’s Ghost:</strong></li>
+          <li>— Chained with objects from his life (cashboxes, keys, ledgers).</li>
+          <li>— Represents punishment in the afterlife for greed.</li>
+        </ul>
+
+        <ul>
+          <li><span class="bullet">•</span>Dickens includes Christian ideas like purgatory, making the ghosts believable to Victorian audiences.</li>
+          <li><strong>Supernatural traits appear in characters, too:</strong></li>
+          <li>— Scrooge is described as almost inhuman at the beginning.</li>
+          <li>— Fred and Tiny Tim glow with symbolic goodness.</li>
+          <li><span class="bullet">•</span>Supernatural events increase in intensity across the novella, leading to the climax: Scrooge seeing his own grave.</li>
+          <li><span class="bullet">•</span>The supernatural teaches a moral lesson: people must change, show kindness, and live with compassion.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PRACTICE QUESTIONS -->
+    <section class="practice" aria-label="Practice Questions">
+      <h3>Practice Questions</h3>
+      <div class="q"><strong>1)</strong> How does Dickens use the supernatural to present Scrooge’s transformation in <em>A Christmas Carol</em>? In your answer, consider how the three Spirits act as moral guides and how their appearances, actions and lessons help Dickens communicate a message to Victorian society.</div>
+      <div class="q"><strong>2)</strong> Explore how Dickens uses Marley’s Ghost to warn both Scrooge and Victorian readers about the consequences of greed. In your response, consider Marley’s appearance, symbolism, religious context and the effect of his warnings.</div>
+      <div class="q"><strong>3)</strong> “The supernatural makes Dickens’ message unforgettable.” To what extent do you agree? Discuss how the Ghosts, supernatural events, and symbolic characters such as Tiny Tim help Dickens teach his moral lesson about kindness and responsibility.</div>
+<div class="hint">Tip: Aim for 3–5 sentences per answer, using a quotation if possible.</div>
+    </section>
+
+    <footer>
+      Made for study use — flip cards to revise, then answer the questions below.
+    </footer>
+  </div>
+
+<script>
+  // Flip interaction
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+  });
+
+  // Buttons
+  const flipAllBtn = document.getElementById('flipAll');
+  const resetAllBtn = document.getElementById('resetAll');
+
+  flipAllBtn.addEventListener('click', () => {
+    document.querySelectorAll('.card').forEach(c => c.classList.add('flipped'));
+  });
+  resetAllBtn.addEventListener('click', () => {
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('flipped'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Keyboard shortcut: F to flip all
+  document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'f') {
+      flipAllBtn.click();
+    }
+  });
+</script>
+</body>
+</html>
