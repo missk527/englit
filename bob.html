@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Bob Cratchit – Full Flashcards</title>
+<style>
+*{box-sizing:border-box;font-family:Arial}
+body{margin:0;background:#f4f5fb;color:#222}
+header{padding:20px;text-align:center;background:#1e293b;color:white}
+.container{max-width:1100px;margin:auto;padding:20px}
+.notes, .questions{background:white;padding:20px;border-radius:14px;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{perspective:1000px;cursor:pointer}
+.card-inner{position:relative;width:100%;height:180px;transition:0.6s;transform-style:preserve-3d}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;
+border-radius:16px;padding:16px;display:flex;flex-direction:column;
+justify-content:center;box-shadow:0 10px 25px rgba(0,0,0,0.1)}
+.front{background:white}
+.back{background:#0f172a;color:white;transform:rotateY(180deg)}
+button{padding:10px 16px;border:none;background:#0f766e;color:white;border-radius:20px;cursor:pointer;margin-bottom:20px}
+</style>
+</head>
+
+<body>
+<header><h1>Bob Cratchit – Flashcards & Notes</h1><p>Click any card to flip it.</p></header>
+<div class="container">
+
+
+<div style="text-align:center; margin:20px 0;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BJNCbuDOJZA"
+title="YouTube video" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<section class="notes">
+<h2>Key Points Summary Notes</h2>
+<ol>
+<li><strong>Bob Cratchit represents the Victorian lower class</strong>
+<ul><li>Introduced as “the clerk,” showing loss of individuality.</li>
+<li>Shows struggles of working-class families.</li></ul></li>
+
+<li><strong>Dickens challenges stereotypes about the poor</strong>
+<ul><li>Bob hardworking, grateful, compassionate.</li>
+<li>Family loving and united despite poverty.</li></ul></li>
+
+<li><strong>Bob’s home reveals his true character</strong>
+<ul><li>Loving father and husband.</li>
+<li>Warm home contrasts Scrooge’s loneliness.</li></ul></li>
+
+<li><strong>Poverty shown through Bob</strong>
+<ul><li>Low wages, mistreatment, hardship.</li>
+<li>Family disproves prejudice that poor are lazy.</li></ul></li>
+
+<li><strong>Bob embodies religious and moral goodness</strong>
+<ul><li>Moved by Tiny Tim’s Christian message.</li>
+<li>Moral integrity highlighted.</li></ul></li>
+
+<li><strong>Family is central to Bob</strong>
+<ul><li>Shows unity, appreciation, warmth.</li>
+<li>Values and praises his children.</li></ul></li>
+
+<li><strong>Bob’s kindness highlights Scrooge’s cruelty</strong>
+<ul><li>Made to work in “a dismal little cell.”</li>
+<li>Still toasts Scrooge as “Founder of the Feast.”</li></ul></li>
+
+<li><strong>Bob’s relationship with Tiny Tim builds sympathy</strong>
+<ul><li>Tiny Tim symbolises impact of poverty.</li>
+<li>Bob’s grief shows emotional strength.</li></ul></li>
+
+<li><strong>Bob undergoes subtle development</strong>
+<ul><li>Life improves after Scrooge changes.</li>
+<li>Bob stays consistently good.</li></ul></li>
+
+<li><strong>Central to Dickens’ moral message</strong>
+<ul><li>Represents goodness, generosity, humility.</li>
+<li>Encourages compassion and social responsibility.</li></ul></li>
+</ol>
+</section>
+
+
+<div style="text-align:center; margin:20px 0;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BJNCbuDOJZA" 
+title="YouTube video" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<button id="flipAll">Flip all cards</button>
+<button id="resetAll">Reset cards</button>
+
+<section class="grid">
+
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">1</div><div class="question">Who does Bob Cratchit represent?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">Victorian lower class; poor workers.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">2</div><div class="question">What stereotype does Dickens challenge?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">Poor people are hardworking and grateful.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">3</div><div class="question">What does Bob’s home reveal?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">He is a loving father; contrasts Scrooge.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">4</div><div class="question">How is poverty shown through Bob?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">Low wages, mistreatment—but hardworking family.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">5</div><div class="question">How does Bob show moral goodness?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">He is religious and morally upright.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">6</div><div class="question">Why is family central to Bob?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">Unity, love, appreciation for family.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">7</div><div class="question">How does Bob’s kindness highlight Scrooge’s cruelty?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">Scrooge mistreats him, but Bob forgives him.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">8</div><div class="question">What does Bob’s relationship with Tiny Tim show?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">Builds sympathy; Tiny Tim shows effects of poverty.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">9</div><div class="question">How does Bob develop across the novella?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">Life improves, but Bob stays good.</div></div>
+ </div>
+</article>
+
+<article class="card">
+ <div class="card-inner">
+   <div class="card-face front"><div class="tag">10</div><div class="question">Why is Bob central to Dickens’ message?</div></div>
+   <div class="card-face back"><div class="tag">Answer</div><div class="answer">Represents goodness, compassion, moral responsibility.</div></div>
+ </div>
+</article>
+
+</section>
+
+<section class="questions">
+<h2>Long Practice Questions</h2>
+<ol>
+<li><strong>How does Dickens use Bob Cratchit to challenge Victorian views on poverty?</strong></li><br>
+<li><strong>How is Bob a moral contrast to Scrooge?</strong></li><br>
+<li><strong>How does Dickens use the Cratchit family to promote generosity and unity?</strong></li>
+</ol>
+</section>
+
+</div>
+
+<script>
+document.querySelectorAll(".card").forEach(card=>{
+  card.addEventListener("click",()=>{card.classList.toggle("flipped");});
+});
+
+document.getElementById("flipAll").onclick=()=>{
+  document.querySelectorAll(".card").forEach(c=>c.classList.add("flipped"));
+};
+
+document.getElementById("resetAll").onclick=()=>{
+  document.querySelectorAll(".card").forEach(c=>c.classList.remove("flipped"));
+};
+</script>
+
+</body></html>
