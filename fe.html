@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mr Fezziwig – Flashcards & Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+      color: #111827;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.5rem 1rem 0.75rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    header p {
+      margin: 0.4rem 0 0;
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      padding: 0 1.5rem 2rem;
+      box-sizing: border-box;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 0.25rem;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #4b5563;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    }
+
+    .tab-btn.active {
+      background: #111827;
+      color: #f9fafb;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.25);
+    }
+
+    .tab-panel {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Flashcards */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .controls-left,
+    .controls-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: #111827;
+      color: #f9fafb;
+      transition: transform 0.1s ease, box-shadow 0.1s ease,
+        background 0.15s ease;
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
+    }
+
+    .btn.secondary {
+      background: #e5e7eb;
+      color: #111827;
+      box-shadow: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+    }
+
+    .btn.secondary:hover {
+      background: #d1d5db;
+      box-shadow: none;
+    }
+
+    .counter {
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      padding-top: 66%;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      position: absolute;
+      inset: 0;
+      border-radius: 1rem;
+      background: transparent;
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease;
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 1rem;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem 1.1rem;
+      box-sizing: border-box;
+    }
+
+    .card-front {
+      background: #111827;
+      color: #f9fafb;
+    }
+
+    .card-back {
+      background: #ffffff;
+      color: #111827;
+      transform: rotateY(180deg);
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+    }
+
+    .card-sub {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .card-back p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    /* Notes & questions */
+    .notes-section {
+      background: #ffffff;
+      padding: 1.2rem 1.4rem;
+      margin: 0 0 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .notes-section h2 {
+      margin-top: 0;
+    }
+
+    .notes-section h3 {
+      margin-bottom: 0.3rem;
+      margin-top: 1.1rem;
+    }
+
+    .notes-section ul {
+      margin-top: 0.15rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .big-questions {
+      background: #fff7ed;
+      padding: 1.4rem;
+      margin-top: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(247, 148, 30, 0.15);
+    }
+
+    .big-questions h2 {
+      margin-top: 0;
+    }
+
+    .big-questions p {
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    footer {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      padding: 0.75rem 1rem 1.25rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.4rem;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mr Fezziwig – Flashcards & Notes</h1>
+    <p>Use the tabs to switch between interactive flashcards and detailed notes.</p>
+  </header>
+
+  <main class="container">
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="flashcards">Flashcards</button>
+      <button class="tab-btn" data-tab="notes">Notes & Questions</button>
+    </div>
+
+    <!-- FLASHCARDS PANEL -->
+    <section class="tab-panel active" id="flashcards">
+      <!-- YouTube Video -->
+      <div style="text-align:center; margin-bottom: 20px;">
+        <iframe width="720" height="405" 
+        src="https://www.youtube.com/embed/b6-kMX1ILs8" 
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+      </div>
+
+      <section class="controls">
+        <div class="controls-left">
+          <button class="btn secondary" id="shuffleBtn">Shuffle cards</button>
+          <button class="btn secondary" id="resetBtn">Reset flips</button>
+        </div>
+        <div class="controls-right">
+          <span class="counter" id="counter">0 / 8 cards viewed</span>
+        </div>
+      </section>
+
+      <section class="grid" id="flashcardGrid">
+        <!-- Card 1 -->
+        <article class="card" data-id="1">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-title">1. Fezziwig’s Essence</div>
+              <div class="card-sub">What does Fezziwig represent?</div>
+            </div>
+            <div class="card-face card-back">
+              <p>
+                Fezziwig embodies warmth, joy, and the true spirit of Christmas,
+                standing as a vivid contrast to Scrooge’s coldness.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card" data-id="2">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-title">2. Influence on Scrooge</div>
+              <div class="card-sub">How does he affect Scrooge?</div>
+            </div>
+            <div class="card-face card-back">
+              <p>
+                His kindness towards young Scrooge sparks Scrooge’s emotional
+                awakening and reminds him that he once valued generosity over
+                wealth.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card" data-id="3">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-title">3. Moral Capitalism</div>
+              <div class="card-sub">What does he symbolise in context?</div>
+            </div>
+            <div class="card-face card-back">
+              <p>
+                Fezziwig symbolises a humane, pre-industrial workplace and
+                Dickens’ idea of moral capitalism—using wealth to promote
+                happiness and community.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="card" data-id="4">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-title">4. Christmas Party</div>
+              <div class="card-sub">Why is the party important?</div>
+            </div>
+            <div class="card-face card-back">
+              <p>
+                Fezziwig’s Christmas Eve party shows community, generosity, and
+                social harmony, uniting people of different classes in shared joy.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="card" data-id="5">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-title">5. Ethical Leadership</div>
+              <div class="card-sub">How does he use power?</div>
+            </div>
+            <div class="card-face card-back">
+              <p>
+                Fezziwig demonstrates ethical leadership: he has the power to make
+                work “a pleasure or a toil” and chooses kindness and responsibility
+                over exploitation.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="card" data-id="6">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-title">6. Foil to Scrooge</div>
+              <div class="card-sub">How does he contrast with Scrooge?</div>
+            </div>
+            <div class="card-face card-back">
+              <p>
+                As an employer who values people over profit, Fezziwig acts as a
+                foil to Scrooge, highlighting Scrooge’s coldness and later change.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="card" data-id="7">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-title">7. Relationships</div>
+              <div class="card-sub">How does he treat others?</div>
+            </div>
+            <div class="card-face card-back">
+              <p>
+                Fezziwig is a fatherly figure who, along with Mrs Fezziwig, treats
+                apprentices like family and recognises them individually.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="card" data-id="8">
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <div class="card-title">8. Dickens’ Message</div>
+              <div class="card-sub">What bigger idea does he show?</div>
+            </div>
+            <div class="card-face card-back">
+              <p>
+                Fezziwig represents Dickens’ message that true wealth lies in
+                generosity and human connection, not in money alone.
+              </p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <!-- NOTES & QUESTIONS PANEL -->
+    <section class="tab-panel" id="notes">
+      <section class="notes-section">
+        <h2>Key Notes on Mr Fezziwig</h2>
+
+        <h3>Fezziwig’s Warm and Joyful Character</h3>
+        <ul>
+          <li>Described with a “jovial” and cheerful voice.</li>
+          <li>Represents the true spirit of Christmas through generosity and happiness.</li>
+          <li>Strong contrast to Scrooge’s later coldness.</li>
+        </ul>
+
+        <h3>Fezziwig’s Impact on Young Scrooge</h3>
+        <ul>
+          <li>His kindness sparks Scrooge’s emotional awakening.</li>
+          <li>Scrooge recognises that “the happiness he gives is quite as great as if it cost a fortune.”</li>
+          <li>Shows Scrooge once valued kindness before greed.</li>
+        </ul>
+
+        <h3>Historical and Social Context</h3>
+        <ul>
+          <li>Symbolises a pre-industrial, humane workplace.</li>
+          <li>Contrasts with harsh factory conditions of the Industrial Revolution.</li>
+          <li>Represents Dickens’ belief in moral capitalism.</li>
+        </ul>
+
+        <h3>The Christmas Party Scene</h3>
+        <ul>
+          <li>Fezziwig joyfully shuts the shop to celebrate Christmas.</li>
+          <li>Creates community among apprentices, servants, and tradespeople.</li>
+          <li>Symbolises Dickens’ ideal society: inclusive and joyful.</li>
+        </ul>
+
+        <h3>Fezziwig as a Moral Leader</h3>
+        <ul>
+          <li>Scrooge notes he “had the power to render us happy or unhappy.”</li>
+          <li>Shows leadership based on respect, kindness, and humanity.</li>
+          <li>Highlights the ethical responsibility of employers.</li>
+        </ul>
+
+        <h3>Contrast Between Fezziwig and Scrooge</h3>
+        <ul>
+          <li>Fezziwig values people over profit; Scrooge values money over people.</li>
+          <li>Fezziwig’s warmth exposes Scrooge’s selfishness.</li>
+          <li>Shows what Scrooge must regain to be redeemed.</li>
+        </ul>
+
+        <h3>Fezziwig’s Relationships</h3>
+        <ul>
+          <li>A fatherly figure to young Scrooge.</li>
+          <li>Mrs Fezziwig shares the same generosity.</li>
+          <li>Treats apprentices like family and knows them “by name.”</li>
+        </ul>
+
+        <h3>Overall Importance</h3>
+        <ul>
+          <li>A symbol of generosity, community, and moral goodness.</li>
+          <li>Provides the emotional foundation for Scrooge’s transformation.</li>
+          <li>Represents Dickens’ model of humane leadership.</li>
+        </ul>
+      </section>
+
+      <section class="big-questions">
+        <h2>Practice Questions</h2>
+
+        <p><strong>1. How does Dickens use the character of Mr Fezziwig to criticise the values of the Industrial Revolution and promote his own moral beliefs about work, generosity, and community?</strong></p>
+
+        <p><strong>2. In what ways does Fezziwig act as a foil to Scrooge, and how does this contrast help shape the reader’s understanding of Scrooge’s journey towards redemption?</strong></p>
+
+        <p><strong>3. Consider the presentation of Fezziwig’s Christmas party. How does Dickens use this scene to create an idealised vision of social harmony, and why is this moment so important for Scrooge’s emotional transformation?</strong></p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    Study tip: Use the flashcards first to test yourself, then switch to the notes tab to fill any gaps.
+  </footer>
+
+  <script>
+    // Tabs
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+
+    // Flashcards
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const counterEl = document.getElementById('counter');
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const grid = document.getElementById('flashcardGrid');
+
+    const viewed = new Set();
+
+    function updateCounter() {
+      counterEl.textContent = `${viewed.size} / ${cards.length} cards viewed`;
+    }
+
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+        viewed.add(card.dataset.id);
+        updateCounter();
+      });
+    });
+
+    function shuffleCards() {
+      const shuffled = [...cards];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      shuffled.forEach((c) => grid.appendChild(c));
+    }
+
+    shuffleBtn.addEventListener('click', () => {
+      shuffleCards();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      cards.forEach((card) => card.classList.remove('flipped'));
+      viewed.clear();
+      updateCounter();
+    });
+
+    updateCounter();
+  </script>
+</body>
+</html>
