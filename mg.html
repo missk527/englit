@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Marley's Ghost - Flashcards & Notes</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            margin: 0;
+            padding: 2rem 1rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        p.subtitle {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 2rem;
+            color: #9ca3af;
+        }
+
+        .notes {
+            max-width: 900px;
+            background: #1e293b;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            margin-bottom: 2.5rem;
+        }
+
+        .notes h3 {
+            margin-top: 1.2rem;
+            color: #93c5fd;
+        }
+
+        .notes ul {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .card {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #1f2937, #111827);
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #4b5563, #1f2937);
+            transform: rotateY(180deg);
+        }
+
+        .questions {
+            max-width: 900px;
+            background: #1e293b;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .questions h2 { color: #93c5fd; }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.5rem 0.75rem 2.5rem;
+            }
+            .card-inner {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Marley's Ghost – Flashcards & Study Notes</h1>
+    <p class="subtitle">Click each flashcard to flip it. Study notes and practice questions included below.</p>
+
+    
+<!-- YOUTUBE VIDEO -->
+<div style="width:100%; max-width:900px; margin-bottom:2rem;">
+    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:1rem; box-shadow:0 10px 25px rgba(0,0,0,0.4);">
+        <iframe 
+            src="https://www.youtube.com/embed/PG8KF0to5HY" 
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            style="position:absolute; top:0; left:0; width:100%; height:100%;">
+        </iframe>
+    </div>
+</div>
+
+<!-- NOTES SECTION -->
+    <div class="notes">
+        <h2>Study Notes</h2>
+
+        <h3>1. Marley’s Ghost as a Character</h3>
+        <ul>
+            <li>First ghost to visit Scrooge.</li>
+            <li>Reflects Scrooge’s own character and possible future.</li>
+            <li>Former business partner and close companion.</li>
+        </ul>
+
+        <h3>2. Symbolism and Moral Meaning</h3>
+        <ul>
+            <li>Represents Christian ideas of purgatory, punishment, and redemption.</li>
+            <li>His chains symbolize sins and greed: “cash boxes, keys, padlocks, ledgers, deeds.”</li>
+            <li>Shows the consequences of selfishness.</li>
+        </ul>
+
+        <h3>3. Purpose in the Story</h3>
+        <ul>
+            <li>Introduces supernatural and religious themes.</li>
+            <li>Announces the arrival of the Three Spirits (story structure).</li>
+            <li>Acts as a warning of Scrooge’s potential fate.</li>
+            <li>Begins Scrooge’s transformation.</li>
+        </ul>
+
+        <h3>4. Relationship with Scrooge</h3>
+        <ul>
+            <li>Scrooge was Marley’s “sole friend” and “sole mourner.”</li>
+            <li>Shared values make Marley’s warning powerful.</li>
+            <li>Shows emotional emptiness in their lives.</li>
+        </ul>
+
+        <h3>5. Main Messages Marley Delivers</h3>
+        <ul>
+            <li>People are responsible for their actions.</li>
+            <li>Social responsibility > wealth: “Mankind was my business.”</li>
+            <li>Redemption is possible through change.</li>
+        </ul>
+
+        <h3>6. Effect on Scrooge</h3>
+        <ul>
+            <li>Instills fear and forces self-reflection.</li>
+            <li>Opens him to lessons from the three spirits.</li>
+        </ul>
+    </div>
+
+    <!-- FLASHCARDS -->
+    <div class="cards">
+
+        <!-- Original cards -->
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>Who is Marley to Scrooge?</p></div>
+                <div class="card-face card-back"><p>His former business partner and closest companion.</p></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>Why does Marley appear?</p></div>
+                <div class="card-face card-back"><p>To warn Scrooge about the consequences of his behaviour.</p></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>What do Marley’s chains symbolise?</p></div>
+                <div class="card-face card-back"><p>The sins, greed, and choices he made in life.</p></div>
+            </div>
+        </div>
+
+        <!-- NEW CARDS -->
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>What theme does Marley introduce?</p></div>
+                <div class="card-face card-back"><p>The supernatural and moral accountability.</p></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>What does Marley warn Scrooge will happen?</p></div>
+                <div class="card-face card-back"><p>That Scrooge will share his fate if he doesn’t change.</p></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>What structural role does Marley play?</p></div>
+                <div class="card-face card-back"><p>He announces the three spirits, setting up the story.</p></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>What is Marley’s message about wealth?</p></div>
+                <div class="card-face card-back"><p>That caring for mankind is more important than money.</p></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>How does Scrooge react after Marley leaves?</p></div>
+                <div class="card-face card-back"><p>He feels terrified and shaken, beginning to doubt himself.</p></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>Why is Marley a mirror to Scrooge?</p></div>
+                <div class="card-face card-back"><p>Their shared attitudes mean Scrooge could repeat Marley’s fate.</p></div>
+            </div>
+        </div>
+
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-face card-front"><p>What emotion does Marley use to change Scrooge?</p></div>
+                <div class="card-face card-back"><p>Fear—forcing Scrooge to reflect and begin changing.</p></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- QUESTIONS SECTION -->
+    <div class="questions">
+        <h2>Practice Questions (Long Answer)</h2>
+        <ol>
+            <li>How does Dickens use Marley’s Ghost to explore the theme of moral responsibility in *A Christmas Carol*?</li>
+            <li>In what ways does Marley act as both a warning and a catalyst for Scrooge’s transformation?</li>
+            <li>Discuss how Marley’s relationship with Scrooge helps highlight the novella’s message about human connection and compassion.</li>
+        </ol>
+    </div>
+
+</body>
+</html>
