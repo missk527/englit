@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Christmas Carol – Minor Characters Flashcards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    .app {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 1.9rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      color: #9ca3af;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #1f2937, #020617);
+      border-radius: 1rem;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.55);
+      border: 1px solid #111827;
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(248,250,252,0.08), transparent);
+      top: -40px;
+      right: -20px;
+      pointer-events: none;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #93c5fd;
+      margin-bottom: 0.4rem;
+    }
+
+    .key-line {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #e5e7eb;
+      margin-bottom: 0.4rem;
+    }
+
+    .detail {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #d1d5db;
+      margin-top: 0.4rem;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .note span {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.75rem;
+      color: #a5b4fc;
+      margin-right: 0.35rem;
+    }
+
+    .quote {
+      margin-top: 0.6rem;
+      padding-left: 0.8rem;
+      border-left: 2px solid #4b5563;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #cbd5f5;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .left-controls,
+    .right-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border-radius: 999px;
+      border: 1px solid #1d4ed8;
+      background: #1d4ed8;
+      color: white;
+      padding: 0.45rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+      white-space: nowrap;
+    }
+
+    button.secondary {
+      background: transparent;
+      border-color: #4b5563;
+      box-shadow: none;
+      color: #e5e7eb;
+    }
+
+    button:disabled {
+      opacity: 0.4;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    button:not(:disabled):hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(37,99,235,0.5);
+    }
+
+    button.secondary:not(:disabled):hover {
+      background: #111827;
+      border-color: #6b7280;
+      box-shadow: none;
+    }
+
+    .counter {
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .side-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .questions {
+      margin-top: 1.75rem;
+      background: #020617;
+      border-radius: 1rem;
+      border: 1px solid #111827;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+    }
+
+    .questions h2 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .questions p {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-bottom: 0.75rem;
+    }
+
+    .questions ol {
+      margin-left: 1.25rem;
+      display: grid;
+      gap: 0.65rem;
+      font-size: 0.95rem;
+    }
+
+    .questions li {
+      line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+
+      .card {
+        padding: 1.2rem 1.1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+    .video-link{
+      margin-bottom: 0.85rem;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+    .video-link a{
+      color: #bfdbfe;
+      text-decoration: none;
+      border: 1px solid rgba(59,130,246,0.55);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      display: inline-block;
+      background: rgba(29,78,216,0.12);
+    }
+    .video-link a:hover{
+      background: rgba(29,78,216,0.22);
+    }
+
+  </style>
+</head>
+<body>
+
+<div style="text-align:center; margin-bottom:20px;">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/MGu1ruhUBBw"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+
+  <div class="app">
+    <h1>Minor Characters – A Christmas Carol</h1>
+    <p class="subtitle">Tap through the flashcards to revise how each key idea is supported by Dickens&rsquo; minor characters.</p>
+
+    <div class="card">
+
+      <div class="video-link">
+        <a href="https://youtu.be/MGu1ruhUBBw" target="_blank" rel="noopener">▶ Watch: Minor Characters video</a>
+      </div>
+      <div class="card-title" id="card-title"></div>
+      <div class="label" id="card-side-label">Front · Key Idea</div>
+      <div class="key-line" id="card-key-line"></div>
+      <div class="detail" id="card-detail"></div>
+      <div class="quote hidden" id="card-quote"></div>
+      <div class="note hidden" id="card-note"></div>
+    </div>
+
+    <div class="controls">
+      <div class="left-controls">
+        <button id="prev-btn" class="secondary" type="button">◀ Prev</button>
+        <button id="next-btn" class="secondary" type="button">Next ▶</button>
+        <span class="counter" id="counter"></span>
+      </div>
+      <div class="right-controls">
+        <span class="side-label" id="side-label-text">Showing: Front</span>
+        <button id="flip-btn" type="button">Flip Card</button>
+      </div>
+    </div>
+
+    <section class="questions">
+      <h2>Practice exam-style questions</h2>
+      <p>Use these questions to plan or write longer answers using the flashcards as support.</p>
+      <ol>
+        <li>
+          How does Dickens use minor characters in <em>A Christmas Carol</em> to highlight Scrooge&rsquo;s flaws and encourage his transformation? 
+          In your answer, you should write about at least <strong>three</strong> different minor characters.
+        </li>
+        <li>
+          &ldquo;In <em>A Christmas Carol</em>, the minor characters are the key to Dickens&rsquo; message about poverty and social responsibility.&rdquo; 
+          To what extent do you agree? Refer to a range of minor characters and explore how they present Victorian society.
+        </li>
+        <li>
+          Explore how Dickens uses the Cratchit family and <strong>one other group of minor characters</strong> to challenge Victorian stereotypes about the poor. 
+          You may wish to write about language, structure and the impact on a nineteenth-century reader.
+        </li>
+      </ol>
+    </section>
+  </div>
+
+  <script>
+    const cards = [
+      {
+        title: "1 · Why minor characters matter",
+        front: {
+          key: "Minor characters in A Christmas Carol are essential, not background extras.",
+          detail: "Dickens uses a wide range of minor figures – family members, the poor, businesspeople and even supernatural children – to build the world around Scrooge. They make the novella feel real and emotionally rich, and they give us different angles on the same big ideas: Christmas spirit, poverty, family and moral responsibility.",
+          note: "Minor characters in A Christmas Carol are essential, not unimportant."
+        },
+        back: {
+          detail: "Minor characters stay fairly consistent while Scrooge changes dramatically. This contrast makes his transformation from a 'tight-fisted' miser to a generous man much clearer. They also allow Dickens to show how one person's attitudes ripple out and affect many lives, from the Cratchits' dinner table to Caroline's tiny living room.",
+          quote: "Scrooge begins as a 'solitary as an oyster' outsider, surrounded by people who show the warmth he lacks."
+        }
+      },
+      {
+        title: "2 · Contrast with Scrooge",
+        front: {
+          key: "Dickens uses minor characters to highlight Scrooge’s flaws through contrast.",
+          detail: "Characters such as Fred and the Fezziwigs are cheerful, generous and sociable in exactly the ways Scrooge is not. By putting them side by side with him, Dickens makes Scrooge look colder and more isolated.",
+          note: "Dickens uses minor characters to highlight Scrooge’s flaws through contrast."
+        },
+        back: {
+          detail: "Fred is described as 'ruddy and handsome' and arrives 'all in a glow', his eyes 'sparkled', whereas Scrooge has 'thin lips' and shuts out warmth and cheer. Mrs Fezziwig is 'one vast substantial smile' who shakes every guest’s hand, while Scrooge keeps his distance from others and prefers to be 'left alone'. The more positive they appear, the worse his behaviour seems by comparison.",
+          quote: "Fred becomes the antithesis of Scrooge, embodying the joy and generosity his uncle rejects."
+        }
+      },
+      {
+        title: "3 · Fred, Fan & Belle – love & Christmas spirit",
+        front: {
+          key: "Fred, Fan, and Belle represent love, family, and the true Christmas spirit.",
+          detail: "These three characters show Scrooge what a loving life could look like: a warm nephew, a devoted sister and a fiancée who once shared his values.",
+          note: "Fred, Fan, and Belle show love, family, and the true Christmas spirit."
+        },
+        back: {
+          detail: "Fred keeps coming 'year after year' to invite Scrooge to Christmas, showing forgiveness and empathy. Fan rushes in crying 'Home, home, home!' and showers young Scrooge with affection, humanising him and linking happiness to family. Belle reminds him of a time when they were 'both poor and content to be so', and leaving him exposes how money has replaced love as his 'idol'. Seeing them again makes Scrooge feel deep regret and pushes him towards change.",
+          quote: "Belle calls their relationship 'an unprofitable dream', revealing how Scrooge has turned even love into a question of financial gain."
+        }
+      },
+      {
+        title: "4 · Ignorance & Want – social responsibility",
+        front: {
+          key: "Ignorance and Want symbolise poverty, ignorance, and social responsibility.",
+          detail: "The two 'childlike' figures under the Ghost of Christmas Present’s robe are not just spooky images – they are the physical embodiment of society’s failures.",
+          note: "Ignorance and Want represent poverty, ignorance, and social responsibility."
+        },
+        back: {
+          detail: "Dickens describes them as 'wretched, abject, frightful, hideous, miserable', but the Ghost insists they are 'Man’s', created by human neglect. The boy, Ignorance, is especially dangerous: the Spirit warns 'beware of this boy... on his brow I see that written which is Doom'. Together they show how the rich ignore the suffering of the poor, and how greed and lack of education will destroy society if nothing changes.",
+          quote: "They cling to the Ghost like parasites on Christmas itself, reminding readers that real charity and education are part of true Christmas spirit."
+        }
+      },
+      {
+        title: "5 · The Cratchits & stereotypes of the poor",
+        front: {
+          key: "The Cratchit family challenges stereotypes about the poor.",
+          detail: "Rather than lazy or immoral, the Cratchits are loving, hardworking and grateful, even when they have very little.",
+          note: "The Cratchit family challenge stereotypes about the poor."
+        },
+        back: {
+          detail: "Mrs Cratchit is 'dressed out but poorly in a twice-turned gown', yet she is 'brave in ribbons', showing pride and optimism despite poverty. Martha works late at a milliner’s and needs 'a good long rest', proving the poor do work hard. Peter rejoices in his father’s oversized shirt 'in honour of the day', and the family feels 'great delight' that there is even a 'small atom of bone' left because everyone has had enough to eat. Their warmth and dignity attack Victorian assumptions that the poor are idle or undeserving.",
+          quote: "Mrs Cratchit’s willingness to toast 'such an odious, stingy, hard, unfeeling man as Mr Scrooge' for Bob’s sake and for Christmas shows her generosity of spirit."
+        }
+      },
+      {
+        title: "6 · Darker characters & consequences",
+        front: {
+          key: "Darker minor characters reveal the consequences of Scrooge’s selfish life.",
+          detail: "Figures like Old Joe and the charwoman, laundress and undertaker’s man show the ugly world that Scrooge’s attitudes help to create.",
+          note: "Darker characters show the consequences of Scrooge’s selfish life."
+        },
+        back: {
+          detail: "Old Joe’s shop is in a 'foul' area that 'reeked with crime, with filth, and misery'. The three thieves burst into laughter as they sell the dead man’s belongings, including his very 'bed-curtains' and shirt. They justify themselves by saying Scrooge always 'took care of himself' and was a 'wicked old screw'. Their callousness mirrors his own lack of compassion. By reacting with 'detestation and disgust', Scrooge finally sees how his selfishness leads to a lonely, dishonoured death.",
+          quote: "These characters are like a moral mirror, reflecting back to Scrooge the harshness he has shown to others."
+        }
+      },
+      {
+        title: "7 · Caroline & real human damage",
+        front: {
+          key: "Caroline shows the real human damage caused by Scrooge’s business practices.",
+          detail: "Her quiet scene of mixed relief and guilt reveals the emotional cost of ruthless money-lending.",
+          note: "Caroline shows the real harm caused by Scrooge’s business practices."
+        },
+        back: {
+          detail: "Caroline and her husband are in debt to Scrooge. Her husband’s face is 'careworn and depressed though he was young', showing how worry has aged him. When she hears that Scrooge is dead, she is 'thankful in her soul to hear it' but immediately 'prayed forgiveness' and felt 'sorry'. Even gentle, 'mild and patient' people are relieved at his death, proving how 'merciless' Scrooge’s behaviour has been. This helps him understand that his choices have real, painful consequences for ordinary families.",
+          quote: "The scene shifts the focus from money to people, underlining Dickens’ belief that business must have a human conscience."
+        }
+      },
+      {
+        title: "8 · Transformation & Dickens’ message",
+        front: {
+          key: "Overall, minor characters drive Scrooge’s transformation and Dickens’ moral message.",
+          detail: "Together they form a gallery of examples, warnings and alternatives that push Scrooge towards redemption.",
+          note: "Minor characters drive Scrooge’s transformation and Dickens’ moral message."
+        },
+        back: {
+          detail: "The loving figures (Fred, Fan, Belle, the Cratchits, Mrs Fezziwig, Dick Wilkins) remind Scrooge of what he has lost and what he could regain. Ignorance and Want, Old Joe, the thieves and Caroline show him the grim future his attitudes create. The Portly Gentlemen speak for Dickens’ own views about charity and social responsibility. By the end, these minor characters have done the essential work of forcing Scrooge to confront his past, present and possible future – and of teaching the reader that society must care for its weakest members.",
+          quote: "Minor characters carry Dickens’ central lesson: change is possible, but only if we choose generosity, community and responsibility over selfishness."
+        }
+      }
+    ];
+
+    let currentIndex = 0;
+    let showingFront = true;
+
+    const titleEl = document.getElementById("card-title");
+    const keyLineEl = document.getElementById("card-key-line");
+    const detailEl = document.getElementById("card-detail");
+    const quoteEl = document.getElementById("card-quote");
+    const noteEl = document.getElementById("card-note");
+    const counterEl = document.getElementById("counter");
+    const sideLabel = document.getElementById("card-side-label");
+    const sideText = document.getElementById("side-label-text");
+
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const flipBtn = document.getElementById("flip-btn");
+
+    function renderCard() {
+      const card = cards[currentIndex];
+      const side = showingFront ? card.front : card.back;
+
+      titleEl.textContent = card.title;
+      keyLineEl.textContent = side.key || "";
+      detailEl.textContent = side.detail || "";
+
+      // Quote (back only)
+      if (!showingFront && card.back.quote) {
+        quoteEl.textContent = "Key evidence: " + card.back.quote;
+        quoteEl.classList.remove("hidden");
+      } else {
+        quoteEl.classList.add("hidden");
+      }
+
+      // Note (front or back)
+      if (side.note) {
+        noteEl.innerHTML = "<span>Exam note</span>" + side.note;
+        noteEl.classList.remove("hidden");
+      } else {
+        noteEl.classList.add("hidden");
+      }
+
+      const total = cards.length;
+      counterEl.textContent = `Card ${currentIndex + 1} of ${total}`;
+
+      const sideLabelText = showingFront ? "Front · Key Idea" : "Back · Analysis & Evidence";
+      sideLabel.textContent = sideLabelText;
+      sideText.textContent = showingFront ? "Showing: Front" : "Showing: Back";
+
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === total - 1;
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showingFront = true;
+        renderCard();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (currentIndex < cards.length - 1) {
+        currentIndex++;
+        showingFront = true;
+        renderCard();
+      }
+    });
+
+    flipBtn.addEventListener("click", () => {
+      showingFront = !showingFront;
+      renderCard();
+    });
+
+    renderCard();
+  </script>
+</body>
+</html>
