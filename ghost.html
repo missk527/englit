@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>A Christmas Carol — The Ghosts (Flashcards)</title>
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#121a33; --card:#0f1730; --text:#e9ecff; --muted:#aab3e6;
+      --border:rgba(255,255,255,.12); --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1200px 700px at 20% 0%, #18224b 0%, var(--bg) 55%, #070a14 100%);
+      color:var(--text);
+    }
+    header{
+      padding:28px 18px 16px;
+      max-width:1100px; margin:0 auto;
+    }
+    h1{margin:0 0 8px; font-size:clamp(22px,3vw,32px); letter-spacing:.2px}
+    p{margin:0; color:var(--muted); line-height:1.45}
+    .toolbar{
+      max-width:1100px; margin:14px auto 0; padding:0 18px 14px;
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .chip, button{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      box-shadow:none;
+      transition: transform .05s ease, background .15s ease, border-color .15s ease;
+      font-size:14px;
+    }
+    .chip[aria-pressed="true"]{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.22);
+    }
+    button:active, .chip:active{transform: translateY(1px)}
+    .spacer{flex:1}
+    .counter{color:var(--muted); font-size:14px; padding:8px 2px}
+    main{max-width:1100px; margin:0 auto; padding:0 18px 34px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:14px;
+    }
+    .card{
+      perspective: 1100px;
+      min-height: 210px;
+    }
+    .inner{
+      position:relative;
+      width:100%;
+      height:100%;
+      transform-style:preserve-3d;
+      transition: transform .55s cubic-bezier(.2,.8,.2,1);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .card.flipped .inner{transform: rotateY(180deg)}
+    .face{
+      position:absolute; inset:0;
+      padding:16px 16px 14px;
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      backface-visibility:hidden;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .back{
+      transform: rotateY(180deg);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+    .tag{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--border);
+      padding:5px 9px; border-radius:999px;
+      background: rgba(0,0,0,.15);
+    }
+    .title{font-size:16px; font-weight:700; line-height:1.25}
+    .prompt{color:var(--muted); font-size:13px; line-height:1.35}
+    ul{margin:0; padding-left:18px; color:var(--text); line-height:1.35}
+    li{margin:6px 0}
+    .quote{
+      margin-top:auto;
+      padding:10px 12px;
+      border-radius:14px;
+      background: rgba(0,0,0,.22);
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .hint{color:var(--muted); font-size:12px; margin-top:10px}
+    footer{
+      max-width:1100px; margin:0 auto; padding:0 18px 26px;
+      color:var(--muted); font-size:12px; line-height:1.4;
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size:11px;
+      padding:2px 6px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+    }
+  
+    .notes{
+      max-width:1100px; margin:0 auto; padding:0 18px 26px;
+    }
+    .notesPanel{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px 18px 14px;
+    }
+    .notesPanel h2{margin:0 0 8px; font-size:18px}
+    .notesPanel h3{margin:14px 0 6px; font-size:15px}
+    .notesPanel ul{margin:6px 0 0; color:var(--text)}
+    .notesPanel li{margin:6px 0}
+    .practice{
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid var(--border);
+    }
+    .q{
+      margin:10px 0;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      color:var(--text);
+      line-height:1.4;
+    }
+    .q strong{display:block; margin-bottom:6px}
+
+  
+    .notes{
+      max-width:1100px; margin:0 auto; padding:0 18px 26px;
+    }
+    .notesPanel{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px 18px 14px;
+    }
+    .notesPanel h2{margin:0 0 8px; font-size:18px}
+    .notesPanel h3{margin:14px 0 6px; font-size:15px}
+    .notesPanel ul{margin:6px 0 0; color:var(--text)}
+    .notesPanel li{margin:6px 0}
+    .practice{
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid var(--border);
+    }
+    .q{
+      margin:10px 0;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      color:var(--text);
+      line-height:1.4;
+    }
+    .q strong{display:block; margin-bottom:6px}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>A Christmas Carol — The Ghosts (Flashcards)</h1>
+    <p>Click a card to flip. Use filters to focus on a Ghost. Great for quick GCSE revision.</p>
+    <div class="hint">
+      Tip: press <span class="kbd">S</span> to shuffle, <span class="kbd">R</span> to reset filters, <span class="kbd">Esc</span> to unflip all.
+    </div>
+  </header>
+  <section style="max-width:1100px;margin:0 auto;padding:0 18px 24px;">
+    <div style="
+      position:relative;
+      padding-bottom:56.25%;
+      height:0;
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 12px 30px rgba(0,0,0,.35);
+      background:#000;">
+      <iframe 
+        src="https://www.youtube.com/embed/Oz-lpOc-6Og"
+        title="A Christmas Carol – The Ghosts Explained"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="
+          position:absolute;
+          top:0;left:0;
+          width:100%;
+          height:100%;">
+      </iframe>
+    </div>
+  </section>
+
+
+  <div class="toolbar" role="toolbar" aria-label="Flashcard controls">
+    <button id="shuffleBtn" type="button">Shuffle</button>
+    <button id="unflipBtn" type="button">Unflip all</button>
+
+    <span class="spacer"></span>
+
+    <button class="chip" data-filter="all" aria-pressed="true" type="button">All</button>
+    <button class="chip" data-filter="overview" aria-pressed="false" type="button">Overview</button>
+    <button class="chip" data-filter="past" aria-pressed="false" type="button">Christmas Past</button>
+    <button class="chip" data-filter="present" aria-pressed="false" type="button">Christmas Present</button>
+    <button class="chip" data-filter="future" aria-pressed="false" type="button">Yet To Come</button>
+
+    <span class="spacer"></span>
+    <div class="counter" id="counter"></div>
+  </div>
+
+  <main>
+    <section class="grid" id="grid" aria-label="Flashcards"></section>
+  </main>
+
+  <section class="notes" aria-label="Revision notes">
+    <div class="notesPanel">
+      <h2>Revision Notes (Key Points)</h2>
+      <p style="margin:0;color:var(--muted);line-height:1.45">
+        Use these notes alongside the flashcards. They summarise purpose, symbolism, and Dickens’ message.
+      </p>
+
+      <h3>1) Overall role of the Ghosts</h3>
+      <ul>
+        <li>The three Ghosts guide Scrooge through <strong>reflection, awareness, and redemption</strong>.</li>
+        <li>Dickens uses them as <strong>moral teachers</strong>, not just supernatural figures.</li>
+        <li>Each Spirit represents a different aspect of <strong>time</strong> and <strong>responsibility</strong>: past, present, future.</li>
+      </ul>
+
+      <h3>2) Ghost of Christmas Past</h3>
+      <ul>
+        <li><strong>Purpose:</strong> shows how Scrooge’s past shaped his personality; encourages empathy by proving he wasn’t always cruel.</li>
+        <li><strong>Key ideas:</strong> reflection is necessary for growth; change is possible because Scrooge once had kindness and joy.</li>
+        <li><strong>Appearance & symbolism:</strong> white tunic (purity + moral authority), light (truth + enlightenment), child/old man contradictions (the whole of Scrooge’s past).</li>
+        <li><strong>Power dynamic:</strong> Scrooge resists but is forced to face painful memories—truth can’t be avoided.</li>
+      </ul>
+
+      <h3>3) Ghost of Christmas Present</h3>
+      <ul>
+        <li><strong>Purpose:</strong> represents Christmas spirit (generosity, warmth, community) and acts as Dickens’ voice for social reform.</li>
+        <li><strong>Key ideas:</strong> Christmas spirit exists at all social levels; wealth doesn’t equal happiness—kindness does.</li>
+        <li><strong>Appearance & symbolism:</strong> jolly Giant in green with holly (Father Christmas), torch/light (abundance + positivity), empty scabbard (peace/no conflict).</li>
+        <li><strong>Social message:</strong> challenges “surplus population”; Ignorance and Want warn against ignoring social injustice.</li>
+        <li><strong>Power dynamic:</strong> Scrooge becomes obedient and remorseful—he is growing more socially aware.</li>
+      </ul>
+
+      <h3>4) Ghost of Christmas Yet to Come</h3>
+      <ul>
+        <li><strong>Purpose:</strong> shows the consequences of Scrooge’s actions; teaches accountability and the inevitability of death.</li>
+        <li><strong>Key ideas:</strong> actions determine legacy; the future can change, but time and death can’t be escaped.</li>
+        <li><strong>Appearance & symbolism:</strong> black garment/darkness (death + fear + hopeless future), silence (seriousness and inevitability).</li>
+        <li><strong>Power dynamic:</strong> Scrooge fears the Spirit but seeks redemption; unlike the past, the future is not fixed.</li>
+        <li><strong>Turning point:</strong> seeing his own neglected grave forces complete transformation.</li>
+      </ul>
+
+      <h3>5) Conclusion / overall message</h3>
+      <ul>
+        <li>The Ghosts work together to transform Scrooge <strong>morally</strong> and <strong>emotionally</strong>.</li>
+        <li>Dickens promotes kindness, generosity, and social responsibility, while criticising selfishness and neglect of the poor.</li>
+        <li>Main takeaway: <strong>change is possible</strong>, <strong>compassion matters</strong>, and <strong>how we live determines our legacy</strong>.</li>
+      </ul>
+
+      <div class="practice">
+        <h3>Practice: Long Questions</h3>
+        <div class="q">
+          <strong>1)</strong>
+          How does Dickens use the Ghost of Christmas Past to develop Scrooge’s character and encourage the reader to feel sympathy for him? 
+          In your answer, write about the Ghost’s purpose, the scenes it shows, and how its symbolism (especially light) supports Dickens’ message.
+        </div>
+        <div class="q">
+          <strong>2)</strong>
+          “The Ghost of Christmas Present is Dickens’ voice for social reform.” How far do you agree?
+          Write about the Spirit’s appearance and behaviour, what it teaches Scrooge about poverty, and how characters like Ignorance and Want affect the reader.
+        </div>
+        <div class="q">
+          <strong>3)</strong>
+          Explore how the Ghost of Christmas Yet to Come changes the tone of the novella and completes Scrooge’s redemption.
+          In your answer, focus on the Spirit’s silence and darkness, the future visions of death and legacy, and why Scrooge finally commits to change.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="notes" aria-label="Revision notes">
+    <div class="notesPanel">
+      <h2>Revision Notes (Key Points)</h2>
+      <p style="margin:0;color:var(--muted);line-height:1.45">
+        Use these notes alongside the flashcards. They summarise purpose, symbolism, and Dickens’ message.
+      </p>
+
+      <h3>1) Overall role of the Ghosts</h3>
+      <ul>
+        <li>The three Ghosts guide Scrooge through <strong>reflection, awareness, and redemption</strong>.</li>
+        <li>Dickens uses them as <strong>moral teachers</strong>, not just supernatural figures.</li>
+        <li>Each Spirit represents a different aspect of <strong>time</strong> and <strong>responsibility</strong>: past, present, future.</li>
+      </ul>
+
+      <h3>2) Ghost of Christmas Past</h3>
+      <ul>
+        <li><strong>Purpose:</strong> shows how Scrooge’s past shaped his personality; encourages empathy by proving he wasn’t always cruel.</li>
+        <li><strong>Key ideas:</strong> reflection is necessary for growth; change is possible because Scrooge once had kindness and joy.</li>
+        <li><strong>Appearance & symbolism:</strong> white tunic (purity + moral authority), light (truth + enlightenment), child/old man contradictions (the whole of Scrooge’s past).</li>
+        <li><strong>Power dynamic:</strong> Scrooge resists but is forced to face painful memories—truth can’t be avoided.</li>
+      </ul>
+
+      <h3>3) Ghost of Christmas Present</h3>
+      <ul>
+        <li><strong>Purpose:</strong> represents Christmas spirit (generosity, warmth, community) and acts as Dickens’ voice for social reform.</li>
+        <li><strong>Key ideas:</strong> Christmas spirit exists at all social levels; wealth doesn’t equal happiness—kindness does.</li>
+        <li><strong>Appearance & symbolism:</strong> jolly Giant in green with holly (Father Christmas), torch/light (abundance + positivity), empty scabbard (peace/no conflict).</li>
+        <li><strong>Social message:</strong> challenges “surplus population”; Ignorance and Want warn against ignoring social injustice.</li>
+        <li><strong>Power dynamic:</strong> Scrooge becomes obedient and remorseful—he is growing more socially aware.</li>
+      </ul>
+
+      <h3>4) Ghost of Christmas Yet to Come</h3>
+      <ul>
+        <li><strong>Purpose:</strong> shows the consequences of Scrooge’s actions; teaches accountability and the inevitability of death.</li>
+        <li><strong>Key ideas:</strong> actions determine legacy; the future can change, but time and death can’t be escaped.</li>
+        <li><strong>Appearance & symbolism:</strong> black garment/darkness (death + fear + hopeless future), silence (seriousness and inevitability).</li>
+        <li><strong>Power dynamic:</strong> Scrooge fears the Spirit but seeks redemption; unlike the past, the future is not fixed.</li>
+        <li><strong>Turning point:</strong> seeing his own neglected grave forces complete transformation.</li>
+      </ul>
+
+      <h3>5) Conclusion / overall message</h3>
+      <ul>
+        <li>The Ghosts work together to transform Scrooge <strong>morally</strong> and <strong>emotionally</strong>.</li>
+        <li>Dickens promotes kindness, generosity, and social responsibility, while criticising selfishness and neglect of the poor.</li>
+        <li>Main takeaway: <strong>change is possible</strong>, <strong>compassion matters</strong>, and <strong>how we live determines our legacy</strong>.</li>
+      </ul>
+
+      <div class="practice">
+        <h3>Practice: Long Questions</h3>
+        <div class="q">
+          <strong>1)</strong>
+          How does Dickens use the Ghost of Christmas Past to develop Scrooge’s character and encourage the reader to feel sympathy for him?
+          In your answer, write about the Ghost’s purpose, the scenes it shows, and how its symbolism (especially light) supports Dickens’ message.
+        </div>
+        <div class="q">
+          <strong>2)</strong>
+          “The Ghost of Christmas Present is Dickens’ voice for social reform.” How far do you agree?
+          Write about the Spirit’s appearance and behaviour, what it teaches Scrooge about poverty, and how characters like Ignorance and Want affect the reader.
+        </div>
+        <div class="q">
+          <strong>3)</strong>
+          Explore how the Ghost of Christmas Yet to Come changes the tone of the novella and completes Scrooge’s redemption.
+          In your answer, focus on the Spirit’s silence and darkness, the future visions of death and legacy, and why Scrooge finally commits to change.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div><strong>Source:</strong> PMT Education AQA English Literature GCSE — <em>A Christmas Carol: Character Profile (The Ghosts)</em>.</div>
+    <div>Cards include key ideas on: purpose, appearance/symbolism, power dynamic, and key quotations.</div>
+  </footer>
+
+<script>
+const CARDS = [
+  {
+    id: 1,
+    group: "overview",
+    tags: ["Key point", "Structure"],
+    frontTitle: "1) The Ghosts = Past, Present, Future",
+    frontPrompt: "What do the three Spirits represent in Scrooge’s journey?",
+    bullets: [
+      "Each Spirit controls what Scrooge sees and teaches a specific lesson.",
+      "Together they move Scrooge from denial → reflection → responsibility → change.",
+      "Dickens uses them to push the plot toward redemption and to teach readers moral values."
+    ],
+    quote: "They guide Scrooge toward his redemption through staged lessons."
+  },
+  {
+    id: 2,
+    group: "past",
+    tags: ["Past", "Purpose"],
+    frontTitle: "2) Christmas Past: Builds empathy",
+    frontPrompt: "Why does Dickens show Scrooge’s past?",
+    bullets: [
+      "Scrooge watches ‘significant and provocative’ moments from earlier life.",
+      "Dickens adopts a more sympathetic tone so readers understand how the past shaped him.",
+      "Shows Scrooge wasn’t always misanthropic → gives hope he can change back."
+    ],
+    quote: "The visit had a “softening influence” and gave “a freer passage to his tears”."
+  },
+  {
+    id: 3,
+    group: "past",
+    tags: ["Past", "Appearance", "Light motif"],
+    frontTitle: "3) Christmas Past: Symbolism of light",
+    frontPrompt: "How does its appearance show moral authority?",
+    bullets: [
+      "Wears a tunic ‘of purest white’ → purity/innocence; a reassuring force with a ‘soft and gentle’ voice.",
+      "Paradoxical details (child/old man; holly + summer flowers) highlight the supernatural and ‘all of Scrooge’s past’.",
+      "Emits a ‘bright clear jet of light’ → enlightenment and truth; Scrooge can’t fully escape it."
+    ],
+    quote: "Scrooge “could not hide the light” (truth and self-discovery)."
+  },
+  {
+    id: 4,
+    group: "past",
+    tags: ["Past", "Power dynamic"],
+    frontTitle: "4) Christmas Past: Power over Scrooge",
+    frontPrompt: "What is the power dynamic like?",
+    bullets: [
+      "Scrooge starts defiant (‘what business’ / prefers ‘a night of unbroken rest’).",
+      "When scenes hurt (Belle), he begs: ‘Show me no more!’",
+      "The Spirit stays dominant — it ‘pinioned him’ and forces him to watch; even the ‘struggle’ shows the Ghost’s control."
+    ],
+    quote: "The Ghost showed “no visible resistance” — it doesn’t need to."
+  },
+  {
+    id: 5,
+    group: "present",
+    tags: ["Present", "Purpose", "Christmas spirit"],
+    frontTitle: "5) Christmas Present: Personifies Christmas spirit",
+    frontPrompt: "What does this Spirit represent?",
+    bullets: [
+      "Shows different celebrations (Cratchits vs Fred) to highlight shared joy across classes.",
+      "Described as ‘kind, generous, hearty’ (rule of three) — core Christmas values.",
+      "Scrooge links it to God’s moral authority (‘blue laws’ in its name/family)."
+    ],
+    quote: "It represents generosity, warmth, and the importance of Christmas spirit."
+  },
+  {
+    id: 6,
+    group: "present",
+    tags: ["Present", "Appearance", "Symbols"],
+    frontTitle: "6) Christmas Present: Generosity + peace",
+    frontPrompt: "How do its symbols teach Scrooge?",
+    bullets: [
+      "A ‘jolly Giant’ in green robe + holly wreath → traditional Father Christmas figure.",
+      "‘Open hand’ and ‘unconstrained demeanour’ contrast Scrooge’s ‘grasping…covetous’ nature.",
+      "Carries a ‘glowing torch’ like Plenty’s horn (cornucopia) → abundance; and an empty rusted scabbard → peace/no conflict at Christmas."
+    ],
+    quote: "Light here symbolises positivity, abundance, and festive goodwill."
+  },
+  {
+    id: 7,
+    group: "present",
+    tags: ["Present", "Social reform"],
+    frontTitle: "7) Christmas Present: Dickens’ social criticism",
+    frontPrompt: "How does it challenge Scrooge’s views on poverty?",
+    bullets: [
+      "Throne of food challenges the idea of scarcity and ‘surplus population’.",
+      "Mocks Scrooge’s own words about ‘surplus population’ when Tiny Tim’s fate is questioned.",
+      "Reveals Ignorance and Want under its robe; sorrowful tone — urges society to ‘Look…down here’ and not ignore poverty."
+    ],
+    quote: "“Oh Man! Look here. Look, look down here.”"
+  },
+  {
+    id: 8,
+    group: "future",
+    tags: ["Yet To Come", "Tone", "Consequences"],
+    frontTitle: "8) Yet To Come: Death + accountability",
+    frontPrompt: "What final lesson does the last Ghost teach?",
+    bullets: [
+      "Approaches ‘slowly, gravely, silently’ → ominous tone; resembles the Grim Reaper.",
+      "Semantic field of darkness (‘deep black garment’, ‘scatter gloom’) contrasts earlier light → bleak future if Scrooge doesn’t repent.",
+      "Shows reactions to Scrooge’s death: indifference/profit (pawn shop) and relief (debtor family) → consequences of isolation."
+    ],
+    quote: "Scrooge reads “EBENEEZER SCROOGE” on a “neglected” grave — poetic justice."
+  }
+];
+
+const grid = document.getElementById("grid");
+const counter = document.getElementById("counter");
+let activeFilter = "all";
+
+function makeCard(card){
+  const wrap = document.createElement("article");
+  wrap.className = "card";
+  wrap.dataset.group = card.group;
+
+  const inner = document.createElement("div");
+  inner.className = "inner";
+
+  const front = document.createElement("div");
+  front.className = "face front";
+  front.innerHTML = `
+    <div class="tagrow">${card.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+    <div class="title">${card.frontTitle}</div>
+    <div class="prompt">${card.frontPrompt}</div>
+    <div class="hint">Click to flip</div>
+  `;
+
+  const back = document.createElement("div");
+  back.className = "face back";
+  back.innerHTML = `
+    <div class="tagrow">${card.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+    <div class="title">${card.frontTitle}</div>
+    <ul>${card.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
+    <div class="quote"><strong>Key quote / idea:</strong> ${card.quote}</div>
+  `;
+
+  inner.appendChild(front);
+  inner.appendChild(back);
+  wrap.appendChild(inner);
+
+  wrap.addEventListener("click", () => wrap.classList.toggle("flipped"));
+  return wrap;
+}
+
+function render(cards){
+  grid.innerHTML = "";
+  cards.forEach(c => grid.appendChild(makeCard(c)));
+  updateCounter();
+}
+
+function updateCounter(){
+  const visible = [...grid.querySelectorAll(".card")].filter(c => c.style.display !== "none").length;
+  counter.textContent = `${visible} card${visible===1?"":"s"} showing`;
+}
+
+function applyFilter(filter){
+  activeFilter = filter;
+  const cards = [...grid.querySelectorAll(".card")];
+  cards.forEach(c => {
+    const show = (filter === "all") || (c.dataset.group === filter);
+    c.style.display = show ? "" : "none";
+  });
+  updateCounter();
+}
+
+function shuffle(){
+  // Fisher–Yates
+  const arr = CARDS.slice();
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  render(arr);
+  applyFilter(activeFilter);
+}
+
+function unflipAll(){
+  document.querySelectorAll(".card.flipped").forEach(c => c.classList.remove("flipped"));
+}
+
+document.getElementById("shuffleBtn").addEventListener("click", shuffle);
+document.getElementById("unflipBtn").addEventListener("click", unflipAll);
+
+document.querySelectorAll(".chip").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed","false"));
+    btn.setAttribute("aria-pressed","true");
+    applyFilter(btn.dataset.filter);
+  });
+});
+
+// Keyboard shortcuts
+document.addEventListener("keydown", (e) => {
+  if(e.key.toLowerCase() === "s") shuffle();
+  if(e.key.toLowerCase() === "r") {
+    document.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed","false"));
+    const allBtn = document.querySelector('.chip[data-filter="all"]');
+    allBtn.setAttribute("aria-pressed","true");
+    applyFilter("all");
+  }
+  if(e.key === "Escape") unflipAll();
+});
+
+// First render
+render(CARDS);
+applyFilter("all");
+</script>
+</body>
+</html>
